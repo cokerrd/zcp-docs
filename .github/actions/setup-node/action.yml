@@ -1,0 +1,28 @@
+name: 'Setup Node.js'
+description: 'Setup pnpm, Node.js, and install dependencies (requires checkout first)'
+
+inputs:
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: '22'
+
+runs:
+  using: 'composite'
+  steps:
+    # No version pin — pnpm version comes from the "packageManager" field in
+    # package.json. pnpm/action-setup still targets Node 20, which emits a
+    # cosmetic deprecation warning; the workflow's FORCE_JAVASCRIPT_ACTIONS_TO_NODE24
+    # env makes it run on Node 24. (corepack-on-runner was tried and is flaky.)
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v5
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile
