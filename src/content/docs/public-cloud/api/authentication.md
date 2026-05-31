@@ -52,7 +52,7 @@ Every endpoint returns a common envelope:
 | `status`   | `Success` or `Error`                         |
 | `message`  | Human-readable result message                |
 | `timezone` | Server timestamp                             |
-| `data`     | The response payload — an object or an array |
+| `data`     | The response payload (an object or an array) |
 
 ### Token Lifetime
 

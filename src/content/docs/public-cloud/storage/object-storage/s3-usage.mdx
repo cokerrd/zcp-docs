@@ -233,9 +233,9 @@ foreach ($s3->listBuckets()["Buckets"] as $bucket) {
 
 :::tip
 
-Always enable path-style addressing — `forcePathStyle` (JS/TS), `UsePathStyle` (Go),
-`ForcePathStyle` (C#), `pathStyleAccessEnabled` (Java), `force_path_style` (Ruby), or
-`use_path_style_endpoint` (PHP). Ceph-backed S3 requires it; virtual-hosted style is not supported.
+Always enable path-style addressing: `forcePathStyle` (JS/TS), `UsePathStyle` (Go), `ForcePathStyle`
+(C#), `pathStyleAccessEnabled` (Java), `force_path_style` (Ruby), or `use_path_style_endpoint`
+(PHP). Ceph-backed S3 requires it. Virtual-hosted style is not supported.
 
 :::
 

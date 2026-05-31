@@ -109,9 +109,22 @@ import type { Props } from '@astrojs/starlight/props';
       px = Math.min(Math.max(value, h.min), h.max);
       root.style.setProperty(h.cssVar, `${(px * remPerPx()).toFixed(3)}rem`);
     };
-    const persist = () => localStorage.setItem(h.storageKey, String(px));
+    // localStorage can throw in private mode / when storage is disabled —
+    // guard it so the resize feature never breaks the page.
+    const persist = () => {
+      try {
+        localStorage.setItem(h.storageKey, String(px));
+      } catch {
+        /* storage unavailable — ignore */
+      }
+    };
 
-    const saved = Number(localStorage.getItem(h.storageKey));
+    let saved = NaN;
+    try {
+      saved = Number(localStorage.getItem(h.storageKey));
+    } catch {
+      /* storage unavailable — ignore */
+    }
     if (Number.isFinite(saved) && saved > 0) apply(saved);
 
     let dragging = false;

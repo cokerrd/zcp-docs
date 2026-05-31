@@ -2,32 +2,25 @@
 import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/TableOfContents.astro';
 
-const { toc, entry } = Astro.locals.starlightRoute;
+const { toc, entry, lastUpdated } = Astro.locals.starlightRoute;
 const hasToc = toc && toc.items.length > 0;
 
-// Safely extract lastUpdated without casting to any.
-// Frontmatter can surface it as a Date object or a string — normalize both.
-const rawDate =
-  entry?.data != null && 'lastUpdated' in entry.data
-    ? (entry.data as { lastUpdated?: unknown }).lastUpdated
-    : undefined;
-
-let lastUpdated: Date | undefined;
-if (rawDate instanceof Date) {
-  lastUpdated = Number.isFinite(rawDate.getTime()) ? rawDate : undefined;
-} else if (typeof rawDate === 'string' && rawDate.length > 0) {
-  const parsed = new Date(rawDate);
-  lastUpdated = Number.isFinite(parsed.getTime()) ? parsed : undefined;
-}
-
+// `lastUpdated` is the Starlight-resolved date — the page's frontmatter
+// `lastUpdated`, or with `lastUpdated: true` the Git commit date. Setting
+// `lastUpdated: true` does NOT populate `entry.data.lastUpdated`, so we read it
+// from the route data (already a `Date`) instead.
 const lastUpdatedStr = lastUpdated
   ? lastUpdated.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })
   : null;
 
-// Edit-on-GitHub link — update repo path to match your docs repository
+// Edit-on-GitHub link. Use the entry's real source path (`filePath` keeps the
+// file extension; `entry.id` drops it) and URL-encode each segment so unusual
+// filenames don't break the link.
 const DOCS_REPO = 'https://github.com/zsoftly/zcp-docs';
-const filePath = entry?.id ? `src/content/docs/${entry.id}` : null;
-const editUrl = filePath ? `${DOCS_REPO}/edit/main/${filePath}` : `${DOCS_REPO}`;
+const encodedPath = entry?.filePath
+  ? entry.filePath.split('/').map(encodeURIComponent).join('/')
+  : null;
+const editUrl = encodedPath ? `${DOCS_REPO}/edit/main/${encodedPath}` : `${DOCS_REPO}`;
 const feedbackUrl = `${DOCS_REPO}/issues/new?labels=feedback&title=Feedback+on+docs`;
 ---
 
