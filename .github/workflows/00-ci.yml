@@ -17,6 +17,10 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# Least privilege — these jobs only read the repo to lint/typecheck/audit/build.
+permissions:
+  contents: read
+
 env:
   # Opt JS actions (pnpm/action-setup) into Node 24 ahead of the June 2026 default.
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -27,7 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: '00: Checkout'
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
 
       - name: '01: Setup Node.js'
         uses: ./.github/actions/setup-node
@@ -43,7 +49,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: '00: Checkout'
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
 
       - name: '01: Setup Node.js'
         uses: ./.github/actions/setup-node
@@ -56,7 +64,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: '00: Checkout'
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
 
       - name: '01: Setup Node.js'
         uses: ./.github/actions/setup-node
@@ -71,7 +81,9 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: '00: Checkout'
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        with:
+          persist-credentials: false
 
       - name: '01: Setup Node.js'
         uses: ./.github/actions/setup-node
@@ -94,7 +106,7 @@ jobs:
 
       - name: '04: Upload build artifact on failure'
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: build-failure-logs
           path: dist/

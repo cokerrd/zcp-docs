@@ -1,8 +1,5 @@
 FROM node:22-alpine AS builder
 
-LABEL org.opencontainers.image.source=https://github.com/zsoftly/zcp-docs
-LABEL org.opencontainers.image.description="ZSoftly Documentation"
-
 # Patch Alpine OS packages with fixes published since the base image was built
 RUN apk upgrade --no-cache
 
@@ -16,6 +13,10 @@ COPY . .
 RUN pnpm build
 
 FROM caddy:2-alpine
+
+# Labels apply to the final runtime image (a builder-stage LABEL is discarded).
+LABEL org.opencontainers.image.source=https://github.com/zsoftly/zcp-docs
+LABEL org.opencontainers.image.description="ZSoftly Documentation"
 
 # Patch Alpine OS packages — clears OS-level CVEs in the shipped runtime image
 RUN apk upgrade --no-cache

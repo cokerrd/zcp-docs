@@ -64,9 +64,11 @@ while true; do
     -H "x-api-key: ${API_KEY}" 2>/dev/null \
     | python3 -c "import json,sys; print(json.load(sys.stdin).get('result',{}).get('data',{}).get('json',{}).get('applicationStatus','unknown'))" 2>/dev/null || echo "unknown")
 
-  if [ "$STATUS" = "running" ] || [ "$STATUS" = "idle" ]; then
+  if [ "$STATUS" = "running" ]; then
     SAW_RUNNING=true
     echo "[INFO] Building... (${ELAPSED}s)"
+  elif [ "$STATUS" = "idle" ]; then
+    echo "[INFO] Waiting for build to start... (${ELAPSED}s)"
   elif [ "$STATUS" = "done" ] && [ "$SAW_RUNNING" = true ]; then
     echo "[OK] Deploy completed in ${ELAPSED}s"
     write_summary "success" "$ELAPSED"
