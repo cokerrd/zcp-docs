@@ -11,6 +11,10 @@ Public IP addresses allow resources in the network to communicate with the inter
 - Click **Acquire New IP** to request a new public IP.
 - Choose the desired **Billing Cycle** and click **Buy IP**.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [Network Overview](./overview), [Create Public Network](./create)

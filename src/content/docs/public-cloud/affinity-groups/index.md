@@ -8,6 +8,12 @@ Affinity Groups control the placement of VMs on hypervisor hosts within the clou
 Use them to co-locate VMs for low-latency communication or spread them across hosts for fault
 tolerance.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Create an Affinity Group
 
 - From the left-hand menu, click **Affinity Groups**.
@@ -24,5 +30,3 @@ tolerance.
 | **Host Affinity (Non-Strict)**      | Prefers same host, but allows different hosts if needed.                            |
 
 - Click **Submit**.
-
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::

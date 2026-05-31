@@ -14,7 +14,11 @@ The Domain Name System (DNS) translates human-readable domain names into IP addr
 - Choose the **Project** and enter your domain name.
 - Click **Add Domain**.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Point your domain to ZSoftly
 

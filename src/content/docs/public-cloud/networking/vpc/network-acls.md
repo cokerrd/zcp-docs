@@ -13,6 +13,10 @@ the VPC.
 - Provide a **Name** and **Description**.
 - Click **Submit**.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [Add Subnet](./add-subnet), [Create VPC](./create-vpc)

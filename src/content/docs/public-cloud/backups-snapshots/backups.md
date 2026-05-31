@@ -9,14 +9,16 @@ Backups create copies of your instance's data on a scheduled basis to protect ag
 deletions, software failures, or security threats. ZSoftly Public Cloud provides automated daily,
 weekly, or custom schedule backups.
 
-:::note Automatic backups cost 20% of the virtual machine's price. :::
+:::note
+
+Automatic backups cost 20% of the virtual machine's price.
+
+:::
 
 ### Create a Backup Schedule
 
 - From the left-hand menu, click **Backups**.
 - Click **Create Backups** or the **+** icon.
-
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
 
 ### Steps
 
@@ -26,5 +28,11 @@ weekly, or custom schedule backups.
 4. **Schedule**: set backup frequency (intervals and time). Optionally click **Take One Immediate**
    to also take an immediate backup.
 5. **Create**: Billing: Hourly only, Fixed Prorata rule. Click **Create Backup**.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [VM Snapshots](./vm-snapshots), [Volume Snapshots](./volume-snapshots)

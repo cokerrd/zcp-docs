@@ -56,10 +56,91 @@ import type { Props } from '@astrojs/starlight/props';
   <slot />
 </Default>
 
+<div
+  id="sidebar-resizer"
+  class="sidebar-resizer"
+  role="separator"
+  aria-orientation="vertical"
+  aria-label="Resize sidebar"
+  tabindex="0"
+>
+</div>
+
 <script>
   document.getElementById('promo-dismiss')?.addEventListener('click', () => {
     sessionStorage.setItem('zs-promo-dismissed', '1');
     document.documentElement.setAttribute('data-promo-dismissed', '');
+  });
+
+  // ── Sidebar resize ──────────────────────────────────────────
+  const STORAGE_KEY = 'zs-sidebar-width';
+  const MIN_PX = 180;
+  const MAX_PX = 480;
+  const STEP_PX = 10; // keyboard arrow step
+
+  const root = document.documentElement;
+  const resizer = document.getElementById('sidebar-resizer');
+
+  // Tracks the last applied clamped width so we persist the right value.
+  let currentWidthPx = 0;
+
+  function pxToRem(px: number) {
+    return px / parseFloat(getComputedStyle(root).fontSize);
+  }
+
+  function setSidebarWidth(px: number) {
+    const clamped = Math.min(Math.max(px, MIN_PX), MAX_PX);
+    root.style.setProperty('--sl-sidebar-width', `${pxToRem(clamped).toFixed(3)}rem`);
+    if (resizer) resizer.style.left = `${clamped}px`;
+    currentWidthPx = clamped;
+    return clamped;
+  }
+
+  function persistWidth() {
+    localStorage.setItem(STORAGE_KEY, String(currentWidthPx));
+  }
+
+  // Restore saved width — validate before applying
+  const raw = localStorage.getItem(STORAGE_KEY);
+  const saved = raw !== null ? Number(raw) : NaN;
+  if (Number.isFinite(saved)) {
+    setSidebarWidth(saved);
+  }
+
+  // ── Mouse drag ─────────────────────────────────────────────
+  let dragging = false;
+
+  resizer?.addEventListener('mousedown', (e: MouseEvent) => {
+    dragging = true;
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', (e: MouseEvent) => {
+    if (!dragging) return;
+    setSidebarWidth(e.clientX);
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+    persistWidth();
+  });
+
+  // ── Keyboard (Arrow Left / Arrow Right) ────────────────────
+  resizer?.addEventListener('keydown', (e: KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      setSidebarWidth(currentWidthPx - STEP_PX);
+      persistWidth();
+      e.preventDefault();
+    } else if (e.key === 'ArrowRight') {
+      setSidebarWidth(currentWidthPx + STEP_PX);
+      persistWidth();
+      e.preventDefault();
+    }
   });
 </script>
 

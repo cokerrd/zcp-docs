@@ -9,8 +9,6 @@ interaction without SSH or RDP.
 
 Access your console by clicking on the console icon from the actions menu.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
-
 ## Keyboard Shortcuts
 
 The following keyboard shortcuts are available in the console interface:
@@ -25,6 +23,12 @@ The following keyboard shortcuts are available in the console interface:
 - **Clipboard**: Facilitates copying text between the local machine and the VM.
 - **Full-Screen Mode**: Expands the VM console to full-screen.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ## What You Can Do
 
 Console Access allows you to:
@@ -32,6 +36,12 @@ Console Access allows you to:
 - Install software
 - Adjust configuration settings
 - Troubleshoot the operating system
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ## See also
 

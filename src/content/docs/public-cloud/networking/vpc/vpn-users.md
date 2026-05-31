@@ -13,6 +13,10 @@ Site-to-Site VPN and is used for individual user remote access.
 - Provide the username and click **Submit**.
 - Users download their VPN client configuration from the portal once created.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [VPN Gateway](./site-vpn), [VPC Overview](./create-vpc)

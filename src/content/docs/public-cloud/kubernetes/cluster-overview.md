@@ -15,11 +15,23 @@ The Cluster Overview page provides a summary and management options for your Kub
 - **Power Off**: gracefully shut down the cluster
 - **Delete**: permanently delete the cluster and all resources
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Cluster Overview
 
 - **Total CPU**, **Total RAM**
 - **Control Nodes** / **Worker Nodes**
 - **Network**, **Status**
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Cluster Information
 
@@ -27,11 +39,15 @@ The Cluster Overview page provides a summary and management options for your Kub
 - Kubernetes Version, Auto Scaling (min/max node count if enabled)
 - All-Time Consumption, Network, SSH Key
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Node Config
 
 - Current Plan, CPU per node, Memory per node, Storage per node
-
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
 
 See also: [Create Cluster](./create-cluster), [kubectl Access](./kubectl-access),
 [Dashboard Access](./dashboard-access)

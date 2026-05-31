@@ -228,6 +228,65 @@
 }
 
 /* ============================================================
+   Content area scaling
+   ============================================================ */
+
+/* Prevent the main content column from collapsing below a readable width
+   when the sidebar is wide or the browser is zoomed in. This selector does
+   not overlap with any Expressive Code or Starlight component selectors, so
+   no @layer isolation is required. */
+@media (min-width: 72rem) {
+  .content-panel {
+    min-inline-size: 24rem;
+    flex: 1 1 0;
+  }
+}
+
+/* ============================================================
+   Sidebar resize handle
+   ============================================================ */
+
+.sidebar-resizer {
+  position: fixed;
+  top: var(--sl-nav-height, 4rem);
+  bottom: 0;
+  left: var(--sl-sidebar-width, 18rem);
+  width: 4px;
+  cursor: col-resize;
+  z-index: 200;
+  background: transparent;
+  transition: background-color 150ms ease;
+}
+
+.sidebar-resizer::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  left: 1px;
+  width: 2px;
+  background: transparent;
+  border-radius: 1px;
+  transition: background-color 150ms ease;
+}
+
+.sidebar-resizer:hover::after,
+.sidebar-resizer:active::after,
+.sidebar-resizer:focus-visible::after {
+  background: var(--sl-color-accent);
+}
+
+.sidebar-resizer:focus-visible {
+  outline: none;
+}
+
+/* Hide on mobile where sidebar is an overlay */
+@media (max-width: 72rem) {
+  .sidebar-resizer {
+    display: none;
+  }
+}
+
+/* ============================================================
    Animations
    ============================================================ */
 @keyframes fade-up {
@@ -392,7 +451,7 @@
 }
 
 .service-desc {
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: var(--sl-color-gray-2);
   margin: 0;
   line-height: 1.5;
@@ -457,7 +516,7 @@
   padding: 0;
 }
 .sidebar-card p {
-  font-size: 0.8125rem;
+  font-size: 0.9rem;
   color: var(--sl-color-gray-2);
   margin: 0 0 1rem;
   line-height: 1.55;
@@ -479,7 +538,7 @@
   background: var(--sl-color-bg-sidebar);
 }
 .sidebar-links h4 {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -497,7 +556,7 @@
   gap: 0.5rem;
 }
 .sidebar-links li a {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--sl-color-accent) !important;
   text-decoration: none !important;
   line-height: 1.4;

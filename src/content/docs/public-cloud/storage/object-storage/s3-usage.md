@@ -83,6 +83,7 @@ console.log(Buckets);
 ```
 
 :::tip Use `forcePathStyle: true` (Node.js) when working with Ceph-backed S3 to ensure
+
 compatibility. :::
 
 See also: [Access Keys](./access-keys), [Create Bucket](./create-bucket)

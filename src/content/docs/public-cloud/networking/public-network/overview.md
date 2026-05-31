@@ -16,6 +16,10 @@ shows:
 - **CIDR**: Specifies the network's IP range.
 - **Account**: The account that owns the network.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [Create Public Network](./create), [Public IPs](./public-ips)

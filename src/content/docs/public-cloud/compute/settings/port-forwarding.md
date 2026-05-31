@@ -11,4 +11,8 @@ example, forward external traffic on port 8080 to port 80 on your VM for web ser
 - Go to **VM Settings** → **Port Forwarding**.
 - Click **Manage** to change port configurations for the network.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::

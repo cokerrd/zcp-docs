@@ -13,27 +13,61 @@ to communicate with external systems over the internet.
 - From the left-hand menu, click **Networks** → **Public Network** tab.
 - Click the **+** icon to open the creation page.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Choose a Location
 
 Select the data center location where you want to host the network.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Assign to a Project
 
 Assign the network to a project to organize resources.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Network Configurations
 
 Configure the gateway and network mask to define the routing and IP address structure.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Name
 
 Provide a unique name for your Public Network.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Create
 
 - Choose the **Billing Cycle**: Hourly or Monthly.
 - Review the price summary and click **Create**.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [Network Overview](./overview), [Public IPs](./public-ips)

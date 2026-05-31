@@ -12,7 +12,11 @@ reliability, and improved performance.
 - From the left-hand menu, click **Load Balancer**.
 - Click the **+** icon.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Steps
 
@@ -31,6 +35,12 @@ reliability, and improved performance.
    - Billing cycles: Hourly, Monthly, Quarterly, Semiannually, Yearly, Bi-annually, Tri-annually
    - One package per zone
    - Click **Create Load Balancer**
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Attach Additional VMs
 

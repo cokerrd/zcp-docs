@@ -13,6 +13,10 @@ your VM. Allow or deny access to specific IP addresses, ports, or protocols.
 
 Example use case: block all traffic except SSH (port 22) and web traffic (ports 80/443).
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [Networks](./networks), [Port Forwarding](./port-forwarding)

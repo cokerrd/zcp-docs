@@ -21,6 +21,10 @@ The Network tab displays all networks (subnets) created inside the VPC. Add new 
 
 Click **Submit** to create the subnet.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [Network ACLs](./network-acls), [VPC Overview](./create-vpc)

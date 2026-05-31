@@ -13,8 +13,6 @@ backups, static assets, or any unstructured data.
 - From the left-hand menu, click **Object Storage**.
 - Click **Create Object Storage** or the **+** icon.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
-
 ### Steps
 
 1. **Assign to a Project**.
@@ -24,6 +22,12 @@ backups, static assets, or any unstructured data.
 5. **Create**: Billing cycles: Hourly, Monthly, Quarterly, Semiannually, Yearly, Bi-annually,
    Tri-annually. Billing rules: Date to Date, Fixed Calendar Month, Unfixed Calendar Month, Fixed
    Prorata, Unfixed Prorata. Click **Review and Create**.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Create a Bucket
 
@@ -35,9 +39,16 @@ Once your object storage instance is active:
 - Optionally enable **Object Locking**: stores objects in write-once-read-many (WORM) model.
 
 :::note Object Locking only works in versioned buckets. Object versions count toward your total
+
 storage costs. :::
 
 - Click **Create**.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Manage Buckets
 
@@ -45,9 +56,21 @@ storage costs. :::
 - **Upload Files**: Upload files directly through the portal.
 - **Create Folder**: Organize objects into folders within the bucket.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Auto Scaling
 
 Toggle auto-scaling on/off from the storage instance actions to automatically resize based on usage.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Credentials
 

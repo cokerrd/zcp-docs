@@ -26,6 +26,7 @@ The endpoint for your instance matches the region you selected when creating it.
    - **Secret Access Key**: your S3 secret key (treat this like a password)
 
 :::warning Store your secret key securely. It is shown once and cannot be recovered. If lost, you
+
 must generate new credentials. :::
 
 ### Use credentials with AWS CLI

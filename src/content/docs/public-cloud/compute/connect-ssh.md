@@ -13,6 +13,12 @@ Before connecting, ensure you have:
 - **Default Username**: Depending on OS (`root`, `ubuntu`, `ec2-user`).
 - **Authentication Method**: SSH Key (recommended) or Default Password (found in Instance Overview).
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ## Connecting
 
 Open a terminal (Command Prompt/PowerShell on Windows, built-in terminal on macOS/Linux).
@@ -35,7 +41,11 @@ Example:
 ssh root@192.168.1.1
 ```
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## See also
 
