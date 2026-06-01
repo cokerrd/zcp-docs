@@ -84,6 +84,7 @@ export default defineConfig({
               items: [
                 { label: 'Create Instance', slug: 'public-cloud/compute/create-instance' },
                 { label: 'Instance Overview', slug: 'public-cloud/compute/instance-overview' },
+                { label: 'Plan Names', slug: 'public-cloud/compute/plan-names' },
                 { label: 'Connect via SSH', slug: 'public-cloud/compute/connect-ssh' },
                 { label: 'Connect via RDP', slug: 'public-cloud/compute/connect-rdp' },
                 { label: 'Console Access', slug: 'public-cloud/compute/console-access' },

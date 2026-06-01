@@ -1,7 +1,7 @@
-# Launch Checklist
+# Pre-Publish Checklist
 
-Validation before promoting a release to prd. Run through this against stg first, then confirm the
-prd items after deploy.
+Content and quality validation to run before a change is published. Maintainers handle the
+deployment steps separately.
 
 ---
 
@@ -43,26 +43,12 @@ prd items after deploy.
 - [ ] New pages have a `title`
 - [ ] Key pages have a `description`
 - [ ] Sitemap is accessible at `/sitemap-index.xml`
-- [ ] dev and stg are not indexed
-- [ ] prd is indexable (no `noindex` header or meta)
+- [ ] Preview environments are not indexed; production is indexable
 
 ---
 
-## Pipeline
+## After publish
 
-- [ ] Release branch follows `release/YYYY-MM-DD-HHMM`
-- [ ] stg deploy succeeded and its smoke test passed
-- [ ] prd deploy used the same branch that is live on stg
-- [ ] prd smoke test passed against the live hostname
-
----
-
-## prd verification (after deploy)
-
-- [ ] Homepage loads over HTTPS with a valid TLS certificate
-- [ ] A spot-check of changed pages renders correctly
-- [ ] Search works on the live site
-- [ ] No 4xx or 5xx on the smoke-tested paths
-- [ ] Caddy security headers are present (see `deploy/caddy/prd.Caddyfile`)
-- [ ] The canonical hostname and the deploy/smoke hostname agree (see the note in
-      [environments.md](./environments.md#prd))
+- [ ] The published page loads over HTTPS and renders correctly
+- [ ] Search returns results for new pages
+- [ ] No broken links or missing images on the changed pages

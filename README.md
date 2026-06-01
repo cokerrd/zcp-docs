@@ -1,7 +1,7 @@
 # ZSoftly Documentation
 
-Source for [docs.zsoftly.ca](https://docs.zsoftly.ca) — the official documentation for the ZSoftly
-Cloud Platform (ZCP) and ZSoftly Private Cloud Platform (ZPCP).
+Source for [docs.zcp.zsoftly.ca](https://docs.zcp.zsoftly.ca), the official documentation for the
+ZSoftly Cloud Platform (ZCP) and ZSoftly Private Cloud Platform (ZPCP).
 
 Built with [Starlight](https://starlight.astro.build) (Astro).
 
@@ -50,16 +50,14 @@ title: Page Title
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-## Engineering and process docs
+## Contributor docs
 
-Internal source-of-truth specs in [docs/](./docs/):
+Guides in [docs/](./docs/):
 
-- [release-process.md](./docs/release-process.md) — git workflow, branch naming, cutting and
-  shipping releases
-- [cicd.md](./docs/cicd.md) — the four GitHub Actions workflows, CI gates, secrets, runners
-- [environments.md](./docs/environments.md) — dev, stg, prd definitions
-- [content-standards.md](./docs/content-standards.md) — writing style and Starlight authoring rules
-- [launch-checklist.md](./docs/launch-checklist.md) — pre-launch validation
+- [content-standards.md](./docs/content-standards.md): writing style and Starlight authoring rules
+- [release-process.md](./docs/release-process.md): branch naming, commit format, local validation,
+  the PR
+- [launch-checklist.md](./docs/launch-checklist.md): content and quality checks before publishing
 
 ## License
 
