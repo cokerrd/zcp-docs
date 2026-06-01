@@ -12,6 +12,4 @@ configurations.
 - Go to **VM Settings** → **Change Startup Script**.
 - Add your desired script and click **Change**.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
-
 Always review your script syntax before applying to avoid boot-time errors.

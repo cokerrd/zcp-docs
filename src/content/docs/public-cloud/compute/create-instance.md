@@ -13,20 +13,32 @@ Cloud, enabling you to launch and scale servers as needed.
 - From the left-hand menu, click on the **Instances** tab.
 - To create an instance, click the **plus (+)** icon located on the right side of the page.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Choose a Location
 
 Select the data center location where your server will be physically hosted.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Choose an Image
 
 Select an OS or application template. Available OS images are listed. Import a custom ISO if needed.
 For Microsoft Windows, only official evaluation versions are available.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Choose the Type of CPU Allocation
 
@@ -39,7 +51,11 @@ For Microsoft Windows, only official evaluation versions are available.
 - **Cloud GPU**: Delivers GPU acceleration for demanding tasks like machine learning, AI, video
   rendering, and scientific simulations.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Choose a Plan
 
@@ -52,11 +68,21 @@ For Microsoft Windows, only official evaluation versions are available.
 - **Database Optimized (DO)**: Specifically tuned for database workloads, offering enhanced I/O
   performance and memory-to-disk ratio for transactional or analytical database systems.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Assign to a Project
 
 Assign the server to one of your projects to organize resources.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Choose a Network
 
@@ -69,7 +95,11 @@ Assign the server to one of your projects to organize resources.
 
 Choose whether to enable public IPv4.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Configure Server Settings
 
@@ -77,7 +107,11 @@ Choose whether to enable public IPv4.
   is required.
 - Add a startup script to automate actions during initialization.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Advanced Settings (Optional)
 
@@ -85,9 +119,21 @@ Choose whether to enable public IPv4.
 - **Boot Type**: Choose between UEFI or BIOS.
 - **Enable Dynamic Scaling**: Allows automatic resource scaling.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ## Server Hostname
 
 Provide a unique Server Name and valid Server Hostname.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Review and Deploy
 
@@ -96,8 +142,6 @@ Provide a unique Server Name and valid Server Hostname.
 - Supported billing rules: Date to Date, Fixed Calendar Month, Unfixed Calendar Month, Fixed
   Prorata, Unfixed Prorata.
 - Verify all configuration details and click **Review & Deploy**.
-
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
 
 ## See also
 

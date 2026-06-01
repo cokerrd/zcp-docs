@@ -18,6 +18,10 @@ export default defineConfig({
         replacesTitle: true,
       },
       favicon: '/favicon.svg',
+      lastUpdated: true,
+      // Expressive Code is configured via ec.config.mjs in the project root.
+      // astro-expressive-code auto-discovers that file via loadEcConfigFile()
+      // in its astro:config:setup hook — no expressiveCode key is needed here.
       social: [
         {
           icon: 'github',
@@ -36,9 +40,32 @@ export default defineConfig({
         PageFrame: './src/overrides/PageFrame.astro',
       },
       sidebar: [
-        // ── ZCP — ZSoftly Cloud Platform (Public Cloud) ───────
+        // ── CLI ────────────────────────────────────────────────
         {
-          label: 'ZCP — Public Cloud',
+          label: 'CLI',
+          collapsed: true,
+          items: [
+            { label: 'Installation', slug: 'public-cloud/cli/installation' },
+            { label: 'Quickstart', slug: 'public-cloud/cli/quickstart' },
+            { label: 'Configuration', slug: 'public-cloud/cli/configuration' },
+            { label: 'Reference', slug: 'public-cloud/cli/reference' },
+          ],
+        },
+
+        // ── API ────────────────────────────────────────────────
+        {
+          label: 'API',
+          collapsed: true,
+          items: [
+            { label: 'Authentication', slug: 'public-cloud/api/authentication' },
+            { label: 'Quickstart', slug: 'public-cloud/api/quickstart' },
+            { label: 'Reference', slug: 'public-cloud/api/reference' },
+          ],
+        },
+
+        // ── ZCP — Public Cloud ─────────────────────────────────
+        {
+          label: 'ZCP',
           collapsed: false,
           items: [
             {
@@ -160,31 +187,12 @@ export default defineConfig({
             { label: 'Affinity Groups', slug: 'public-cloud/affinity-groups' },
             { label: 'Auto Scaling', slug: 'public-cloud/auto-scaling' },
             { label: 'Billing', slug: 'public-cloud/billing' },
-            {
-              label: 'CLI',
-              collapsed: true,
-              items: [
-                { label: 'Installation', slug: 'public-cloud/cli/installation' },
-                { label: 'Quickstart', slug: 'public-cloud/cli/quickstart' },
-                { label: 'Configuration', slug: 'public-cloud/cli/configuration' },
-                { label: 'Reference', slug: 'public-cloud/cli/reference' },
-              ],
-            },
-            {
-              label: 'API',
-              collapsed: true,
-              items: [
-                { label: 'Authentication', slug: 'public-cloud/api/authentication' },
-                { label: 'Quickstart', slug: 'public-cloud/api/quickstart' },
-                { label: 'Reference', slug: 'public-cloud/api/reference' },
-              ],
-            },
           ],
         },
 
-        // ── ZPCP — ZSoftly Private Cloud Platform ─────────────
+        // ── ZPCP — Private Cloud ───────────────────────────────
         {
-          label: 'ZPCP — Private Cloud',
+          label: 'ZPCP',
           collapsed: true,
           items: [
             { label: 'Overview', slug: 'private-cloud/overview' },
@@ -211,6 +219,7 @@ export default defineConfig({
             },
           ],
         },
+
       ],
 
       // Algolia DocSearch — uncomment once credentials are issued
@@ -222,4 +231,25 @@ export default defineConfig({
       // },
     }),
   ],
+
+  vite: {
+    build: {
+      rollupOptions: {
+        // Silence a harmless Rollup warning from Expressive Code's prebuilt
+        // dist: @expressive-code/core re-exports CONTINUE/EXIT from
+        // unist-util-visit-parents but doesn't use them in this bundle. Scoped
+        // narrowly to that exact import so our own unused-import warnings still
+        // surface. Upstream issue in @expressive-code/core@0.42.0.
+        onwarn(warning, defaultHandler) {
+          if (
+            warning.code === 'UNUSED_EXTERNAL_IMPORT' &&
+            warning.exporter === 'unist-util-visit-parents'
+          ) {
+            return;
+          }
+          defaultHandler(warning);
+        },
+      },
+    },
+  },
 });

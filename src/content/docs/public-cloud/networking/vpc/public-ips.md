@@ -11,6 +11,10 @@ Public IP addresses allow resources in the VPC to communicate with the internet.
 - Click **Acquire New IP** to request a new public IP.
 - Choose the **Billing Cycle** and click **Buy IP**.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [VPC Overview](./create-vpc), [VPN Gateway](./site-vpn)

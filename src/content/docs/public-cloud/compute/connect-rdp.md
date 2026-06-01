@@ -10,7 +10,11 @@ Remote Desktop Protocol (RDP) enables you to securely connect to and manage Wind
 - Go to **Instances** and select the Windows VM.
 - In the **VM Overview** tab, find and copy the **Username** and **Password** fields.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Launch the RDP Client
 
@@ -19,6 +23,12 @@ Remote Desktop Protocol (RDP) enables you to securely connect to and manage Wind
 - **macOS**: Download **Microsoft Remote Desktop** from the Mac App Store.
 - **Linux**: Install **Remmina** (`sudo apt install remmina` on Ubuntu/Debian). Open Remmina and
   select RDP.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Connect
 
@@ -29,7 +39,11 @@ Remote Desktop Protocol (RDP) enables you to securely connect to and manage Wind
    click **Yes**.
 5. Click **OK** or **Connect**.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## See also
 

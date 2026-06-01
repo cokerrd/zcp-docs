@@ -10,18 +10,22 @@ description: Welcome to ZSoftly Cloud Platform (ZCP) documentation.
 manage virtual machines, private networks, block storage, object storage, and Kubernetes clusters
 from a single portal.
 
-:::note Throughout these docs:
+:::note
+
+Throughout these docs:
 
 - **ZCP**: ZSoftly Cloud Platform (this product, the public cloud portal)
 - **ZPCP**: ZSoftly Private Cloud Platform (the on-premises / dedicated private cloud product)
-- **ZCP CLI**: the `zcp` command-line tool for managing ZCP resources :::
+- **ZCP CLI**: the `zcp` command-line tool for managing ZCP resources
+
+:::
 
 ## Capabilities
 
 - **Compute**: Launch VMs with shared CPU, dedicated CPU, high-frequency, or GPU configurations
 - **Networking**: Create public networks or fully isolated VPCs with subnets, ACLs, and VPN gateways
 - **Block Storage**: Attach NVMe SSD volumes to your VMs for additional persistent storage
-- **Object Storage**: S3-compatible object storage backed by Ceph
+- **Object Storage**: S3-compatible object storage
 - **Kubernetes**: Managed Kubernetes clusters with HA and autoscaling support
 - **Load Balancer**: Distribute traffic across VM instances with session persistence options
 - **DNS**: Manage domains and DNS records from the portal

@@ -13,7 +13,11 @@ Use them for backup, recovery from accidental deletion, or corruption.
 - From the left-hand menu, click **Snapshots** → **Volume Snapshot** tab.
 - Click **Take Snapshot** or the **+** icon.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Steps
 
@@ -23,5 +27,11 @@ Use them for backup, recovery from accidental deletion, or corruption.
 4. **Snapshot Name**: provide a unique name.
 5. **Create**: Billing cycle: Hourly only. Billing rule: Fixed Prorata only. Click **Take
    Snapshot**.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [Create Volume](./create-volume), [VM Snapshots](../../backups-snapshots/vm-snapshots)

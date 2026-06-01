@@ -5,15 +5,13 @@ sidebar_position: 1
 
 ## Object Storage
 
-ZSoftly Public Cloud object storage is backed by Ceph and is S3-compatible. Use it for files,
-backups, static assets, or any unstructured data.
+ZSoftly Public Cloud object storage is S3-compatible. Use it for files, backups, static assets, or
+any unstructured data.
 
 ### Create an Object Storage Instance
 
 - From the left-hand menu, click **Object Storage**.
 - Click **Create Object Storage** or the **+** icon.
-
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
 
 ### Steps
 
@@ -25,6 +23,12 @@ backups, static assets, or any unstructured data.
    Tri-annually. Billing rules: Date to Date, Fixed Calendar Month, Unfixed Calendar Month, Fixed
    Prorata, Unfixed Prorata. Click **Review and Create**.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Create a Bucket
 
 Once your object storage instance is active:
@@ -34,10 +38,20 @@ Once your object storage instance is active:
 - Optionally enable **Bucket Versioning** (required for Object Locking).
 - Optionally enable **Object Locking**: stores objects in write-once-read-many (WORM) model.
 
-:::note Object Locking only works in versioned buckets. Object versions count toward your total
-storage costs. :::
+:::note
+
+Object Locking only works in versioned buckets. Object versions count toward your total storage
+costs.
+
+:::
 
 - Click **Create**.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Manage Buckets
 
@@ -45,9 +59,21 @@ storage costs. :::
 - **Upload Files**: Upload files directly through the portal.
 - **Create Folder**: Organize objects into folders within the bucket.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Auto Scaling
 
 Toggle auto-scaling on/off from the storage instance actions to automatically resize based on usage.
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Credentials
 

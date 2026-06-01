@@ -14,7 +14,11 @@ and autoscaling.
 - From the left-hand menu, click **Kubernetes**.
 - Click **Create Cluster** or the **+** icon.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Steps
 
@@ -34,5 +38,11 @@ and autoscaling.
    - Billing rules: Date to Date, Fixed Calendar Month, Unfixed Calendar Month, Fixed Prorata,
      Unfixed Prorata
    - Click **Create Cluster**
+
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [Cluster Overview](./cluster-overview), [kubectl Access](./kubectl-access)

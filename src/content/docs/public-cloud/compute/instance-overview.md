@@ -6,8 +6,6 @@ sidebar_position: 2
 The Instance Overview page provides a detailed summary and management options for your VM. It
 includes instance status, location, operating system, performance metrics, and quick actions.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
-
 ## Action Buttons
 
 Available from the three-dot menu or overview page:
@@ -20,17 +18,35 @@ Available from the three-dot menu or overview page:
 - **Attach ISO for VM**: Mounts an ISO file to the VM.
 - **Delete**: Deletes the instance permanently.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ## Instance Information
 
 - **Instance Name**
 - **Created on**
 - **Status** (running/stopped)
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ## Instance Details
 
 - **Location**
 - **Operating System**
 - **Cost** (all-time)
+
+:::note
+
+Screenshots coming.
+
+:::
 
 ## Resource Specifications
 
@@ -46,6 +62,12 @@ Available from the three-dot menu or overview page:
 - **Affinity Group**
 - **Tag** (add via Add Tag → Key + Value → Submit)
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ## Resource Usage
 
 - **Disk Size**: capacity usage
@@ -53,7 +75,11 @@ Available from the three-dot menu or overview page:
 - **CPU Usage**: percentage
 - **RAM Usage**: memory consumption
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ## See also
 

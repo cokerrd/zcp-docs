@@ -15,7 +15,11 @@ up billing, and verify your account.
 - Enter the necessary details, such as your name, email address, and password.
 - Click **Register** to proceed to the next step.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Verify Your Email
 
@@ -24,7 +28,11 @@ up billing, and verify your account.
 - Enter the **OTP** in the provided field on the website.
 - Click **Verify** to confirm and proceed to the billing setup.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Set Up Billing Method
 
@@ -34,11 +42,13 @@ up billing, and verify your account.
   - **Company**: For organizational use; provide details such as your company name, website, and
     address.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
-
 - If you have a coupon, redeem it at checkout to receive a discount or promotional offer.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Choose a Payment Plan
 
@@ -50,8 +60,6 @@ up billing, and verify your account.
 - Choose a payment method (e.g., Stripe, PayPal, Razorpay) and click **Proceed** to complete the
   payment.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
-
 #### Postpaid:
 
 - Postpaid accounts allow you to pay after consuming resources. This option requires additional
@@ -59,24 +67,22 @@ up billing, and verify your account.
 - Choose a payment method (e.g., Stripe, PayPal, Razorpay, Manual) and click **Save Card** to
   complete the payment.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Final Steps
 
 - Review the **Terms & Conditions** of the platform carefully.
 - Accept the terms to complete the registration process.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
-
 - **Prepaid Users**: Your account status will display as active, with the account type set to
   prepaid.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
-
 - **Postpaid Users**: After verification, your account will display as active with the account type
   set to postpaid.
-
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
 
 Setting up your ZSoftly Public Cloud account is a straightforward process. Register, verify your
 email, configure billing, and choose a payment plan that best suits your needs. Once completed,

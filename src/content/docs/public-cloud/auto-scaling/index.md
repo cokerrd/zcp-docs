@@ -12,7 +12,11 @@ ensuring availability while minimizing costs.
 - From the left-hand menu, click **Auto-Scaling**.
 - Click **Create New**.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 ### Steps
 

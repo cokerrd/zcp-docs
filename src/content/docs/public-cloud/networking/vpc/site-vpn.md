@@ -11,6 +11,12 @@ on-premises data centers or other cloud networks.
 - Navigate to the **VPN Gateway** tab to manage VPN Gateway connections.
 - Supports Site-to-Site VPN connections.
 
+:::note
+
+Screenshots coming.
+
+:::
+
 ### Create a Site-to-Site VPN Connection
 
 - Navigate to the **VPN Connections** tab.
@@ -18,6 +24,10 @@ on-premises data centers or other cloud networks.
 - Select or create the **VPN Customer Gateway**.
 - Check **Passive** if required, then click **Submit**.
 
-:::note Screenshot pending. Will be updated once the ZSoftly portal is confirmed stable. :::
+:::note
+
+Screenshots coming.
+
+:::
 
 See also: [VPC Overview](./create-vpc), [Network ACLs](./network-acls), [VPN Users](./vpn-users)
