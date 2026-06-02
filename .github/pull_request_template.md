@@ -1,14 +1,15 @@
 ## What changed
 
-<!-- One sentence describing the change -->
+<!-- What you changed -->
 
 ## Why
 
-<!-- What prompted this — link to an issue if applicable -->
+<!-- What prompted it. Link an issue if there is one. -->
 
-## Checklist
+---
 
-- [ ] `pnpm fmt && pnpm lint && pnpm typecheck && pnpm build` all pass
-- [ ] Content is accurate and tested against the live portal/CLI/API
-- [ ] No internal infrastructure details, credentials, or IPs included
-- [ ] Screenshots replaced with `:::note Screenshot pending:::` if unavailable
+<!--
+CI runs fmt, lint, typecheck, and build on every PR, so there is no need to check those by hand.
+Before review, just confirm: no internal infrastructure, credentials, or IPs, and Public Cloud
+(ZCP) pages stay vendor-neutral (do not name Ceph, CloudStack, etc.).
+-->
