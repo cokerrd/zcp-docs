@@ -217,6 +217,38 @@ export default defineConfig({
           ],
         },
 
+        // ── ZCS — Cloud Storage ────────────────────────────────
+        {
+          label: 'ZCS',
+          collapsed: true,
+          items: [
+            { label: 'Overview', slug: 'cloud-storage/overview' },
+            {
+              label: 'Getting Started',
+              collapsed: true,
+              items: [
+                { label: 'Provisioning a Cluster', slug: 'cloud-storage/getting-started/provisioning' },
+                {
+                  label: 'Accessing Your Cluster',
+                  slug: 'cloud-storage/getting-started/accessing-your-cluster',
+                },
+              ],
+            },
+            {
+              label: 'Reference',
+              collapsed: true,
+              items: [
+                { label: 'Object Storage (S3)', slug: 'cloud-storage/reference/object-storage' },
+                { label: 'Block Storage (RBD)', slug: 'cloud-storage/reference/block-storage' },
+                { label: 'File Storage (CephFS)', slug: 'cloud-storage/reference/file-storage' },
+                { label: 'Replication & DR', slug: 'cloud-storage/reference/replication-dr' },
+                { label: 'Performance & Tiering', slug: 'cloud-storage/reference/performance-tiering' },
+                { label: 'Ceph Versions', slug: 'cloud-storage/reference/ceph-versions' },
+              ],
+            },
+          ],
+        },
+
         // ── Billing ────────────────────────────────────────────
         {
           label: 'Billing',

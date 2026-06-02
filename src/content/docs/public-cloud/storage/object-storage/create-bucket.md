@@ -81,3 +81,11 @@ Click the **Credentials** icon to view your **S3 Access Key** and **Secret Key**
 access.
 
 See also: [Access Keys](./access-keys), [S3 Usage](./s3-usage)
+
+:::tip
+
+This is ZSoftly Public Cloud's **managed, multi-tenant** object storage. Need a **dedicated,
+single-tenant storage cluster with root access** you administer yourself? See
+[ZSoftly Cloud Storage](/cloud-storage/overview).
+
+:::

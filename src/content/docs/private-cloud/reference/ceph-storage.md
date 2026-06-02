@@ -7,6 +7,13 @@ sidebar_position: 2
 
 Ceph provides both block storage (RBD) and object storage (RGW) for your private cloud.
 
+:::note
+
+Looking for a dedicated, standalone Ceph cluster with root access (not part of a full private
+cloud)? See [ZSoftly Cloud Storage](/cloud-storage/overview).
+
+:::
+
 ## Version
 
 Your credentials document specifies the Ceph version deployed in your environment.
