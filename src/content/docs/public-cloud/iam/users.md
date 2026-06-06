@@ -1,0 +1,58 @@
+---
+title: Users
+description:
+  Invite, manage, re-invite, and deactivate users in your ZSoftly Public Cloud organization.
+---
+
+The **Users** section is where you add people to your organization and control their access. Each
+user signs in with their own credentials and is assigned a [role](./roles) that determines what they
+can do.
+
+## View users
+
+- Navigate to the **Profile** section from the left-hand menu.
+- Select **Users** to see the complete list of active and inactive users in your organization.
+
+From the list you can manage existing users with the action buttons — **edit** a user's details or
+role, or **re-invite** a user whose invitation is still pending.
+
+:::note
+
+Screenshots coming.
+
+:::
+
+## Add a new user
+
+- Navigate to the **Profile** section from the left-hand menu.
+- Select **Users** and click **Add User**.
+- Enter the user's details and select their **Role** (see [Roles & Permissions](./roles) to create
+  one first if the role you need doesn't exist yet).
+- Click **Submit** to create the user.
+
+The user receives an invitation and, once accepted, can sign in with the permissions granted by
+their role.
+
+:::note
+
+Screenshots coming.
+
+:::
+
+## Restrict a user to specific Projects
+
+You can limit a user to specific [Projects](../projects) so they only see and manage the resources
+in the Projects they're authorized for. This combines with their role: the role controls _what
+actions_ they can take, while the Project scope controls _which resources_ those actions apply to.
+
+:::tip
+
+Pair a least-privilege role with a tight Project scope for sub-users — for example, a _Developer_
+role scoped to only the `dev` Project.
+
+:::
+
+## Related
+
+- [Roles & Permissions](./roles) — define what a user can do.
+- [IAM Overview](./overview) — how the RBAC model fits together.

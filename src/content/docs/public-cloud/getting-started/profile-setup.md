@@ -5,9 +5,16 @@ title: Profile Setup
 
 ## Setup User Profile in ZSoftly Public Cloud
 
-The **ZSoftly Public Cloud** user profile setup feature lets users manage their personal
-information, change passwords, configure payment settings, add users, roles, and monitor account
-activity.
+The **ZSoftly Public Cloud** user profile setup feature lets you manage your personal information,
+configure payment settings, customize preferences, and monitor your account activity.
+
+:::tip
+
+Looking to invite teammates, create roles, enable two-factor authentication, or change your
+password? Those live under [IAM](../iam/overview) (Users, Roles & Permissions, and Account
+Security).
+
+:::
 
 ### Update Your Personal Information
 
@@ -54,58 +61,6 @@ Screenshots coming.
 - Select **Date and Time Settings**.
 - Choose your **Preferred Time Zone** and **Date Time Format**.
 - Click **Submit** to apply the changes.
-
-:::note
-
-Screenshots coming.
-
-:::
-
-### Secure Your Account with Two-Factor Authentication
-
-- Navigate to the **Profile** section from the left-hand menu.
-- Select **Authentication**, then locate **Two-Factor Authentication (2FA)**.
-- Click **Set Up** under **Email Authentication**.
-- Enter your **Email ID** and click **Send OTP**.
-- Enter the OTP sent to your email.
-- Toggle **Enable 2FA for All Users** if you want it enforced across your organization.
-
-:::note
-
-Screenshots coming.
-
-:::
-
-### Change Your Password
-
-- Navigate to the **Profile** section from the left-hand menu.
-- Select **Authentication**, then click on **Change Password**.
-- Enter your **Current Password**, then enter and confirm your **New Password** and click **Change
-  Password** to save changes.
-
-:::note
-
-Screenshots coming.
-
-:::
-
-### Add a New User
-
-- Navigate to the **Profile** section from the left-hand menu.
-- Select **Users** and click on **Add User**.
-- Enter the user details and select their **Role** and click **Submit** to create the user.
-
-:::note
-
-Screenshots coming.
-
-:::
-
-### Assign User Roles and Permissions
-
-- Navigate to the **Profile** section from the left-hand menu.
-- Select **Roles** to view and assign permissions.
-- Click **Add New Role** to create a new role with customized permissions.
 
 :::note
 

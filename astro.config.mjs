@@ -79,6 +79,17 @@ export default defineConfig({
                 { label: 'Quickstart', slug: 'public-cloud/getting-started/quickstart' },
               ],
             },
+            { label: 'Projects', slug: 'public-cloud/projects' },
+            {
+              label: 'IAM',
+              collapsed: true,
+              items: [
+                { label: 'Overview', slug: 'public-cloud/iam/overview' },
+                { label: 'Users', slug: 'public-cloud/iam/users' },
+                { label: 'Roles & Permissions', slug: 'public-cloud/iam/roles' },
+                { label: 'Account Security', slug: 'public-cloud/iam/security' },
+              ],
+            },
             {
               label: 'Compute',
               collapsed: true,
