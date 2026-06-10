@@ -34,8 +34,12 @@ Log in with:
 | Username | `root`                  |
 | Password | Your VM's root password |
 
-> If you do not know your root password, reset it from the ZCP control panel under **Instances →
-> Reset Password**.
+:::note
+
+If you do not know your root password, reset it from the ZCP control panel under **Instances → Reset
+Password**.
+
+:::
 
 ### 2. Complete the WHM setup wizard
 
@@ -96,8 +100,12 @@ sudo tail -f /usr/local/cpanel/logs/error_log
 cPanel manages its own firewall (CSF/LFD) independently of UFW. UFW is disabled in favour of
 cPanel's firewall management during installation.
 
-> Change the root password immediately and set up two-factor authentication in WHM. Restrict WHM
-> access to your office IP if possible.
+:::caution
+
+Change the root password immediately and set up two-factor authentication in WHM. Restrict WHM
+access to your office IP if possible.
+
+:::
 
 ## Next steps
 
