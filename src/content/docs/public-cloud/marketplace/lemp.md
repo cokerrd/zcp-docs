@@ -2,7 +2,7 @@
 title: LEMP Stack
 ---
 
-The LEMP stack — Linux, Nginx, MariaDB, and PHP — is a high-performance alternative to the classic
+The LEMP stack (Linux, Nginx, MariaDB, and PHP) is a high-performance alternative to the classic
 LAMP stack. Nginx handles HTTP traffic more efficiently under load than Apache, making it a good
 choice for production web applications. This image runs the entire stack in Docker Compose for easy
 management.

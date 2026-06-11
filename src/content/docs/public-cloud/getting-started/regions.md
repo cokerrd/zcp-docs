@@ -20,7 +20,7 @@ region.
 
 - **Latency:** pick the region closest to your users.
 - **Processor:** YOW offers both Intel and AMD; YUL is AMD.
-- **Storage:** both regions add a budget tier for cost-sensitive workloads — Premium SSD in YUL, HDD
+- **Storage:** both regions add a budget tier for cost-sensitive workloads. Premium SSD in YUL, HDD
   in YOW.
 - **Data residency:** both regions are in Canada.
 

@@ -24,7 +24,7 @@ ssh ubuntu@<your-vm-ip>
 
 ### 2. Verify the installation
 
-There is no first-boot configuration — Node.js and PM2 are ready immediately.
+There is no first-boot configuration. Node.js and PM2 are ready immediately.
 
 ```bash
 node --version

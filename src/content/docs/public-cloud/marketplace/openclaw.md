@@ -24,7 +24,7 @@ ssh ubuntu@<your-vm-ip>
 
 ### 2. Verify the installation
 
-There is no first-boot configuration — OpenClaw and Node.js are ready immediately.
+There is no first-boot configuration. OpenClaw and Node.js are ready immediately.
 
 ```bash
 openclaw --version
@@ -50,7 +50,7 @@ OpenClaw listens on port **18789** by default.
 
 ## Managing OpenClaw
 
-To run OpenClaw persistently and survive reboots, manage it with PM2 (not included — install with
+To run OpenClaw persistently and survive reboots, manage it with PM2 (not included, install with
 npm):
 
 ```bash

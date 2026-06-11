@@ -24,7 +24,7 @@ ssh ubuntu@<your-vm-ip>
 
 ### 2. Verify Docker is running
 
-There is no first-boot configuration — Docker starts immediately after the VM boots.
+There is no first-boot configuration. Docker starts immediately after the VM boots.
 
 ```bash
 docker version

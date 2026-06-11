@@ -5,36 +5,36 @@ description:
   quotas.
 ---
 
-A **Project** is a workspace that groups related cloud resources — Compute Instances, networks,
-volumes, snapshots, load balancers, and more — under a single, shared boundary. Instead of resources
+A **Project** is a workspace that groups related cloud resources (Compute Instances, networks,
+volumes, snapshots, load balancers, and more) under a single, shared boundary. Instead of resources
 living loosely under one account, a Project lets a team collaborate on a shared set of resources
 with its own membership and its own resource quotas.
 
 Projects are a foundational concept: almost every resource you create (an instance, a network, a
 block storage volume) is assigned to a Project. If you've ever been asked to "**Choose the
 Project**" while creating a resource, that selector points here. Every account starts with a default
-Project, so you can deploy resources right away — create additional Projects when you want to
-separate environments (e.g. `dev` vs `prd`), teams, or clients.
+Project. Create additional Projects to separate environments (e.g. `dev` vs `prd`), teams, or
+clients.
 
 ## Why use Projects
 
-- **Collaboration** — add teammates so multiple people can view and manage the same resources
-  without sharing one login.
-- **Separation** — keep workloads isolated. A `dev` Project and a `prd` Project can hold completely
+- **Collaboration**: add teammates so everyone views and manages the same resources without sharing
+  one login.
+- **Separation**: keep workloads isolated. A `dev` Project and a `prd` Project hold completely
   separate instances, networks, and volumes.
-- **Cost and quota control** — set per-Project resource limits (account limits) so one team or
-  environment can't consume more than its allocation.
-- **Organization** — resource lists, usage, and billing can be viewed per Project, making it easy to
-  see what each team or environment is running.
+- **Cost and quota control**: set per-Project resource limits (account limits) so one team or
+  environment does not consume more than its allocation.
+- **Organization**: view resource lists, usage, and billing per Project to see what each team or
+  environment is running.
 
 ## Create a New Project
 
 - From the left-hand menu, click **Projects**.
 - Click **Create a New Project**.
 - Enter the project details:
-  - **Project Name** — a short, recognizable name (e.g. `team-platform-prd`).
-  - **Project Description** — what the Project is for.
-  - **Project Purpose** — the intended use or owning team.
+  - **Project Name**: a short, recognizable name (e.g. `team-platform-prd`).
+  - **Project Description**: what the Project is for.
+  - **Project Purpose**: the intended use or owning team.
 - Click **Create Project**. The Project is created and becomes available in the **Project** selector
   when you create resources.
 
@@ -58,7 +58,7 @@ see and manage everything the Project contains:
 | **Network**          | Public and private (VPC) networking that connects and isolates resources. |
 | **Load Balancer**    | Distributes traffic across multiple instances for high availability.      |
 
-When you create any of these resources, you select the Project they belong to — see
+When you create any of these resources, you select the Project they belong to. See
 [Create a Compute Instance](../compute/create-instance) for an example of the Project selector in
 action.
 
@@ -106,6 +106,6 @@ Screenshots coming.
 
 ## Next steps
 
-- [Create a Compute Instance](../compute/create-instance) — deploy your first VM into a Project.
-- [Quickstart](../getting-started/quickstart) — go from zero to a running, reachable VM.
-- [Networking](../networking/public-network/create) — give your Project's resources connectivity.
+- [Create a Compute Instance](../compute/create-instance): deploy your first VM into a Project.
+- [Quickstart](../getting-started/quickstart): go from zero to a running, reachable VM.
+- [Networking](../networking/public-network/create): give your Project's resources connectivity.

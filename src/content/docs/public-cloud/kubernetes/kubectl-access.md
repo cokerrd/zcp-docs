@@ -3,8 +3,6 @@ title: kubectl Access
 sidebar_position: 3
 ---
 
-## Accessing Your Cluster via kubectl
-
 `kubectl` is the Kubernetes command-line tool. Use it to inspect, manage, and troubleshoot resources
 in your cluster.
 
@@ -15,9 +13,9 @@ in your cluster.
 
 ### Download kubectl
 
-ZSoftly Cloud Platform supports Kubernetes **1.34** and **1.35**. Install the `kubectl` version that
-matches your cluster — Kubernetes requires client and server to be within one minor version of each
-other.
+ZSoftly Cloud Platform supports Kubernetes **1.34**, **1.35**, and **1.36** (current: **1.36.1**).
+Install the `kubectl` version that matches your cluster's minor version. Kubernetes requires client
+and server to be within one minor version of each other.
 
 The fastest way to install the latest compatible version:
 
@@ -36,7 +34,7 @@ For macOS replace `linux` with `darwin` in the URL above.
 **Windows (PowerShell):**
 
 ```powershell
-curl.exe -LO "https://dl.k8s.io/release/v1.35.0/bin/windows/amd64/kubectl.exe"
+curl.exe -LO "https://dl.k8s.io/release/v1.36.0/bin/windows/amd64/kubectl.exe"
 ```
 
 **Or use a package manager:**

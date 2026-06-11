@@ -5,7 +5,7 @@ tableOfContents: false
 
 ZCP Marketplace images are pre-configured VM templates deployed from the ZCP console in minutes.
 Every image ships on **Ubuntu 24.04 LTS** with a first-boot service that completes setup
-automatically — credentials generated, services configured, ready to use.
+automatically. Credentials are generated, services are configured, and the image is ready to use.
 
 <div class="mp-stats">
   <div class="mp-stat">
@@ -61,7 +61,7 @@ automatically — credentials generated, services configured, ready to use.
     </div>
     <div>
       <p class="service-name">LAMP Stack</p>
-      <p class="service-desc">Linux, Apache, MariaDB, and PHP — the classic web application stack</p>
+      <p class="service-desc">Linux, Apache, MariaDB, and PHP. The classic web application stack</p>
     </div>
   </a>
 
@@ -195,7 +195,7 @@ automatically — credentials generated, services configured, ready to use.
     </div>
     <div>
       <p class="service-name">LAMP Stack</p>
-      <p class="service-desc">Linux, Apache, MariaDB, and PHP — the classic web application stack</p>
+      <p class="service-desc">Linux, Apache, MariaDB, and PHP. The classic web application stack</p>
     </div>
   </a>
 
@@ -205,7 +205,7 @@ automatically — credentials generated, services configured, ready to use.
     </div>
     <div>
       <p class="service-name">LEMP Stack</p>
-      <p class="service-desc">Linux, Nginx, MariaDB, and PHP — high-performance stack via Docker Compose</p>
+      <p class="service-desc">Linux, Nginx, MariaDB, and PHP. High-performance stack via Docker Compose</p>
     </div>
   </a>
 
@@ -301,7 +301,7 @@ automatically — credentials generated, services configured, ready to use.
     </div>
     <div>
       <p class="service-name">GitLab CE 18.11</p>
-      <p class="service-desc">Self-hosted DevOps platform with Git, CI/CD, and issue tracking — all in one application</p>
+      <p class="service-desc">Self-hosted DevOps platform with Git, CI/CD, and issue tracking in one application</p>
     </div>
   </a>
 
@@ -356,7 +356,7 @@ automatically — credentials generated, services configured, ready to use.
     </div>
     <div>
       <p class="service-name">cPanel</p>
-      <p class="service-desc">Industry-standard web hosting control panel with WHM — manage websites, email, DNS, and databases from a single interface</p>
+      <p class="service-desc">Industry-standard web hosting control panel with WHM. Manage websites, email, DNS, and databases from a single interface</p>
     </div>
   </a>
 

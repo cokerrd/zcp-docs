@@ -73,8 +73,8 @@ Configuration directory: `/etc/postgresql/17/main/`
 
 Key files:
 
-- `postgresql.conf` — server settings
-- `pg_hba.conf` — client authentication rules
+- `postgresql.conf`: server settings
+- `pg_hba.conf`: client authentication rules
 
 To allow remote connections, set `listen_addresses = '*'` in `postgresql.conf` and add an entry in
 `pg_hba.conf`. Restart PostgreSQL and open the firewall for specific IPs only (see

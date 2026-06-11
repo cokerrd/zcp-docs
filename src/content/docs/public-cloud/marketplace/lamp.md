@@ -2,7 +2,7 @@
 title: LAMP Stack
 ---
 
-The LAMP stack — Linux, Apache, MariaDB, and PHP — is the classic combination for hosting web
+The LAMP stack (Linux, Apache, MariaDB, and PHP) is the classic combination for hosting web
 applications and dynamic websites. This image ships all four components pre-installed and configured
 to work together, ready for you to deploy your application.
 
@@ -26,7 +26,7 @@ ssh ubuntu@<your-vm-ip>
 
 ### 2. Verify services are running
 
-There is no first-boot configuration — all services start immediately.
+There is no first-boot configuration. All services start immediately.
 
 ```bash
 systemctl status apache2
@@ -53,8 +53,7 @@ sudo chown -R www-data:www-data /var/www/html/
 
 ### 5. Set up a database
 
-Connect to MariaDB as root (no password required on a fresh install — authentication uses the system
-socket):
+On a fresh install, no password is required. Authentication uses the system socket. Connect as root:
 
 ```bash
 sudo mariadb

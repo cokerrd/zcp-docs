@@ -24,7 +24,7 @@ ssh ubuntu@<your-vm-ip>
 
 ### 2. Join your Tailnet
 
-**Option A — Automatic via cloud-init (at deploy time)**
+**Option A: Automatic via cloud-init (at deploy time)**
 
 Provide your Tailscale auth key in the VM's userdata before deploying:
 
@@ -39,7 +39,7 @@ write_files:
 
 The VM will connect to your Tailnet automatically on first boot.
 
-**Option B — Manual (after SSH)**
+**Option B: Manual (after SSH)**
 
 Generate an auth key at
 [tailscale.com/admin/settings/keys](https://login.tailscale.com/admin/settings/keys), then run:
@@ -95,8 +95,8 @@ Enable both in the Tailscale admin console after running the above command.
 
 ## Security
 
-Tailscale handles its own encryption and authentication — no additional firewall rules are needed
-for Tailnet traffic. UFW remains enabled and allows SSH (port 22) only.
+Tailscale handles its own encryption and authentication. No additional firewall rules are needed for
+Tailnet traffic. UFW remains enabled and allows SSH (port 22) only.
 
 Once connected to your Tailnet, other Tailnet devices can reach this VM at its `100.x.x.x` address.
 Access control is managed via Tailscale ACLs in the admin console.
