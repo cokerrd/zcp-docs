@@ -13,8 +13,8 @@ can do.
 - Navigate to the **Profile** section from the left-hand menu.
 - Select **Users** to see the complete list of active and inactive users in your organization.
 
-From the list you can manage existing users with the action buttons — **edit** a user's details or
-role, or **re-invite** a user whose invitation is still pending.
+From the list, use the action buttons to **edit** a user's details or role, or **re-invite** a user
+whose invitation is still pending.
 
 :::note
 
@@ -47,12 +47,12 @@ actions_ they can take, while the Project scope controls _which resources_ those
 
 :::tip
 
-Pair a least-privilege role with a tight Project scope for sub-users — for example, a _Developer_
+Pair a least-privilege role with a tight Project scope for sub-users. For example, a _Developer_
 role scoped to only the `dev` Project.
 
 :::
 
 ## Related
 
-- [Roles & Permissions](./roles) — define what a user can do.
-- [IAM Overview](./overview) — how the RBAC model fits together.
+- [Roles & Permissions](./roles): define what a user is allowed to do.
+- [IAM Overview](./overview): how the RBAC model fits together.

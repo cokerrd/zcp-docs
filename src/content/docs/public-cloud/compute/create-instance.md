@@ -31,8 +31,14 @@ Screenshots coming.
 
 ## Choose an Image
 
-Select an OS or application template. Import a custom ISO if needed. For Microsoft Windows, only
-official evaluation versions are available.
+Select an OS or application template. Import a custom ISO if needed.
+
+**Supported Windows images:**
+
+| Image                 | Status      |
+| --------------------- | ----------- |
+| Windows Server 2025   | Available   |
+| Windows 11 Enterprise | Coming soon |
 
 Browse the full catalogs: [OS Images](https://zcp.zsoftly.ca/marketplace/os-images) and
 [One-Click Apps](https://zcp.zsoftly.ca/marketplace/apps).

@@ -334,6 +334,19 @@ export default defineConfig({
           label: 'Billing',
           items: [{ label: 'Billing', slug: 'public-cloud/billing' }],
         },
+
+        // ── Troubleshooting ────────────────────────────────────
+        {
+          label: 'Troubleshooting',
+          collapsed: true,
+          items: [
+            { label: 'Overview', slug: 'troubleshooting' },
+            {
+              label: 'Detach/Delete Blocked by Snapshot',
+              slug: 'troubleshooting/detach-blocked-by-snapshot',
+            },
+          ],
+        },
       ],
 
       // Algolia DocSearch — uncomment once credentials are issued

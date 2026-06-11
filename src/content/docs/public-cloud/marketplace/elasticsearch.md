@@ -86,8 +86,8 @@ Configuration directory: `/etc/elasticsearch/`
 
 Key files:
 
-- `elasticsearch.yml` — cluster, network, and node settings
-- `jvm.options.d/` — JVM heap and GC settings
+- `elasticsearch.yml`: cluster, network, and node settings
+- `jvm.options.d/`: JVM heap and GC settings
 
 **To adjust the heap size**, create a file in `/etc/elasticsearch/jvm.options.d/`:
 
@@ -121,7 +121,7 @@ curl -k -u elastic:"<password>" https://localhost:9200
 
 :::caution
 
-Elasticsearch 8 enables security by default. The `elastic` user has full cluster access — create
+Elasticsearch 8 enables security by default. The `elastic` user has full cluster access. Create
 role-scoped users for individual applications.
 
 :::

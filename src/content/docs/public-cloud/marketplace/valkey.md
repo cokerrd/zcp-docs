@@ -106,8 +106,8 @@ valkey-cli -a "<password>"
 
 :::caution
 
-Avoid exposing port 6379 to `0.0.0.0`. Valkey is an in-memory store — unauthorised access exposes
-all cached data. Restrict to known IPs or use an SSH tunnel.
+Avoid exposing port 6379 to `0.0.0.0`. Valkey is an in-memory store. Unauthorised access exposes all
+cached data. Restrict to known IPs or use an SSH tunnel.
 
 :::
 

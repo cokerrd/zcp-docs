@@ -24,7 +24,7 @@ ssh ubuntu@<your-vm-ip>
 
 ### 2. Verify Grafana is running
 
-There is no first-boot configuration — Grafana starts immediately after the VM boots.
+There is no first-boot configuration. Grafana starts immediately after the VM boots.
 
 ```bash
 systemctl status grafana-server
@@ -101,7 +101,7 @@ it on port 443 with a TLS certificate.
 :::caution
 
 Change the default `admin` password immediately after first login. Grafana has access to all
-connected data sources — treat it as a sensitive internal tool and restrict access to known IPs.
+connected data sources. Treat it as a sensitive internal tool and restrict access to known IPs.
 
 :::
 

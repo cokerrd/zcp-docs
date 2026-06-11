@@ -32,8 +32,8 @@ Track progress:
 journalctl -u mongodb-first-boot.service -f
 ```
 
-Wait for the service to exit, then disconnect and reconnect. The MOTD on login shows **MONGODB 8.0.x
-— READY** when the setup is complete.
+Wait for the service to exit, then disconnect and reconnect. The MOTD on login shows
+`MONGODB 8.0.x — READY` when the setup is complete.
 
 ### 3. Retrieve credentials
 

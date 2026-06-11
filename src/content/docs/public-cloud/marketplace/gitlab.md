@@ -3,8 +3,8 @@ title: GitLab CE 18.11
 ---
 
 GitLab Community Edition is a complete DevOps platform delivered as a single application. It
-provides Git repository hosting, CI/CD pipelines, issue tracking, container registry, and more — all
-self-hosted on your own infrastructure.
+provides Git repository hosting, CI/CD pipelines, issue tracking, a container registry, and more.
+Everything runs on your own infrastructure.
 
 ## Software included
 
@@ -134,7 +134,7 @@ sudo gitlab-ctl reconfigure
 :::tip
 
 Restrict SSH Git access (port 22) to known IP ranges if your GitLab is not intended to be public.
-Create individual user accounts — avoid sharing the root account.
+Create individual user accounts. Avoid sharing the root account.
 
 :::
 

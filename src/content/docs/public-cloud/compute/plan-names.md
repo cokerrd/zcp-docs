@@ -6,7 +6,7 @@ description: How ZCP compute plan IDs encode processor, family, region, storage,
 
 Every compute plan has a short, structured ID such as `ca2.l` or `cam2.2xl`. Once you know the
 pattern you can read a plan's processor, family, region, storage tier, and size straight from its
-name — no lookup table required.
+name. No lookup table required.
 
 ## Anatomy of a plan ID
 

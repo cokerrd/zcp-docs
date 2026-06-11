@@ -11,8 +11,8 @@ user with that role is updated.
 
 Every service in the platform exposes two permission levels:
 
-- **Read** — view the resource, but not change it.
-- **Manage** — create, update, delete, and operate the resource (Manage includes everything Read
+- **Read**: view the resource, but not change it.
+- **Manage**: create, update, delete, and operate the resource (Manage includes everything Read
   allows).
 
 ## Built-in roles
@@ -29,7 +29,7 @@ custom roles.
 :::note
 
 Only the **Owner** role carries **Quota** permissions. If a sub-user needs to adjust resource
-quotas, that capability cannot be delegated through Service Administrator — keep quota changes with
+quotas, that capability cannot be delegated through Service Administrator. Keep quota changes with
 the account owner.
 
 :::
@@ -43,8 +43,8 @@ requires.
 - Click **Add New Role** (the **+** icon).
 - Enter a **Role Name** and **Description** (both required).
 - In the **Features** panel, pick a service (e.g. **Virtual Machine**).
-- In the **Select Permissions** panel, choose the permissions for that service — for example
-  **Virtual Machine Read** or **Virtual Machine Manage**. Use **Select All** to grant every
+- In the **Select Permissions** panel, choose the permissions for that service (for example,
+  **Virtual Machine Read** or **Virtual Machine Manage**). Use **Select All** to grant every
   permission for the selected feature.
 - Repeat for each service the role should cover.
 - Click **Create Role**.
@@ -63,10 +63,10 @@ _which_ resources it applies to.
 ### Example
 
 An account owner creates an **Accountant** role granting **Billing Read**, **Billing Manage**, and
-**Store Read** only. A sub-user with that role can work with invoices, payments, and the store — but
-cannot create or delete instances, networks, or other infrastructure. A separate **Developer** role
-might grant **Virtual Machine Manage**, **Block Storage Manage**, and **Network Manage** while
-excluding billing.
+**Store Read** only. A sub-user with that role works with invoices, payments, and the store. They
+have no access to create or delete instances, networks, or other infrastructure. A separate
+**Developer** role might grant **Virtual Machine Manage**, **Block Storage Manage**, and **Network
+Manage** while excluding billing.
 
 ## Permissions reference
 
@@ -141,5 +141,5 @@ a few are read-only (noted below).
 
 ## Related
 
-- [Users](./users) — assign a role when inviting someone.
-- [IAM Overview](./overview) — how roles, users, and Project scope fit together.
+- [Users](./users): assign a role when inviting someone.
+- [IAM Overview](./overview): how roles, users, and Project scope fit together.

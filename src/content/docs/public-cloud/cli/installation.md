@@ -8,8 +8,18 @@ sidebar_position: 1
 The ZCP CLI (`zcp`) is the official command-line interface for ZSoftly Public Cloud. It lets you
 manage VMs, networks, storage, Kubernetes, and more from your terminal.
 
-**Current version:** v0.0.9  
+**Current version:** v0.0.15  
 **GitHub:** https://github.com/zsoftly/zcp-cli
+
+:::note
+
+v0.0.14 moved all API service packages from `internal/` to `pkg/` so external Go modules (including
+the ZCP Terraform provider) can import them. Binary behaviour for CLI users is unchanged. If you
+import CLI packages directly in your own Go code, update import paths from
+`github.com/zsoftly/zcp-cli/internal/api/<service>` to
+`github.com/zsoftly/zcp-cli/pkg/api/<service>`.
+
+:::
 
 ### Linux and macOS
 

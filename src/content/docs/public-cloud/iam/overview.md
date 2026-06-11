@@ -1,8 +1,8 @@
 ---
 title: IAM Overview
-description:
-  How identity and access management works in ZSoftly Public Cloud — users, roles, and
-  project-scoped access.
+description: >-
+  How identity and access management works in ZSoftly Public Cloud: users, roles, and project-scoped
+  access.
 ---
 
 **Identity and Access Management (IAM)** controls who can sign in to your organization and what each
@@ -31,9 +31,9 @@ then assign a role to each **user**.
   resources in the Projects they're authorized for. This pairs RBAC (what actions) with Projects
   (which resources).
 
-Every account ships with three built-in roles — **Owner**, **Service Administrator**, and **Service
-Viewer** — and you can define your own. See [Roles & Permissions](./roles) for what each grants and
-the full permissions catalog.
+Every account ships with three built-in roles: **Owner**, **Service Administrator**, and **Service
+Viewer**. You define your own under [Roles & Permissions](./roles), which also has the full
+permissions catalog.
 
 :::tip
 
@@ -46,9 +46,9 @@ their job, and scope users to only the Projects they need.
 
 All IAM settings live under the **Profile** area in the portal's left-hand menu:
 
-- [Users](./users) — invite, edit, re-invite, and deactivate people in your organization.
-- [Roles & Permissions](./roles) — create custom roles and assign permissions.
-- [Account Security](./security) — two-factor authentication and password management.
+- [Users](./users): invite, edit, re-invite, and deactivate people in your organization.
+- [Roles & Permissions](./roles): create custom roles and assign permissions.
+- [Account Security](./security): two-factor authentication and password management.
 
 For personal settings (your own details, theme, time zone, activity logs, login history), see
 [Profile Setup](../getting-started/profile-setup).

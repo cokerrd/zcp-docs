@@ -4,7 +4,7 @@ title: NetBird
 
 NetBird is an open-source, WireGuard-based network overlay that connects servers and devices into a
 peer-to-peer private network. It does not require opening inbound ports or configuring firewall
-rules — all connections are initiated outbound. This image ships the NetBird client pre-installed,
+rules. All connections are initiated outbound. This image ships the NetBird client pre-installed,
 ready to join your network.
 
 ## Software included
@@ -69,7 +69,7 @@ sudo journalctl -u netbird -f
 ## Security
 
 NetBird uses WireGuard for encrypted peer-to-peer tunnels. All traffic between peers is encrypted
-end-to-end. UFW is enabled and allows SSH (port 22) only — no additional ports need to be opened for
+end-to-end. UFW is enabled and allows SSH (port 22) only. No additional ports need to be opened for
 NetBird traffic.
 
 Access control between peers is managed via policies in the NetBird management console.

@@ -3,7 +3,7 @@ title: WordPress
 ---
 
 WordPress is the world's most popular open-source content management system, powering over 40% of
-all websites. This image ships a complete LAMP stack — Apache, MariaDB, and PHP — with WordPress
+all websites. This image ships a complete LAMP stack (Apache, MariaDB, and PHP) with WordPress
 pre-installed and ready to configure.
 
 ## Software included

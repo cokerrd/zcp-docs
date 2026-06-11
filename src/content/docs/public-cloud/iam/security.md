@@ -20,7 +20,7 @@ to access the account.
 
 :::tip
 
-Enforcing 2FA organization-wide is strongly recommended — it protects every user, not just the
+Enforcing 2FA organization-wide is strongly recommended. It protects every user, not just the
 account owner.
 
 :::
@@ -46,5 +46,5 @@ Screenshots coming.
 
 ## Related
 
-- [Users](./users) — manage who can sign in to your organization.
-- [IAM Overview](./overview) — the full access model.
+- [Users](./users): manage who signs in to your organization.
+- [IAM Overview](./overview): the full access model.
