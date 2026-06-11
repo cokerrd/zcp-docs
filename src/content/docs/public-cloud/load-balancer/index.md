@@ -2,8 +2,6 @@
 title: Load Balancer
 ---
 
-## Load Balancer
-
 A Load Balancer distributes incoming traffic across multiple servers to ensure high availability,
 reliability, and improved performance.
 

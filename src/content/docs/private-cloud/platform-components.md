@@ -3,8 +3,6 @@ title: Platform Components
 sidebar_position: 2
 ---
 
-# Platform Components
-
 ZSoftly Private Cloud is built from open-source infrastructure components. The stack below is our
 **recommended core**: the combination we recommend and have the most engineering experience with.
 These are recommendations and options for your environment, not a fixed ZSoftly stack. None of it is

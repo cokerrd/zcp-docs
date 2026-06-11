@@ -20,11 +20,11 @@ replication versus erasure coding, device classes, and caching are all yours to 
 A single cluster speaks three storage interfaces at once:
 
 - **Object storage**: an S3-compatible endpoint (Ceph RGW) for the S3 tools and SDKs you already
-  use. See [Object Storage](./reference/object-storage).
+  use. See [Object Storage](/cloud-storage/reference/object-storage).
 - **Block storage**: network block devices (Ceph RBD) for virtual machines, databases, and
-  Kubernetes persistent volumes. See [Block Storage](./reference/block-storage).
+  Kubernetes persistent volumes. See [Block Storage](/cloud-storage/reference/block-storage).
 - **File storage**: a POSIX shared filesystem (CephFS) you mount across many clients. See
-  [File Storage](./reference/file-storage).
+  [File Storage](/cloud-storage/reference/file-storage).
 
 ## Two delivery models
 
@@ -45,11 +45,11 @@ access, same interfaces. Only the location and ownership of the hardware differ.
   replicated or erasure-coded across the cluster.
 - **Root-level control**. Administer pools, users, OSDs, and the Ceph Dashboard directly.
 - **Performance tiering**. Use NVMe as a fast pool or a cache layer in front of high-capacity
-  drives. See [Performance & Tiering](./reference/performance-tiering).
+  drives. See [Performance & Tiering](/cloud-storage/reference/performance-tiering).
 - **Replication and disaster recovery**. Replicate to another ZSoftly region, an on-prem cluster, or
-  any Ceph cluster you administer. See [Replication & DR](./reference/replication-dr).
+  any Ceph cluster you administer. See [Replication & DR](/cloud-storage/reference/replication-dr).
 - **Version choice**. Provisioned on a recent stable Ceph release, or a specific version you select
-  with our team. See [Ceph Versions](./reference/ceph-versions).
+  with our team. See [Ceph Versions](/cloud-storage/reference/ceph-versions).
 
 ## Use cases
 
@@ -73,5 +73,5 @@ Choose ZCS when you need a dedicated cluster you control.
 provision a cluster.
 
 Once your cluster is provisioned, continue to
-[Provisioning a Cluster](./getting-started/provisioning) and
-[Accessing Your Cluster](./getting-started/accessing-your-cluster).
+[Provisioning a Cluster](/cloud-storage/getting-started/provisioning) and
+[Accessing Your Cluster](/cloud-storage/getting-started/accessing-your-cluster).

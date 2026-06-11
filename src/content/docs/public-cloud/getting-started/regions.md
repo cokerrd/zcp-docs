@@ -12,9 +12,9 @@ volume, cluster). Resources are region-scoped: a VM uses networks and volumes in
 | `YUL` | Montreal | AMD        | Pro NVMe, Premium SSD (budget) |
 
 The region is encoded in every plan ID (`1` = YOW, `2` = YUL). See
-[Plan Names](../compute/plan-names) for the naming scheme and
-[Instance Types](../compute/instance-types) for the specs and storage tiers available in each
-region.
+[Plan Names](/public-cloud/compute/plan-names) for the naming scheme and
+[Instance Types](/public-cloud/compute/instance-types) for the specs and storage tiers available in
+each region.
 
 ## Choosing a region
 
@@ -26,5 +26,5 @@ region.
 
 ## See also
 
-- [Create an Instance](../compute/create-instance)
-- [Instance Types](../compute/instance-types)
+- [Create an Instance](/public-cloud/compute/create-instance)
+- [Instance Types](/public-cloud/compute/instance-types)

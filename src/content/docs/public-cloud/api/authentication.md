@@ -19,7 +19,7 @@ Requests target endpoints under `/api` (for example `/api/regions`). The base pa
 ### Get an API Token
 
 Generate a Bearer token from the portal under **Profile → API Tokens**. This is the same token used
-by the [`zcp` CLI](../cli/quickstart).
+by the [`zcp` CLI](/public-cloud/cli/quickstart).
 
 ### Authenticate Requests
 
@@ -59,4 +59,5 @@ Every endpoint returns a common envelope:
 Tokens issued from the portal stay valid until you revoke them under **Profile → API Tokens**.
 Revoke and regenerate a token if it is ever exposed.
 
-See also: [API Quickstart](./quickstart), [API Reference](./reference)
+See also: [API Quickstart](/public-cloud/api/quickstart),
+[API Reference](/public-cloud/api/reference)

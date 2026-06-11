@@ -3,8 +3,6 @@ title: Provisioning a Cluster
 sidebar_position: 1
 ---
 
-# Provisioning a Cluster
-
 The ZSoftly team provisions your ZSoftly Cloud Storage cluster to your requirements. This page
 explains what we need from you and what you receive.
 
@@ -16,12 +14,12 @@ To size your cluster, we work with you on:
 - **Data protection**. Replication (for example 3x) or erasure coding for capacity efficiency, per
   pool.
 - **Performance profile**. Throughput and latency targets, plus any NVMe
-  [fast tier or cache layer](../reference/performance-tiering).
+  [fast tier or cache layer](/cloud-storage/reference/performance-tiering).
 - **Interfaces**. Which of object (S3), block (RBD), and file (CephFS) you need.
-- **Delivery model**. [Hosted](../overview#two-delivery-models) in a ZSoftly region, or on-premises
-  on your hardware.
+- **Delivery model**. [Hosted](/cloud-storage/overview#two-delivery-models) in a ZSoftly region, or
+  on-premises on your hardware.
 - **Ceph version**. A recent stable release by default, or a
-  [specific version](../reference/ceph-versions) you select with our team.
+  [specific version](/cloud-storage/reference/ceph-versions) you select with our team.
 
 ## What you receive
 
@@ -32,7 +30,8 @@ When your cluster is ready, ZSoftly provides a **credentials document** with:
 - **S3 endpoint URL** plus an initial access key and secret, for object storage
 - The **Ceph version** deployed
 
-See [Accessing Your Cluster](./accessing-your-cluster) for how to use each of these.
+See [Accessing Your Cluster](/cloud-storage/getting-started/accessing-your-cluster) for how to use
+each of these.
 
 :::note
 

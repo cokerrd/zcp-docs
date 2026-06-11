@@ -3,8 +3,6 @@ title: Egress Rules
 sidebar_position: 4
 ---
 
-## Egress Rules
-
 An egress rule controls outbound network traffic from a source to a specified destination based on
 defined protocols and IP ranges.
 

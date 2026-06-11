@@ -3,8 +3,6 @@ title: Zone Setup
 sidebar_position: 4
 ---
 
-# Zone Setup
-
 Understanding how ZSoftly has structured your CloudStack deployment.
 
 ## CloudStack zones, pods, and clusters

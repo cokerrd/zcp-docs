@@ -34,5 +34,5 @@ Screenshots coming.
 
 ## See also
 
-- [Instance Overview](./instance-overview)
-- [Activity Logs](./activity-logs)
+- [Instance Overview](/public-cloud/compute/instance-overview)
+- [Activity Logs](/public-cloud/compute/activity-logs)

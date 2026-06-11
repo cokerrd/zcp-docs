@@ -27,4 +27,5 @@ Screenshots coming.
 
 :::
 
-See also: [Network ACLs](./network-acls), [VPC Overview](./create-vpc)
+See also: [Network ACLs](/public-cloud/networking/vpc/network-acls),
+[VPC Overview](/public-cloud/networking/vpc/create-vpc)

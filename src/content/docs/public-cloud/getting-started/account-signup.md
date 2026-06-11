@@ -8,6 +8,30 @@ title: Account Signup
 This guide provides a step-by-step tutorial to help you create a ZSoftly Public Cloud account, set
 up billing, and verify your account.
 
+### Account and Project Structure
+
+**One email address, one account.** Each email address maps to exactly one ZCP account. You cannot
+register a second account with an address already in use.
+
+**Use Projects for environment isolation.** Most teams need one account. Create separate
+**Projects** inside it for `dev`, `stg`, and `prd`. Each Project gets its own resources, quotas, and
+team membership. Resources in different Projects do not share networks or storage. See
+[Projects](../projects) for details.
+
+**Use separate accounts for hard isolation.** Some organizations need a complete boundary between
+environments or business units: separate billing, separate IAM, and no shared resources. Create one
+account per boundary. Because each account requires a unique email address, use plus-addressing if
+your mail provider supports it:
+
+| Account   | Email                   |
+| --------- | ----------------------- |
+| Account 1 | `company+1@example.com` |
+| Account 2 | `company+2@example.com` |
+| Account 3 | `company+3@example.com` |
+
+All three addresses deliver to the same inbox. Each maps to a fully independent ZCP account with its
+own billing and IAM.
+
 ### Register Account
 
 - Visit the ZSoftly Public Cloud website and navigate to the **Sign-In** or **Create Account**

@@ -5,8 +5,8 @@ description:
 ---
 
 The **Users** section is where you add people to your organization and control their access. Each
-user signs in with their own credentials and is assigned a [role](./roles) that determines what they
-can do.
+user signs in with their own credentials and is assigned a [role](/public-cloud/iam/roles) that
+determines what they can do.
 
 ## View users
 
@@ -26,8 +26,9 @@ Screenshots coming.
 
 - Navigate to the **Profile** section from the left-hand menu.
 - Select **Users** and click **Add User**.
-- Enter the user's details and select their **Role** (see [Roles & Permissions](./roles) to create
-  one first if the role you need doesn't exist yet).
+- Enter the user's details and select their **Role** (see
+  [Roles & Permissions](/public-cloud/iam/roles) to create one first if the role you need doesn't
+  exist yet).
 - Click **Submit** to create the user.
 
 The user receives an invitation and, once accepted, can sign in with the permissions granted by
@@ -41,9 +42,10 @@ Screenshots coming.
 
 ## Restrict a user to specific Projects
 
-You can limit a user to specific [Projects](../projects) so they only see and manage the resources
-in the Projects they're authorized for. This combines with their role: the role controls _what
-actions_ they can take, while the Project scope controls _which resources_ those actions apply to.
+You can limit a user to specific [Projects](/public-cloud/projects) so they only see and manage the
+resources in the Projects they're authorized for. This combines with their role: the role controls
+_what actions_ they can take, while the Project scope controls _which resources_ those actions apply
+to.
 
 :::tip
 
@@ -54,5 +56,5 @@ role scoped to only the `dev` Project.
 
 ## Related
 
-- [Roles & Permissions](./roles): define what a user is allowed to do.
-- [IAM Overview](./overview): how the RBAC model fits together.
+- [Roles & Permissions](/public-cloud/iam/roles): define what a user is allowed to do.
+- [IAM Overview](/public-cloud/iam/overview): how the RBAC model fits together.

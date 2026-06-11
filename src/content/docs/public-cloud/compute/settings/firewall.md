@@ -19,4 +19,5 @@ Screenshots coming.
 
 :::
 
-See also: [Networks](./networks), [Port Forwarding](./port-forwarding)
+See also: [Networks](/public-cloud/compute/settings/networks),
+[Port Forwarding](/public-cloud/compute/settings/port-forwarding)

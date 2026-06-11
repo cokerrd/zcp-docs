@@ -19,4 +19,5 @@ Screenshots coming.
 
 :::
 
-See also: [Add Subnet](./add-subnet), [Create VPC](./create-vpc)
+See also: [Add Subnet](/public-cloud/networking/vpc/add-subnet),
+[Create VPC](/public-cloud/networking/vpc/create-vpc)

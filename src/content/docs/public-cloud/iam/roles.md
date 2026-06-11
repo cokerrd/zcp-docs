@@ -6,8 +6,8 @@ description:
 ---
 
 A **role** is a named bundle of permissions. Rather than granting access to each user individually,
-you define roles once and assign them to [users](./users). Change a role's permissions and every
-user with that role is updated.
+you define roles once and assign them to [users](/public-cloud/iam/users). Change a role's
+permissions and every user with that role is updated.
 
 Every service in the platform exposes two permission levels:
 
@@ -49,13 +49,14 @@ requires.
 - Repeat for each service the role should cover.
 - Click **Create Role**.
 
-The role is now available to assign when you [add or edit a user](./users).
+The role is now available to assign when you [add or edit a user](/public-cloud/iam/users).
 
 :::tip
 
 Apply **least privilege**: start with no permissions and add only what the job needs. Grant **Read**
 where someone only needs visibility, and reserve **Manage** for the resources they actually operate.
-Combine the role with [Project scoping](./users#restrict-a-user-to-specific-projects) to also limit
+Combine the role with
+[Project scoping](/public-cloud/iam/users#restrict-a-user-to-specific-projects) to also limit
 _which_ resources it applies to.
 
 :::
@@ -141,5 +142,5 @@ a few are read-only (noted below).
 
 ## Related
 
-- [Users](./users): assign a role when inviting someone.
-- [IAM Overview](./overview): how roles, users, and Project scope fit together.
+- [Users](/public-cloud/iam/users): assign a role when inviting someone.
+- [IAM Overview](/public-cloud/iam/overview): how roles, users, and Project scope fit together.

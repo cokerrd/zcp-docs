@@ -54,4 +54,5 @@ kubectl --kubeconfig /path/to/kube.conf describe secret \
 For more details, see the
 [official Kubernetes Dashboard documentation](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/).
 
-See also: [Create Cluster](./create-cluster), [kubectl Access](./kubectl-access)
+See also: [Create Cluster](/public-cloud/kubernetes/create-cluster),
+[kubectl Access](/public-cloud/kubernetes/kubectl-access)

@@ -80,7 +80,8 @@ Screenshots coming.
 Click the **Credentials** icon to view your **S3 Access Key** and **Secret Key** for programmatic
 access.
 
-See also: [Access Keys](./access-keys), [S3 Usage](./s3-usage)
+See also: [Access Keys](/public-cloud/storage/object-storage/access-keys),
+[S3 Usage](/public-cloud/storage/object-storage/s3-usage)
 
 :::tip
 

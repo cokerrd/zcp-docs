@@ -11,8 +11,8 @@ configure payment settings, customize preferences, and monitor your account acti
 :::tip
 
 Looking to invite teammates, create roles, enable two-factor authentication, or change your
-password? Those live under [IAM](../iam/overview) (Users, Roles & Permissions, and Account
-Security).
+password? Those live under [IAM](/public-cloud/iam/overview) (Users, Roles & Permissions, and
+Account Security).
 
 :::
 

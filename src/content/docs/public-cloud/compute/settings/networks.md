@@ -19,5 +19,5 @@ Screenshots coming.
 
 :::
 
-See also: [Create VPC Networks](../../networking/vpc/create-vpc),
-[Create Public Networks](../../networking/public-network/create)
+See also: [Create VPC Networks](/public-cloud/networking/vpc/create-vpc),
+[Create Public Networks](/public-cloud/networking/public-network/create)

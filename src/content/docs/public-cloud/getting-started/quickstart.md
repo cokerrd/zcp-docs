@@ -10,7 +10,7 @@ Deploy a VM, connect to it via SSH, and attach a block storage volume. End to en
 
 ## Prerequisites
 
-- A ZSoftly Public Cloud account ([sign up](./account-signup))
+- A ZSoftly Public Cloud account ([sign up](/public-cloud/getting-started/account-signup))
 - An SSH client (Terminal on macOS/Linux, PowerShell or Windows Terminal on Windows)
 
 ## Step 1: Add an SSH key
@@ -104,8 +104,9 @@ echo '/dev/vdb /data ext4 defaults 0 2' | sudo tee -a /etc/fstab
 
 ## Next steps
 
-- [VPC networking](../networking/vpc/create-vpc): isolate your infrastructure with private networks
-- [Object storage](../storage/object-storage/create-bucket): S3-compatible storage for files and
-  backups
-- [Kubernetes](../kubernetes/create-cluster): managed container clusters
-- [ZCP CLI](../cli/installation): manage everything from the terminal
+- [VPC networking](/public-cloud/networking/vpc/create-vpc): isolate your infrastructure with
+  private networks
+- [Object storage](/public-cloud/storage/object-storage/create-bucket): S3-compatible storage for
+  files and backups
+- [Kubernetes](/public-cloud/kubernetes/create-cluster): managed container clusters
+- [ZCP CLI](/public-cloud/cli/installation): manage everything from the terminal

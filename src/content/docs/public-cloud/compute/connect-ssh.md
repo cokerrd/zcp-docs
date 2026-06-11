@@ -49,6 +49,6 @@ Screenshots coming.
 
 ## See also
 
-- [Connect With RDP](./connect-rdp)
-- [Console Access](./console-access)
-- [SSH Keys](./settings/ssh-keys)
+- [Connect With RDP](/public-cloud/compute/connect-rdp)
+- [Console Access](/public-cloud/compute/console-access)
+- [SSH Keys](/public-cloud/compute/settings/ssh-keys)

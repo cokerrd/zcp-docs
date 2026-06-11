@@ -45,5 +45,5 @@ Screenshots coming.
 
 ## See also
 
-- [Connect With SSH](./connect-ssh)
-- [Connect With RDP](./connect-rdp)
+- [Connect With SSH](/public-cloud/compute/connect-ssh)
+- [Connect With RDP](/public-cloud/compute/connect-rdp)

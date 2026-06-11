@@ -3,15 +3,13 @@ title: Object Storage (S3)
 sidebar_position: 1
 ---
 
-# Object Storage (S3)
-
 Your cluster provides S3-compatible object storage through the Ceph RADOS Gateway (RGW). It mimics
 the Amazon S3 API, so existing S3 tools and SDKs work against your cluster once you change the
 endpoint URL.
 
 ## Endpoint and credentials
 
-From your [credentials document](../getting-started/provisioning#what-you-receive):
+From your [credentials document](/cloud-storage/getting-started/provisioning#what-you-receive):
 
 - **S3 Endpoint URL**, for example `https://<rgw-endpoint>`
 - **Access Key ID** and **Secret Access Key**
@@ -63,6 +61,7 @@ presigned URLs. For the full, version-specific feature set, see the upstream doc
 
 :::tip
 
-To replicate object data across sites, use RGW multisite. See [Replication & DR](./replication-dr).
+To replicate object data across sites, use RGW multisite. See
+[Replication & DR](/cloud-storage/reference/replication-dr).
 
 :::

@@ -46,5 +46,5 @@ Screenshots coming.
 
 ## Related
 
-- [Users](./users): manage who signs in to your organization.
-- [IAM Overview](./overview): the full access model.
+- [Users](/public-cloud/iam/users): manage who signs in to your organization.
+- [IAM Overview](/public-cloud/iam/overview): the full access model.

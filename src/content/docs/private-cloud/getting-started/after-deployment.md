@@ -19,10 +19,13 @@ At handover, ZSoftly provides a credentials document containing:
 
 ## First steps checklist
 
-- [ ] Connect to your private cloud via VPN: see [VPN Access](./vpn-access)
-- [ ] Log in to the CloudStack management UI: see [Accessing CloudStack](./accessing-cloudstack)
+- [ ] Connect to your private cloud via VPN: see
+      [VPN Access](/private-cloud/getting-started/vpn-access)
+- [ ] Log in to the CloudStack management UI: see
+      [Accessing CloudStack](/private-cloud/getting-started/accessing-cloudstack)
 - [ ] Change the default admin password
-- [ ] Review your zone and cluster layout: see [Zone Setup](./zone-setup)
+- [ ] Review your zone and cluster layout: see
+      [Zone Setup](/private-cloud/getting-started/zone-setup)
 - [ ] Create your first user account in CloudStack
 - [ ] Test VM creation with a basic Linux image
 

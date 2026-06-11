@@ -44,4 +44,4 @@ support.
 private cloud deployment.
 
 Once your deployment is complete, continue to
-[After Deployment](./getting-started/after-deployment).
+[After Deployment](/private-cloud/getting-started/after-deployment).

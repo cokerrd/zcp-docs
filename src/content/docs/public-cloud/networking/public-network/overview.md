@@ -22,4 +22,5 @@ Screenshots coming.
 
 :::
 
-See also: [Create Public Network](./create), [Public IPs](./public-ips)
+See also: [Create Public Network](/public-cloud/networking/public-network/create),
+[Public IPs](/public-cloud/networking/public-network/public-ips)

@@ -3,8 +3,6 @@ title: VPN Access
 sidebar_position: 3
 ---
 
-# VPN Access
-
 Reaching your private cloud management interfaces and internal networks remotely requires VPN
 access.
 

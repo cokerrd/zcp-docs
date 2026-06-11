@@ -2,8 +2,6 @@
 title: Auto Scaling
 ---
 
-## Auto Scaling
-
 Auto-scaling automatically adjusts the number of VM instances in response to real-time demand,
 ensuring availability while minimizing costs.
 

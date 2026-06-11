@@ -3,10 +3,8 @@ title: Accessing Your Cluster
 sidebar_position: 2
 ---
 
-# Accessing Your Cluster
-
-Your [credentials document](./provisioning#what-you-receive) holds the endpoints and credentials
-below. Replace the placeholders with the values for your cluster.
+Your [credentials document](/cloud-storage/getting-started/provisioning#what-you-receive) holds the
+endpoints and credentials below. Replace the placeholders with the values for your cluster.
 
 ## Ceph Dashboard
 
@@ -26,7 +24,7 @@ from your credentials document:
 aws s3 ls --endpoint-url https://<rgw-endpoint>
 ```
 
-See [Object Storage](../reference/object-storage) for clients, keys, and usage.
+See [Object Storage](/cloud-storage/reference/object-storage) for clients, keys, and usage.
 
 ## Administrative (root) access
 
@@ -50,7 +48,7 @@ review a change first if you want a second set of eyes.
 
 ## Next steps
 
-- [Object Storage](../reference/object-storage). S3 endpoint and clients.
-- [Block Storage](../reference/block-storage). RBD volumes.
-- [File Storage](../reference/file-storage). CephFS shared filesystem.
-- [Replication & DR](../reference/replication-dr). Protect and replicate your data.
+- [Object Storage](/cloud-storage/reference/object-storage). S3 endpoint and clients.
+- [Block Storage](/cloud-storage/reference/block-storage). RBD volumes.
+- [File Storage](/cloud-storage/reference/file-storage). CephFS shared filesystem.
+- [Replication & DR](/cloud-storage/reference/replication-dr). Protect and replicate your data.

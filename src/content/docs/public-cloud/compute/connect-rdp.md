@@ -47,5 +47,5 @@ Screenshots coming.
 
 ## See also
 
-- [Connect With SSH](./connect-ssh)
-- [Console Access](./console-access)
+- [Connect With SSH](/public-cloud/compute/connect-ssh)
+- [Console Access](/public-cloud/compute/console-access)

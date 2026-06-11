@@ -3,8 +3,6 @@ title: VPN Users
 sidebar_position: 7
 ---
 
-## VPN Users
-
 VPN Users allows you to manage client VPN access to your VPC network. This is separate from
 Site-to-Site VPN and is used for individual user remote access.
 
@@ -19,4 +17,5 @@ Screenshots coming.
 
 :::
 
-See also: [VPN Gateway](./site-vpn), [VPC Overview](./create-vpc)
+See also: [VPN Gateway](/public-cloud/networking/vpc/site-vpn),
+[VPC Overview](/public-cloud/networking/vpc/create-vpc)

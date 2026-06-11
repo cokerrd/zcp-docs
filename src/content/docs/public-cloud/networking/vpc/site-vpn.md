@@ -3,8 +3,6 @@ title: VPN Gateway
 sidebar_position: 6
 ---
 
-## VPN Gateway
-
 A **VPN Gateway** allows secure communication between your VPC and external networks, such as
 on-premises data centers or other cloud networks.
 
@@ -30,4 +28,6 @@ Screenshots coming.
 
 :::
 
-See also: [VPC Overview](./create-vpc), [Network ACLs](./network-acls), [VPN Users](./vpn-users)
+See also: [VPC Overview](/public-cloud/networking/vpc/create-vpc),
+[Network ACLs](/public-cloud/networking/vpc/network-acls),
+[VPN Users](/public-cloud/networking/vpc/vpn-users)

@@ -22,4 +22,4 @@ Screenshots coming.
 
 :::
 
-See also: [Connect With SSH](../connect-ssh)
+See also: [Connect With SSH](/public-cloud/compute/connect-ssh)

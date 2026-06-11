@@ -75,4 +75,5 @@ export KUBECONFIG=/path/to/kube.conf
 kubectl get nodes
 ```
 
-See also: [Create Cluster](./create-cluster), [Dashboard Access](./dashboard-access)
+See also: [Create Cluster](/public-cloud/kubernetes/create-cluster),
+[Dashboard Access](/public-cloud/kubernetes/dashboard-access)

@@ -3,8 +3,6 @@ title: Create Public Network
 sidebar_position: 1
 ---
 
-## Create Public Network
-
 A **Public Network** provides internet-facing access to cloud resources. It allows VMs and services
 to communicate with external systems over the internet.
 
@@ -70,4 +68,5 @@ Screenshots coming.
 
 :::
 
-See also: [Network Overview](./overview), [Public IPs](./public-ips)
+See also: [Network Overview](/public-cloud/networking/public-network/overview),
+[Public IPs](/public-cloud/networking/public-network/public-ips)

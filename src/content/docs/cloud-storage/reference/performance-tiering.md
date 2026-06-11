@@ -3,8 +3,6 @@ title: Performance & Tiering
 sidebar_position: 5
 ---
 
-# Performance & Tiering
-
 A dedicated cluster lets you match device classes and data-protection schemes to each workload,
 rather than accept a one-size-fits-all tier.
 
@@ -40,6 +38,6 @@ Mixing schemes across pools in the same cluster lets you tune cost and performan
 :::tip
 
 Not sure how to lay out pools and device classes for your workload? ZSoftly designs the layout with
-you during [provisioning](../getting-started/provisioning#sizing-inputs).
+you during [provisioning](/cloud-storage/getting-started/provisioning#sizing-inputs).
 
 :::

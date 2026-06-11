@@ -99,4 +99,5 @@ sudo mount /dev/vdb /data
 echo '/dev/vdb /data ext4 defaults 0 2' | sudo tee -a /etc/fstab
 ```
 
-See also: [Volume Snapshots](./snapshots), [VM Snapshots](../../backups-snapshots/vm-snapshots)
+See also: [Volume Snapshots](/public-cloud/storage/block-storage/snapshots),
+[VM Snapshots](/public-cloud/backups-snapshots/vm-snapshots)

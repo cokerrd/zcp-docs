@@ -77,7 +77,7 @@ Screenshots coming.
 - **Database Optimized (DO)**: Specifically tuned for database workloads, offering enhanced I/O
   performance and memory-to-disk ratio for transactional or analytical database systems.
 
-See [Instance Types](./instance-types) for families and storage tiers, and the
+See [Instance Types](/public-cloud/compute/instance-types) for families and storage tiers, and the
 [pricing page](https://zcp.zsoftly.ca/pricing) for per-size specs and pricing.
 
 :::note
@@ -157,5 +157,5 @@ Screenshots coming.
 
 ## See also
 
-- [Instance Overview](./instance-overview)
-- [Activity Logs](./activity-logs)
+- [Instance Overview](/public-cloud/compute/instance-overview)
+- [Activity Logs](/public-cloud/compute/activity-logs)

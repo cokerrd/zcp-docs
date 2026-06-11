@@ -80,4 +80,4 @@ These flags work on every command:
 | `--pager`        |       | `false` | Pipe table output through less   |
 | `--auto-approve` | `-y`  | `false` | Skip confirmation prompts        |
 
-See also: [Installation](./installation), [Quickstart](./quickstart)
+See also: [Installation](/public-cloud/cli/installation), [Quickstart](/public-cloud/cli/quickstart)

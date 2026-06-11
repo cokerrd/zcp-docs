@@ -45,4 +45,5 @@ Screenshots coming.
 
 :::
 
-See also: [Cluster Overview](./cluster-overview), [kubectl Access](./kubectl-access)
+See also: [Cluster Overview](/public-cloud/kubernetes/cluster-overview),
+[kubectl Access](/public-cloud/kubernetes/kubectl-access)

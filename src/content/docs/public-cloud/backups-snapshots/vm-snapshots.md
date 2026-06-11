@@ -3,8 +3,6 @@ title: VM Snapshots
 sidebar_position: 1
 ---
 
-## VM Snapshots
-
 Instance snapshots capture the current state of a VM, including configuration and data, at a
 specific point in time. Use them for backup, disaster recovery, and testing.
 
@@ -33,4 +31,5 @@ Screenshots coming.
 
 :::
 
-See also: [Volume Snapshots](../storage/block-storage/snapshots), [Backups](./backups)
+See also: [Volume Snapshots](/public-cloud/storage/block-storage/snapshots),
+[Backups](/public-cloud/backups-snapshots/backups)

@@ -3,8 +3,6 @@ title: Public IP Addresses
 sidebar_position: 5
 ---
 
-## Public IP Addresses
-
 Public IP addresses allow resources in the VPC to communicate with the internet.
 
 - In the **Public IP Addresses** tab, view all assigned public IPs.
@@ -17,4 +15,5 @@ Screenshots coming.
 
 :::
 
-See also: [VPC Overview](./create-vpc), [VPN Gateway](./site-vpn)
+See also: [VPC Overview](/public-cloud/networking/vpc/create-vpc),
+[VPN Gateway](/public-cloud/networking/vpc/site-vpn)

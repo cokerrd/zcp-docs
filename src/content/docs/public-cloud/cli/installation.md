@@ -90,4 +90,5 @@ zcp completion fish > ~/.config/fish/completions/zcp.fish
 zcp completion powershell >> $PROFILE
 ```
 
-See also: [Quickstart](./quickstart), [Configuration](./configuration)
+See also: [Quickstart](/public-cloud/cli/quickstart),
+[Configuration](/public-cloud/cli/configuration)

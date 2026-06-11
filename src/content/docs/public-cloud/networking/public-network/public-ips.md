@@ -3,8 +3,6 @@ title: Public IP Addresses
 sidebar_position: 3
 ---
 
-## Public IP Addresses
-
 Public IP addresses allow resources in the network to communicate with the internet. All public IPs
 include network-level DDoS mitigation, absorbing volumetric attacks before they reach your workload.
 
@@ -18,4 +16,5 @@ Screenshots coming.
 
 :::
 
-See also: [Network Overview](./overview), [Create Public Network](./create)
+See also: [Network Overview](/public-cloud/networking/public-network/overview),
+[Create Public Network](/public-cloud/networking/public-network/create)

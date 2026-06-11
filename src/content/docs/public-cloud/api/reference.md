@@ -3,8 +3,6 @@ title: API Reference
 sidebar_position: 3
 ---
 
-## API Reference
-
 The full interactive API reference is hosted as a Swagger UI:
 
 - **Cloud Platform API**: [Open the Swagger UI](https://api.zcp.zsoftly.ca/api/docs/nimbo)
@@ -30,4 +28,5 @@ The Swagger UI provides:
 | Billing          | Invoices, payments, usage          |
 | Support          | Tickets and FAQs                   |
 
-See also: [Authentication](./authentication), [API Quickstart](./quickstart)
+See also: [Authentication](/public-cloud/api/authentication),
+[API Quickstart](/public-cloud/api/quickstart)

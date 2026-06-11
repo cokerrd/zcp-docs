@@ -83,6 +83,6 @@ Screenshots coming.
 
 ## See also
 
-- [Create Instance](./create-instance)
-- [Console Access](./console-access)
-- [Activity Logs](./activity-logs)
+- [Create Instance](/public-cloud/compute/create-instance)
+- [Console Access](/public-cloud/compute/console-access)
+- [Activity Logs](/public-cloud/compute/activity-logs)

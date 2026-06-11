@@ -34,4 +34,4 @@ Your WireGuard configuration file (provided at handover) contains:
 
 - Contact ZSoftly support. A new config requires generating a new key pair on the server
 
-See also: [VPN Access](../getting-started/vpn-access)
+See also: [VPN Access](/private-cloud/getting-started/vpn-access)

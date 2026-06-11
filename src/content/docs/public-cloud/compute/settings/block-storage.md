@@ -3,8 +3,6 @@ title: Block Storage
 sidebar_position: 1
 ---
 
-## Block Storage
-
 Block Storage allows you to attach additional storage volumes to your VM. These volumes are
 independent disks that store application data, backups, or other files.
 
@@ -18,5 +16,5 @@ Screenshots coming.
 
 :::
 
-See also: [Create Volume](../../storage/block-storage/create-volume),
-[Volume Snapshots](../../storage/block-storage/snapshots)
+See also: [Create Volume](/public-cloud/storage/block-storage/create-volume),
+[Volume Snapshots](/public-cloud/storage/block-storage/snapshots)

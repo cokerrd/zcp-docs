@@ -68,4 +68,6 @@ Screenshots coming.
   Prorata, Unfixed Prorata.
 - Review the price summary and click **Create VPC**.
 
-See also: [Add Subnet](./add-subnet), [Network ACLs](./network-acls), [VPN Gateway](./site-vpn)
+See also: [Add Subnet](/public-cloud/networking/vpc/add-subnet),
+[Network ACLs](/public-cloud/networking/vpc/network-acls),
+[VPN Gateway](/public-cloud/networking/vpc/site-vpn)

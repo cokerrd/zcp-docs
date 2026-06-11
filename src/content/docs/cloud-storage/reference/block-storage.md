@@ -3,8 +3,6 @@ title: Block Storage (RBD)
 sidebar_position: 2
 ---
 
-# Block Storage (RBD)
-
 Ceph RBD (RADOS Block Device) provides thin-provisioned, replicated block devices backed by your
 cluster. RBD volumes suit virtual machine disks, databases, and Kubernetes persistent volumes.
 
@@ -27,7 +25,7 @@ mount /dev/rbd0 /mnt/vol01
 - **Kubernetes**. Use the [Ceph CSI](https://github.com/ceph/ceph-csi) driver to provision RBD
   persistent volumes dynamically.
 - **Databases**. Back high-I/O databases with an NVMe pool. See
-  [Performance & Tiering](./performance-tiering).
+  [Performance & Tiering](/cloud-storage/reference/performance-tiering).
 
 | Resource                 | URL                                  |
 | ------------------------ | ------------------------------------ |
@@ -37,6 +35,6 @@ mount /dev/rbd0 /mnt/vol01
 :::tip
 
 You mirror RBD images to another cluster for disaster recovery. See
-[Replication & DR](./replication-dr).
+[Replication & DR](/cloud-storage/reference/replication-dr).
 
 :::

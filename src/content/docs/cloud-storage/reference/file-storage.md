@@ -3,8 +3,6 @@ title: File Storage (CephFS)
 sidebar_position: 3
 ---
 
-# File Storage (CephFS)
-
 CephFS is a POSIX-compliant shared filesystem backed by your cluster. Many clients mount the same
 filesystem at once, which suits shared home directories, build artifacts, media pipelines, and HPC
 scratch space.
@@ -19,8 +17,9 @@ mount -t ceph <mon-host>:6789:/ /mnt/cephfs \
 ```
 
 The monitor host, client name, and key come from your
-[credentials document](../getting-started/provisioning#what-you-receive). For Kubernetes, the
-[Ceph CSI](https://github.com/ceph/ceph-csi) driver provisions CephFS volumes dynamically.
+[credentials document](/cloud-storage/getting-started/provisioning#what-you-receive). For
+Kubernetes, the [Ceph CSI](https://github.com/ceph/ceph-csi) driver provisions CephFS volumes
+dynamically.
 
 ## When to choose CephFS
 

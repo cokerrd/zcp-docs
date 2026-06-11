@@ -3,8 +3,6 @@ title: CLI Reference
 sidebar_position: 4
 ---
 
-## CLI Reference
-
 Full command reference for the ZCP CLI v0.0.9.
 
 For the interactive reference with search, see the

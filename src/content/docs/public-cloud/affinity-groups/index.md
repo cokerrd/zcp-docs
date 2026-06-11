@@ -2,8 +2,6 @@
 title: Affinity Groups
 ---
 
-## Affinity Groups
-
 Affinity Groups control the placement of VMs on hypervisor hosts within the cloud infrastructure.
 Use them to co-locate VMs for low-latency communication or spread them across hosts for fault
 tolerance.

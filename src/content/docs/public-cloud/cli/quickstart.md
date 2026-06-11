@@ -96,4 +96,5 @@ export ZCP_PROJECT="my-project"
 zcp instance list -o json
 ```
 
-See also: [Configuration](./configuration), [CLI Reference](./reference)
+See also: [Configuration](/public-cloud/cli/configuration),
+[CLI Reference](/public-cloud/cli/reference)

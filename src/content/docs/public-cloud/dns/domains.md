@@ -167,5 +167,5 @@ values, removed any stale entries, and that the domain isn't locked or expired a
 
 ## Next Steps
 
-- [Manage DNS records](./records): add and edit A, CNAME, MX, TXT, and other records once ZSoftly is
-  authoritative.
+- [Manage DNS records](/public-cloud/dns/records): add and edit A, CNAME, MX, TXT, and other records
+  once ZSoftly is authoritative.

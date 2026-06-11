@@ -40,6 +40,9 @@ Throughout these docs:
 
 ## Get started
 
-1. [Create your account](./account-signup): sign up, verify email, set up billing
-2. [Set up your profile](./profile-setup): personal info, 2FA, user roles
-3. [Quickstart](./quickstart): deploy your first VM end-to-end in under 10 minutes
+1. [Create your account](/public-cloud/getting-started/account-signup): sign up, verify email, set
+   up billing
+2. [Set up your profile](/public-cloud/getting-started/profile-setup): personal info, 2FA, user
+   roles
+3. [Quickstart](/public-cloud/getting-started/quickstart): deploy your first VM end-to-end in under
+   10 minutes

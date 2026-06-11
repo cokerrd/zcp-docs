@@ -64,4 +64,5 @@ export AWS_SECRET_ACCESS_KEY="<your secret key>"
 export AWS_ENDPOINT_URL="https://objects.yul.zcp.zsoftly.ca"
 ```
 
-See also: [Create Bucket](./create-bucket), [S3 Usage](./s3-usage)
+See also: [Create Bucket](/public-cloud/storage/object-storage/create-bucket),
+[S3 Usage](/public-cloud/storage/object-storage/s3-usage)

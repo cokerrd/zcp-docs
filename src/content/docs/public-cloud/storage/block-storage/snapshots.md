@@ -3,8 +3,6 @@ title: Volume Snapshots
 sidebar_position: 2
 ---
 
-## Volume Snapshots
-
 Volume Snapshots capture the current state of a block storage volume at a specific point in time.
 Use them for backup, recovery from accidental deletion, or corruption.
 
@@ -34,4 +32,5 @@ Screenshots coming.
 
 :::
 
-See also: [Create Volume](./create-volume), [VM Snapshots](../../backups-snapshots/vm-snapshots)
+See also: [Create Volume](/public-cloud/storage/block-storage/create-volume),
+[VM Snapshots](/public-cloud/backups-snapshots/vm-snapshots)

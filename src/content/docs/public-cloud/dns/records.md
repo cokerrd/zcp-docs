@@ -3,8 +3,6 @@ title: DNS Records
 sidebar_position: 2
 ---
 
-## DNS Records
-
 DNS records connect your domain to specific services. To create a record, click **Create Record** in
 your domain's dashboard.
 
@@ -54,4 +52,4 @@ _sip._tcp SRV 10 60 5060 sipserver.example.com. 14400
 
 Use `@` for the root domain or enter a hostname for subdomains (e.g., `www`, `blog`).
 
-See also: [Domains](./domains)
+See also: [Domains](/public-cloud/dns/domains)

@@ -7,9 +7,9 @@ description:
 ---
 
 ZCP compute plans come in three families across two regions and four storage tiers. For how a plan
-ID encodes all of that, see [Plan Names](./plan-names). For the **live per-size specs (vCPU, RAM,
-root disk) and pricing of every plan**, see the [pricing page](https://zcp.zsoftly.ca/pricing),
-which is the source of truth.
+ID encodes all of that, see [Plan Names](/public-cloud/compute/plan-names). For the **live per-size
+specs (vCPU, RAM, root disk) and pricing of every plan**, see the
+[pricing page](https://zcp.zsoftly.ca/pricing), which is the source of truth.
 
 ## Families
 
@@ -22,7 +22,7 @@ which is the source of truth.
 ## Storage tiers
 
 The storage tier is fixed per series and varies by region (see
-[Regions](../getting-started/regions)):
+[Regions](/public-cloud/getting-started/regions)):
 
 | Tier        | Regions | Series                                 |
 | ----------- | ------- | -------------------------------------- |
@@ -39,6 +39,6 @@ root disk for each size, and the portal shows the current options when you creat
 
 ## See also
 
-- [Plan Names](./plan-names)
-- [Create an Instance](./create-instance)
-- [Regions](../getting-started/regions)
+- [Plan Names](/public-cloud/compute/plan-names)
+- [Create an Instance](/public-cloud/compute/create-instance)
+- [Regions](/public-cloud/getting-started/regions)

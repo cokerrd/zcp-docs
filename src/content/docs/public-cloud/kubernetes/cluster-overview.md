@@ -49,5 +49,6 @@ Screenshots coming.
 
 - Current Plan, CPU per node, Memory per node, Storage per node
 
-See also: [Create Cluster](./create-cluster), [kubectl Access](./kubectl-access),
-[Dashboard Access](./dashboard-access)
+See also: [Create Cluster](/public-cloud/kubernetes/create-cluster),
+[kubectl Access](/public-cloud/kubernetes/kubectl-access),
+[Dashboard Access](/public-cloud/kubernetes/dashboard-access)

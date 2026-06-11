@@ -26,4 +26,4 @@ Screenshots coming.
 
 :::
 
-See also: [Create Instance](../create-instance)
+See also: [Create Instance](/public-cloud/compute/create-instance)

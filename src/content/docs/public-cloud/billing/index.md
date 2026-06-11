@@ -2,8 +2,6 @@
 title: Billing
 ---
 
-## Billing
-
 ### Billing Summary
 
 Navigate to **Billing → Summary** for an overview of your account's financial status.
