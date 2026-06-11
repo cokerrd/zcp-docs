@@ -14,11 +14,14 @@ manage VMs, networks, storage, Kubernetes, and more from your terminal.
 
 :::note
 
-v0.0.14 moved all API service packages from `internal/` to `pkg/` so external Go modules (including
-the ZCP Terraform provider) can import them. Binary behaviour for CLI users is unchanged. If you
-import CLI packages directly in your own Go code, update import paths from
-`github.com/zsoftly/zcp-cli/internal/api/<service>` to
-`github.com/zsoftly/zcp-cli/pkg/api/<service>`.
+**v0.0.14 breaking change for Go module consumers.** All API service packages and the HTTP client
+moved from `internal/` to `pkg/` so external modules (including the ZCP Terraform provider) can
+import them. CLI end users are not affected. Update import paths:
+
+| Old path                                            | New path                                       |
+| --------------------------------------------------- | ---------------------------------------------- |
+| `github.com/zsoftly/zcp-cli/internal/api/<service>` | `github.com/zsoftly/zcp-cli/pkg/api/<service>` |
+| `github.com/zsoftly/zcp-cli/internal/httpclient`    | `github.com/zsoftly/zcp-cli/pkg/httpclient`    |
 
 :::
 
