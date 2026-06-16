@@ -1,7 +1,7 @@
 name: '10: Deploy Dev'
 
 # Auto-deploys to dev on every push to main after CI passes.
-# Deploy runs on zsoftly-iaas (self-hosted) — touches Dokploy API secrets.
+# Deploy runs on zsoftly-yow (self-hosted) — touches Dokploy API secrets.
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
   deploy:
     name: Deploy to Dev
     needs: [ci]
-    runs-on: zsoftly-iaas
+    runs-on: zsoftly-yow
     steps:
       - name: '00: Checkout'
         uses: actions/checkout@v5

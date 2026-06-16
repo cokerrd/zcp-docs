@@ -1,7 +1,7 @@
 name: '20: Deploy Staging'
 
 # Manual deploy to staging from a release branch.
-# Deploy runs on zsoftly-iaas (self-hosted) — touches Dokploy API secrets.
+# Deploy runs on zsoftly-yow (self-hosted) — touches Dokploy API secrets.
 
 on:
   workflow_dispatch:
@@ -21,7 +21,7 @@ env:
 jobs:
   validate:
     name: Validate
-    runs-on: zsoftly-iaas
+    runs-on: zsoftly-yow
     steps:
       - name: '00: Validate branch name'
         env:
@@ -42,7 +42,7 @@ jobs:
   deploy:
     name: Deploy to Staging
     needs: [ci]
-    runs-on: zsoftly-iaas
+    runs-on: zsoftly-yow
     steps:
       - name: '00: Checkout'
         uses: actions/checkout@v5
