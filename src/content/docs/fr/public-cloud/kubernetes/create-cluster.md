@@ -3,13 +3,44 @@ title: Créer un cluster Kubernetes
 sidebar_position: 1
 ---
 
-## Clusters Kubernetes
+Kubernetes géré sur ZSoftly Public Cloud vous donne un cluster Kubernetes standard et en amont, sans
+avoir à exploiter vous-même le plan de contrôle. Provisionnez-le depuis le portail, mettez-le à
+l'échelle à la demande, et connectez-vous avec les outils `kubectl` et Helm que votre équipe utilise
+déjà. Aucune distribution dérivée, aucun opérateur propriétaire : ce que vous créez ici fonctionne
+partout.
 
-Un cluster Kubernetes est un ensemble de machines (noeuds) qui exécutent des applications
-conteneurisées de manière automatisée et gérée. ZSoftly Public Cloud fournit des clusters Kubernetes
-gérés avec haute disponibilité et mise à l'échelle automatique.
+## Versions prises en charge
 
-### Créer un cluster
+ZCP prend en charge Kubernetes **1.34**, **1.35** et **1.36** (actuelle : **1.36.1**). Mettez à
+niveau un cluster en cours d'exécution vers une version plus récente, directement depuis la
+[Vue d'ensemble du cluster](/fr/public-cloud/kubernetes/cluster-overview). Faites correspondre votre
+client `kubectl` à la version mineure du cluster. Voir
+[Accès kubectl](/fr/public-cloud/kubernetes/kubectl-access).
+
+| Élément        | Prise en charge                                   |
+| -------------- | ------------------------------------------------- |
+| Kubernetes     | 1.34, 1.35, 1.36 (actuelle 1.36.1)                |
+| Distribution   | Kubernetes standard en amont, sans fork           |
+| Mises à niveau | En place, vers toute version mineure plus récente |
+
+## Ce que vous obtenez
+
+- **Plan de contrôle géré** — ZSoftly exploite et maintient le plan de contrôle. Vous vous
+  concentrez sur vos applications.
+- **Haute disponibilité (facultative)** — ajoutez des noeuds de contrôle pour un plan de contrôle
+  redondant.
+- **Mise à l'échelle automatique** — définissez un nombre minimal et maximal de noeuds de travail.
+  Le cluster s'adapte à la demande.
+- **Plans de noeuds** — choisissez un plan fixe (CPU, mémoire et stockage définis) ou un plan
+  personnalisé (votre propre dimensionnement et nombre de noeuds).
+- **Volumes persistants** — stockage bloc provisionné dynamiquement via le pilote CSI du cluster.
+- **Répartiteurs de charge** — exposez un `Service` de type `LoadBalancer` et accédez-y sur une
+  adresse publique.
+- **Outils standard** — fonctionne avec `kubectl`, Helm et le tableau de bord Kubernetes.
+  Téléchargez un `kubeconfig` depuis le portail.
+- **Mises à niveau de version en place** et **accès SSH** facultatif aux noeuds.
+
+## Créer un cluster
 
 - Dans le menu de gauche, cliquez sur **Kubernetes**.
 - Cliquez sur **Créer un cluster** ou sur l'icône **+**.
@@ -46,5 +77,11 @@ Captures d'écran à venir.
 
 :::
 
-Voir aussi : [Vue d'ensemble du cluster](/fr/public-cloud/kubernetes/cluster-overview),
-[Accès kubectl](/fr/public-cloud/kubernetes/kubectl-access)
+## Après la création
+
+- [Connexion avec kubectl](/fr/public-cloud/kubernetes/kubectl-access) — téléchargez votre
+  `kubeconfig` et exécutez vos premières commandes.
+- [Vue d'ensemble du cluster](/fr/public-cloud/kubernetes/cluster-overview) — mettez à l'échelle,
+  mettez à niveau et gérez le cluster.
+- [Accès au tableau de bord](/fr/public-cloud/kubernetes/dashboard-access) — utilisez le tableau de
+  bord Web.
