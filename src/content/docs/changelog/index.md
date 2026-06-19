@@ -38,14 +38,14 @@ One-click application images for compute instances.
 The official command-line tool for the platform. The entries below mirror the CLI's
 [`CHANGELOG.md`](https://github.com/zsoftly/zcp-cli/blob/main/CHANGELOG.md) on GitHub.
 
-### v0.0.18: June 18, 2026
+### v0.0.18: June 19, 2026
 
 **Region and project are now required for region- and project-scoped commands.** This makes results
 predictable and matches how the platform scopes resources. See
 [Configuration](/public-cloud/cli/configuration) for how to provide them.
 
 - **Set them once**: `zcp profile add` now prompts for a default region (required) and project, like
-  `aws configure`. After that, most commands need no `--region`/`--project`; you can still override
+  `aws configure`. After that, most commands need no `--region`/`--project`. You can still override
   per command or with the `ZCP_REGION`/`ZCP_PROJECT` environment variables.
 - **Lists are scoped to your region and project**: every resource and catalog list now filters its
   output, so `plan`, `template list`, `iso list`, `marketplace list`, and `storage-category list` no
@@ -57,7 +57,7 @@ predictable and matches how the platform scopes resources. See
 - **`ssh-key import` fixed**: it now sends the required project and region, resolving a 500 error on
   import, and validates the key name client-side (20 characters max).
 - **`instance create --ssh-key <name>`** now engages SSH-key authentication correctly. Import the
-  key first with `ssh-key import`; key names and public-key material must be unique.
+  key first with `ssh-key import`. Key names and public-key material must be unique.
 
 **Clearer errors.**
 

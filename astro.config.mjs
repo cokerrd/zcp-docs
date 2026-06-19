@@ -6,7 +6,7 @@ import starlightLinksValidator from 'starlight-links-validator';
 /** @type {Record<string, string>} */
 const frSidebarLabels = {
   Changelog: 'Journal des modifications',
-  Learn: 'Apprendre',
+  Tutorials: 'Tutoriels',
   'Deploy a VPS with Dokploy (CLI)': 'Déployer un VPS avec Dokploy (CLI)',
   Installation: 'Installation',
   Quickstart: 'Démarrage rapide',
@@ -179,16 +179,16 @@ export default defineConfig({
         // ── Changelog ──────────────────────────────────────────
         { label: 'Changelog', slug: 'changelog' },
 
-        // ── Learn ──────────────────────────────────────────────
+        // ── Tutorials ──────────────────────────────────────────
         {
-          label: 'Learn',
+          label: 'Tutorials',
           collapsed: false,
           items: [
-            { label: 'Overview', slug: 'learn' },
-            { label: 'Deploy a VPS with Dokploy (CLI)', slug: 'learn/deploy-vps-dokploy-cli' },
+            { label: 'Overview', slug: 'tutorials' },
+            { label: 'Deploy a VPS with Dokploy (CLI)', slug: 'tutorials/deploy-vps-dokploy-cli' },
             {
               label: 'Deploy OpenClaw (Marketplace, CLI)',
-              slug: 'learn/deploy-openclaw-marketplace-cli',
+              slug: 'tutorials/deploy-openclaw-marketplace-cli',
             },
           ],
         },

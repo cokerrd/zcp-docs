@@ -40,7 +40,7 @@ Images d'applications en un clic pour les instances de calcul.
 L'outil en ligne de commande officiel de la plateforme. Les entrées ci-dessous reflètent le
 [`CHANGELOG.md`](https://github.com/zsoftly/zcp-cli/blob/main/CHANGELOG.md) du CLI sur GitHub.
 
-### v0.0.18 : 18 juin 2026
+### v0.0.18 : 19 juin 2026
 
 **La région et le projet sont désormais requis pour les commandes liées à une région ou à un
 projet.** Les résultats deviennent prévisibles et correspondent à la façon dont la plateforme

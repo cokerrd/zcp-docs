@@ -1,5 +1,5 @@
 ---
-title: Apprendre
+title: Tutoriels
 description:
   Tutoriels pratiques de bout en bout pour la plateforme infonuagique ZSoftly. Suivez le guide, d'un
   nouveau compte jusqu'à un déploiement fonctionnel.
@@ -17,7 +17,7 @@ couvrent ces cas.
 
 ## Tutoriels
 
-### [Déployer un VPS et installer Dokploy avec le CLI](/fr/learn/deploy-vps-dokploy-cli)
+### [Déployer un VPS et installer Dokploy avec le CLI](/fr/tutorials/deploy-vps-dokploy-cli)
 
 Passez d'un compte neuf à une machine virtuelle publique exécutant [Dokploy](https://dokploy.com),
 une plateforme d'applications auto-hébergée. Vous installez et authentifiez le CLI, créez un VPS

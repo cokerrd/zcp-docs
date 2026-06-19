@@ -1,5 +1,5 @@
 ---
-title: Learn
+title: Tutorials
 description:
   Hands-on, end-to-end tutorials for the ZSoftly Cloud Platform. Follow along from a brand-new
   account to a working deployment.
@@ -15,7 +15,7 @@ Looking for a single feature instead of a full walkthrough? The
 
 ## Tutorials
 
-### [Deploy a VPS and install Dokploy with the CLI](/learn/deploy-vps-dokploy-cli)
+### [Deploy a VPS and install Dokploy with the CLI](/tutorials/deploy-vps-dokploy-cli)
 
 Go from a fresh account to a public virtual machine running [Dokploy](https://dokploy.com), a
 self-hosted app platform. You install and authenticate the CLI, create a VPS with a public IP and
@@ -28,7 +28,7 @@ You learn how to:
 - Create an internet-facing VM with a public IP
 - Connect over SSH and install Dokploy
 
-### [Deploy OpenClaw from the Marketplace with the CLI](/learn/deploy-openclaw-marketplace-cli)
+### [Deploy OpenClaw from the Marketplace with the CLI](/tutorials/deploy-openclaw-marketplace-cli)
 
 Deploy [OpenClaw](https://openclaw.ai), a self-hosted personal AI assistant, straight from the
 ZSoftly Marketplace. It comes pre-installed on the image, so you deploy and connect, with no manual

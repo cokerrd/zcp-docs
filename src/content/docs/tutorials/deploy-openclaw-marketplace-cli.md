@@ -312,7 +312,7 @@ openclaw configure && openclaw chat
 
 ## Next steps
 
-- [Deploy a VPS with Dokploy (CLI)](/learn/deploy-vps-dokploy-cli): a from-scratch VPS where you
+- [Deploy a VPS with Dokploy (CLI)](/tutorials/deploy-vps-dokploy-cli): a from-scratch VPS where you
   install the software yourself
 - [CLI reference](/public-cloud/cli/reference): every command and flag
 - [Connect via SSH](/public-cloud/compute/connect-ssh): key management and troubleshooting
