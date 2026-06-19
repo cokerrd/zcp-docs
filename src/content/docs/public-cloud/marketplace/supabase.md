@@ -24,7 +24,7 @@ the marketplace and follow the steps below to install Supabase yourself.
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **Supabase**, and click **Deploy** — or create
+1. In the ZSoftly Cloud portal, open **Apps**, select **Supabase**, and click **Deploy**, or create
    an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
    VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
@@ -84,12 +84,12 @@ cd supabase-project
 Never run the stack with the example defaults. Open `.env` and set strong, unique values for at
 least these variables before starting anything:
 
-- `POSTGRES_PASSWORD` — the Postgres database password
-- `JWT_SECRET` — secret used to sign API tokens
-- `ANON_KEY` — public (anonymous) API key
-- `SERVICE_ROLE_KEY` — privileged service-role API key
-- `DASHBOARD_USERNAME` — Studio login username
-- `DASHBOARD_PASSWORD` — Studio login password
+- `POSTGRES_PASSWORD`: the Postgres database password
+- `JWT_SECRET`: secret used to sign API tokens
+- `ANON_KEY`: public (anonymous) API key
+- `SERVICE_ROLE_KEY`: privileged service-role API key
+- `DASHBOARD_USERNAME`: Studio login username
+- `DASHBOARD_PASSWORD`: Studio login password
 
 The repository ships helper scripts to generate matching secrets and API keys for you:
 

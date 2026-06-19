@@ -26,7 +26,7 @@ LTS** vierge depuis la marketplace et suivez les étapes ci-dessous pour install
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **WG-Easy**, puis cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
    vous donnent une VM Ubuntu 24.04 vierge.
 2. Choisissez un forfait qui répond aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -128,7 +128,7 @@ clients, puis télécharger ou scanner la configuration WireGuard de chaque clie
 être l'adresse publique que les clients peuvent atteindre, sinon les configurations clientes
 générées pointeront vers le mauvais point d'accès. Pour un déploiement en production, placez
 l'interface web derrière un proxy inverse tel que nginx avec un certificat TLS et exposez-la via
-HTTPS plutôt que d'exposer le port 51821 directement ; le port VPN 51820/udp reste exposé.
+HTTPS plutôt que d'exposer le port 51821 directement. Le port VPN 51820/udp reste exposé.
 
 ## Ouvrir le pare-feu
 

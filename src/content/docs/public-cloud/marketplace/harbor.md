@@ -23,9 +23,8 @@ the marketplace and follow the steps below to install Harbor yourself.
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **Harbor**, and click **Deploy** — or create
-   an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
-   VM.
+1. In the ZSoftly Cloud portal, open **Apps**, select **Harbor**, and click **Deploy**, or create an
+   **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04 VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
 3. When the instance is **Running**, connect over SSH:
 
@@ -82,11 +81,11 @@ sudo nano harbor.yml
 
 Set at least these values:
 
-- `hostname` — your VM's public IP address or DNS name (clients use this to reach the registry).
-- `harbor_admin_password` — change it from the default `Harbor12345`.
-- TLS — for a quick start, comment out the entire `https:` block to serve over HTTP on port 80. For
+- `hostname`: your VM's public IP address or DNS name (clients use this to reach the registry).
+- `harbor_admin_password`: change it from the default `Harbor12345`.
+- TLS: for a quick start, comment out the entire `https:` block to serve over HTTP on port 80. For
   production, keep `https:` enabled and point `certificate` and `private_key` at a valid TLS
-  certificate; container clients require HTTPS unless the registry is explicitly trusted as
+  certificate. Container clients require HTTPS unless the registry is explicitly trusted as
   insecure.
 
 Run the installer:

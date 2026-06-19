@@ -3,8 +3,8 @@ title: Artifactory
 ---
 
 JFrog Artifactory est un gestionnaire universel de dépôts de binaires et d'artefacts. L'édition open
-source stocke et relaie des paquets dans de nombreux formats — notamment Maven, Gradle, Debian et
-binaires génériques — et agit comme source unique de vérité pour vos artefacts de build. L'interface
+source stocke et relaie des paquets dans de nombreux formats, notamment Maven, Gradle, Debian et
+binaires génériques, et agit comme source unique de vérité pour vos artefacts de build. L'interface
 web s'exécute sur le port 8082.
 
 :::note[Bientôt disponible]
@@ -26,7 +26,7 @@ Artifactory vous-même.
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Artifactory** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
    vous donnent une VM Ubuntu 24.04 propre.
 2. Choisissez un plan répondant aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).

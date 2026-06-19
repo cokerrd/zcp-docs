@@ -26,7 +26,7 @@ vous-même.
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Jenkins** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Dans les
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Dans les
    deux cas, vous obtenez une VM Ubuntu 24.04 propre.
 2. Choisissez un plan qui répond aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).

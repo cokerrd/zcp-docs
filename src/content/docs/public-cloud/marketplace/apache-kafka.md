@@ -24,7 +24,7 @@ from the marketplace and follow the steps below to install Apache Kafka yourself
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **Apache Kafka**, and click **Deploy** — or
+1. In the ZSoftly Cloud portal, open **Apps**, select **Apache Kafka**, and click **Deploy**, or
    create an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu
    24.04 VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
@@ -50,7 +50,7 @@ java -version
 ```
 
 Download and extract the latest Kafka release from kafka.apache.org. The `2.13` prefix is the Scala
-build; check the [downloads page](https://kafka.apache.org/downloads) for the current version and
+build. Check the [downloads page](https://kafka.apache.org/downloads) for the current version and
 adjust the URL accordingly:
 
 ```bash

@@ -23,7 +23,7 @@ the marketplace and follow the steps below to install Jenkins yourself.
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **Jenkins**, and click **Deploy** — or create
+1. In the ZSoftly Cloud portal, open **Apps**, select **Jenkins**, and click **Deploy**, or create
    an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
    VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
@@ -75,7 +75,7 @@ sudo systemctl status jenkins
 ## Configure Jenkins
 
 Jenkins listens on port 8080. Open `http://<your-vm-ip>:8080` in a browser to start the setup
-wizard. The wizard first asks for the auto-generated unlock password. Print it from the server:
+wizard. The wizard first asks for the auto-generated setup password. Print it from the server:
 
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword

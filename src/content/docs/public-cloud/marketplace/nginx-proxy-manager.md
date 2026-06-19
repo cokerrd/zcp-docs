@@ -24,7 +24,7 @@ instance from the marketplace and follow the steps below to install Nginx Proxy 
 ## Deploy the base instance
 
 1. In the ZSoftly Cloud portal, open **Apps**, select **Nginx Proxy Manager**, and click **Deploy**
-   — or create an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean
+   or create an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean
    Ubuntu 24.04 VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
 3. When the instance is **Running**, connect over SSH:

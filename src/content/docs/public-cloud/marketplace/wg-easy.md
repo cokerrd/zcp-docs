@@ -24,7 +24,7 @@ the marketplace and follow the steps below to install WG-Easy yourself.
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **WG-Easy**, and click **Deploy** — or create
+1. In the ZSoftly Cloud portal, open **Apps**, select **WG-Easy**, and click **Deploy**, or create
    an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
    VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
@@ -124,7 +124,7 @@ from `.env`. From the dashboard you can add clients, then download or scan each 
 configuration. `INIT_HOST` must be the public address clients can reach, otherwise generated client
 configs will point at the wrong endpoint. For a production setup, put the web UI behind a reverse
 proxy such as nginx with a TLS certificate and serve it over HTTPS instead of exposing port 51821
-directly; the VPN port 51820/udp stays exposed.
+directly. The VPN port 51820/udp stays exposed.
 
 ## Open the firewall
 

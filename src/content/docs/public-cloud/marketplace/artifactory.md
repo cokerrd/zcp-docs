@@ -3,8 +3,8 @@ title: Artifactory
 ---
 
 JFrog Artifactory is a universal binary and artifact repository manager. The open-source edition
-stores and proxies packages for many formats — including Maven, Gradle, Debian, and generic binaries
-— and acts as the single source of truth for your build artifacts. The web UI runs on port 8082.
+stores and proxies packages for many formats, including Maven, Gradle, Debian, and generic binaries,
+and acts as the single source of truth for your build artifacts. The web UI runs on port 8082.
 
 :::note[Coming soon]
 
@@ -23,7 +23,7 @@ from the marketplace and follow the steps below to install Artifactory yourself.
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **Artifactory**, and click **Deploy** — or
+1. In the ZSoftly Cloud portal, open **Apps**, select **Artifactory**, and click **Deploy**, or
    create an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu
    24.04 VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).

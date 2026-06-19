@@ -26,7 +26,7 @@ LTS** neuve depuis la marketplace et suivez les étapes ci-dessous pour installe
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Rancher** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
    vous donnent une VM Ubuntu 24.04 propre.
 2. Choisissez un forfait conforme aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -44,7 +44,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Installer Rancher
 
-Rancher est distribué sous forme d'image Docker officielle; installez donc d'abord Docker Engine.
+Rancher est distribué sous forme d'image Docker officielle. Installez donc d'abord Docker Engine.
 
 Configurez le dépôt APT officiel de Docker pour Ubuntu 24.04 LTS (`noble`):
 
@@ -91,7 +91,7 @@ sudo docker logs rancher 2>&1 | grep "Bootstrap Password:"
 ```
 
 Ouvrez `https://<your-vm-ip>` dans un navigateur. Rancher présente un certificat auto-signé par
-défaut; votre navigateur affichera donc un avertissement lors de la première visite. Connectez-vous
+défaut. Votre navigateur affichera donc un avertissement lors de la première visite. Connectez-vous
 avec le mot de passe d'amorçage, puis définissez un mot de passe administrateur permanent et
 confirmez l'**URL du serveur** lorsqu'on vous le demande.
 

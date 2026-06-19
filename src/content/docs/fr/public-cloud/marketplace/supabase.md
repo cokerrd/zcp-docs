@@ -26,7 +26,7 @@ vous-même.
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Supabase** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Dans les
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Dans les
    deux cas, vous obtenez une VM Ubuntu 24.04 propre.
 2. Choisissez un plan qui répond aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -44,7 +44,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Installer Supabase
 
-Supabase s'auto-héberge sous forme de pile Docker Compose ; installez donc d'abord Docker Engine et
+Supabase s'auto-héberge sous forme de pile Docker Compose. Installez donc d'abord Docker Engine et
 le plugin Compose.
 
 Configurez le dépôt APT officiel de Docker pour Ubuntu 24.04 LTS (`noble`) :
@@ -86,12 +86,12 @@ cd supabase-project
 N'exécutez jamais la pile avec les valeurs d'exemple par défaut. Ouvrez `.env` et définissez des
 valeurs fortes et uniques pour au moins ces variables avant de démarrer quoi que ce soit :
 
-- `POSTGRES_PASSWORD` — le mot de passe de la base de données Postgres
-- `JWT_SECRET` — secret utilisé pour signer les jetons d'API
-- `ANON_KEY` — clé d'API publique (anonyme)
-- `SERVICE_ROLE_KEY` — clé d'API privilégiée (service-role)
-- `DASHBOARD_USERNAME` — nom d'utilisateur de connexion au Studio
-- `DASHBOARD_PASSWORD` — mot de passe de connexion au Studio
+- `POSTGRES_PASSWORD` : le mot de passe de la base de données Postgres
+- `JWT_SECRET` : secret utilisé pour signer les jetons d'API
+- `ANON_KEY` : clé d'API publique (anonyme)
+- `SERVICE_ROLE_KEY` : clé d'API privilégiée (service-role)
+- `DASHBOARD_USERNAME` : nom d'utilisateur de connexion au Studio
+- `DASHBOARD_PASSWORD` : mot de passe de connexion au Studio
 
 Le dépôt fournit des scripts d'aide pour générer des secrets et des clés d'API cohérents :
 

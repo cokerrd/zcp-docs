@@ -26,7 +26,7 @@ vous-même.
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Authentik** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
    vous donnent une VM Ubuntu 24.04 propre.
 2. Choisissez un forfait conforme aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -44,7 +44,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Installer Authentik
 
-Authentik fournit une pile Docker Compose officielle; installez donc d'abord Docker Engine et le
+Authentik fournit une pile Docker Compose officielle. Installez donc d'abord Docker Engine et le
 plugin Compose.
 
 Configurez le dépôt APT officiel de Docker pour Ubuntu 24.04 LTS (`noble`):

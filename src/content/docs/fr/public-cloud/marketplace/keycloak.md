@@ -27,7 +27,7 @@ vous-même.
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Keycloak** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
    vous donnent une VM Ubuntu 24.04 propre.
 2. Choisissez un forfait conforme aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -45,7 +45,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Installer Keycloak
 
-Keycloak est distribué sous forme d'image Docker officielle depuis `quay.io`; installez donc d'abord
+Keycloak est distribué sous forme d'image Docker officielle depuis `quay.io`. Installez donc d'abord
 Docker Engine.
 
 Configurez le dépôt APT officiel de Docker pour Ubuntu 24.04 LTS (`noble`):
@@ -89,7 +89,7 @@ identifiants ci-dessus.
 ## Configurer Keycloak
 
 Le mode développement utilise une base de données en mémoire et des valeurs par défaut non
-sécurisées; il ne convient donc pas à la production. Pour un déploiement de production, exécutez
+sécurisées. Il ne convient donc pas à la production. Pour un déploiement de production, exécutez
 Keycloak avec la commande `start`, une base de données externe, HTTPS sur le port 8443 et un nom
 d'hôte explicite.
 

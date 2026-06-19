@@ -24,7 +24,7 @@ the marketplace and follow the steps below to install OpenBao yourself.
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **OpenBao**, and click **Deploy** — or create
+1. In the ZSoftly Cloud portal, open **Apps**, select **OpenBao**, and click **Deploy**, or create
    an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
    VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
@@ -65,7 +65,7 @@ configuration file at `/etc/openbao/openbao.hcl`.
 ## Configure OpenBao
 
 Edit `/etc/openbao/openbao.hcl` to use integrated (Raft) storage and listen on all interfaces. This
-quick-start listener disables TLS so you can verify the install; see the TLS note below before
+quick-start listener disables TLS so you can verify the install. See the TLS note below before
 exposing it.
 
 ```bash
@@ -97,8 +97,8 @@ sudo systemctl enable --now openbao
 export BAO_ADDR='http://127.0.0.1:8200'
 ```
 
-Initialise OpenBao once. This prints the unseal keys and the initial root token — store them
-securely; they cannot be recovered:
+Initialise OpenBao once. This prints the unseal keys and the initial root token. Store them
+securely. They cannot be recovered:
 
 ```bash
 bao operator init

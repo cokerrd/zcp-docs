@@ -26,7 +26,7 @@ vous-même.
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Portainer** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
    vous donnent une VM Ubuntu 24.04 propre.
 2. Choisissez un plan répondant aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -44,7 +44,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Installer Portainer
 
-Portainer s'exécute en tant que conteneur Docker; installez donc d'abord Docker Engine à l'aide du
+Portainer s'exécute en tant que conteneur Docker. Installez donc d'abord Docker Engine à l'aide du
 script d'installation officiel:
 
 ```bash
@@ -86,13 +86,13 @@ docker ps
 
 Portainer sert l'interface sur le port 9443 en HTTPS avec un certificat auto-signé. Ouvrez
 `https://<your-vm-ip>:9443` dans un navigateur dans les quelques minutes suivant le démarrage du
-conteneur — pour des raisons de sécurité, Portainer verrouille la configuration initiale si aucun
+conteneur. Pour des raisons de sécurité, Portainer verrouille la configuration initiale si aucun
 compte administrateur n'est créé peu après le premier démarrage.
 
 Au premier chargement, créez votre compte administrateur en définissant un nom d'utilisateur et un
 mot de passe fort. Portainer se connecte ensuite à l'environnement Docker local via le socket monté,
 de sorte que vos conteneurs, images et volumes apparaissent immédiatement. Le certificat auto-signé
-déclenche un avertissement du navigateur; pour un déploiement de production, placez Portainer
+déclenche un avertissement du navigateur. Pour un déploiement de production, placez Portainer
 derrière un reverse proxy tel que nginx avec un certificat TLS de confiance.
 
 ## Ouvrir le pare-feu

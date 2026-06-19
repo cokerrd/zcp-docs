@@ -26,7 +26,7 @@ vous-même.
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Forgejo** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Dans les
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Dans les
    deux cas, vous obtenez une VM Ubuntu 24.04 propre.
 2. Choisissez un plan qui répond aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -94,8 +94,8 @@ l'assistant d'installation initial. Acceptez la base de données SQLite par déf
 instance, ou orientez Forgejo vers PostgreSQL/MySQL pour des déploiements plus importants.
 
 Avant de terminer, définissez l'**Application URL** sur l'adresse de votre serveur et créez le
-premier compte administrateur en bas du formulaire — le premier utilisateur enregistré devient
-l'administrateur. L'assistant écrit ses paramètres dans `/etc/forgejo/app.ini` ; renforcez donc les
+premier compte administrateur en bas du formulaire. Le premier utilisateur enregistré devient
+l'administrateur. L'assistant écrit ses paramètres dans `/etc/forgejo/app.ini`. Renforcez donc les
 permissions des fichiers ensuite :
 
 ```bash

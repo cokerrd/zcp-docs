@@ -5,7 +5,7 @@ title: OpenBao
 OpenBao est une plateforme libre de gestion des secrets qui stocke et contrôle l'accès aux jetons,
 mots de passe, certificats et clés de chiffrement de manière sécurisée. Il s'agit du fork
 communautaire de HashiCorp Vault maintenu par la Linux Foundation, et il reste compatible avec son
-API; la plupart des outils Vault fonctionnent donc sans modification. Vous l'exécutez comme un
+API. La plupart des outils Vault fonctionnent donc sans modification. Vous l'exécutez comme un
 serveur, l'initialisez une seule fois, puis le descellez pour commencer à servir des secrets.
 
 :::note[Bientôt disponible]
@@ -26,7 +26,7 @@ LTS** neuve depuis la marketplace et suivez les étapes ci-dessous pour installe
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **OpenBao** et cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
    vous donnent une VM Ubuntu 24.04 propre.
 2. Choisissez un forfait conforme aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -68,7 +68,7 @@ configuration par défaut dans `/etc/openbao/openbao.hcl`.
 
 Modifiez `/etc/openbao/openbao.hcl` pour utiliser le stockage intégré (Raft) et écouter sur toutes
 les interfaces. Ce listener de démarrage rapide désactive TLS afin que vous puissiez vérifier
-l'installation; consultez la note TLS ci-dessous avant de l'exposer.
+l'installation. Consultez la note TLS ci-dessous avant de l'exposer.
 
 ```bash
 sudo tee /etc/openbao/openbao.hcl >/dev/null <<'EOF'
@@ -100,7 +100,7 @@ export BAO_ADDR='http://127.0.0.1:8200'
 ```
 
 Initialisez OpenBao une seule fois. Cette commande affiche les clés de descellement et le jeton root
-initial — conservez-les en lieu sûr; ils ne peuvent pas être récupérés:
+initial. Conservez-les en lieu sûr. Ils ne peuvent pas être récupérés:
 
 ```bash
 bao operator init

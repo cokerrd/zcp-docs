@@ -17,7 +17,7 @@ automatically. Credentials are generated, services are configured, and the image
     <span class="mp-label">coming soon</span>
   </div>
   <div class="mp-stat">
-    <span class="mp-num">7</span>
+    <span class="mp-num">11</span>
     <span class="mp-label">categories</span>
   </div>
   <div class="mp-stat">
@@ -542,80 +542,20 @@ automatically. Credentials are generated, services are configured, and the image
 
 <div class="mp-section">
 <div class="mp-cat-header">
-  <div class="mp-cat-icon" style="--cat-color: #f97316; --cat-dim: rgba(249,115,22,0.12);">
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+  <div class="mp-cat-icon" style="--cat-color: #f59e0b; --cat-dim: rgba(245,158,11,0.12);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
   </div>
-  <h2 class="mp-cat-title">Databases</h2>
+  <h2 class="mp-cat-title">Control Panels</h2>
 </div>
-<div class="service-grid">
+<div class="service-grid mp-solo">
 
-  <a href="/public-cloud/marketplace/mongodb" class="service-card">
+  <a href="/public-cloud/marketplace/cpanel" class="service-card">
     <div class="mp-brand-icon">
-      <img src="/icons/marketplace/mongodb.svg" alt="" width="26" height="26" aria-hidden="true">
+      <img src="/icons/marketplace/cpanel.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">MongoDB 8.0</p>
-      <p class="service-desc">Document-oriented NoSQL database for flexible, JSON-like data storage</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/mariadb" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/mariadb.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">MariaDB 11.4</p>
-      <p class="service-desc">Open-source relational database and drop-in MySQL replacement</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/mysql" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/mysql.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">MySQL 8.4</p>
-      <p class="service-desc">World's most widely deployed open-source relational database</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/postgresql" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/postgresql.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">PostgreSQL 17</p>
-      <p class="service-desc">Advanced open-source relational database with rich extensibility</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/valkey" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/valkey.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Valkey 9.0</p>
-      <p class="service-desc">High-performance in-memory data store, Redis-compatible</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/elasticsearch" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/elasticsearch.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Elasticsearch 8</p>
-      <p class="service-desc">Distributed search and analytics engine built on Apache Lucene</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/influxdb" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/influxdb.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">InfluxDB 2</p>
-      <p class="service-desc">Purpose-built time series database for metrics and real-time analytics</p>
+      <p class="service-name">cPanel</p>
+      <p class="service-desc">Industry-standard web hosting control panel with WHM. Manage websites, email, DNS, and databases from a single interface</p>
     </div>
   </a>
 
@@ -625,21 +565,11 @@ automatically. Credentials are generated, services are configured, and the image
 <div class="mp-section">
 <div class="mp-cat-header">
   <div class="mp-cat-icon" style="--cat-color: #22c55e; --cat-dim: rgba(34,197,94,0.12);">
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
   </div>
-  <h2 class="mp-cat-title">Web Stacks</h2>
+  <h2 class="mp-cat-title">Web Servers</h2>
 </div>
 <div class="service-grid">
-
-  <a href="/public-cloud/marketplace/wordpress" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/wordpress.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">WordPress</p>
-      <p class="service-desc">World's most popular content management system, with full LAMP stack</p>
-    </div>
-  </a>
 
   <a href="/public-cloud/marketplace/lamp" class="service-card">
     <div class="mp-brand-icon">
@@ -666,30 +596,20 @@ automatically. Credentials are generated, services are configured, and the image
 
 <div class="mp-section">
 <div class="mp-cat-header">
-  <div class="mp-cat-icon" style="--cat-color: #3b82f6; --cat-dim: rgba(59,130,246,0.12);">
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+  <div class="mp-cat-icon" style="--cat-color: #0ea5e9; --cat-dim: rgba(14,165,233,0.12);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
   </div>
-  <h2 class="mp-cat-title">Monitoring &amp; Automation</h2>
+  <h2 class="mp-cat-title">CMS</h2>
 </div>
-<div class="service-grid">
+<div class="service-grid mp-solo">
 
-  <a href="/public-cloud/marketplace/grafana" class="service-card">
+  <a href="/public-cloud/marketplace/wordpress" class="service-card">
     <div class="mp-brand-icon">
-      <img src="/icons/marketplace/grafana.svg" alt="" width="26" height="26" aria-hidden="true">
+      <img src="/icons/marketplace/wordpress.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">Grafana</p>
-      <p class="service-desc">Open-source platform for visualising metrics, logs, and traces</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/n8n" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/n8n.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">n8n</p>
-      <p class="service-desc">Workflow automation platform with a visual node-based editor</p>
+      <p class="service-name">WordPress</p>
+      <p class="service-desc">World's most popular content management system, with full LAMP stack</p>
     </div>
   </a>
 
@@ -725,28 +645,6 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
-  <a href="/public-cloud/marketplace/openclaw" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/openclaw-dark.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">OpenClaw</p>
-      <p class="service-desc">Node.js-based tool for automated workflows and integrations</p>
-    </div>
-  </a>
-
-</div>
-</div>
-
-<div class="mp-section">
-<div class="mp-cat-header">
-  <div class="mp-cat-icon" style="--cat-color: #ec4899; --cat-dim: rgba(236,72,153,0.12);">
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
-  </div>
-  <h2 class="mp-cat-title">DevOps &amp; Source Control</h2>
-</div>
-<div class="service-grid mp-solo">
-
   <a href="/public-cloud/marketplace/gitlab" class="service-card">
     <div class="mp-brand-icon">
       <img src="/icons/marketplace/gitlab.svg" alt="" width="26" height="26" aria-hidden="true">
@@ -762,12 +660,126 @@ automatically. Credentials are generated, services are configured, and the image
 
 <div class="mp-section">
 <div class="mp-cat-header">
+  <div class="mp-cat-icon" style="--cat-color: #f97316; --cat-dim: rgba(249,115,22,0.12);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+  </div>
+  <h2 class="mp-cat-title">Databases</h2>
+</div>
+<div class="service-grid">
+
+  <a href="/public-cloud/marketplace/mariadb" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/mariadb.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">MariaDB 11.4</p>
+      <p class="service-desc">Open-source relational database and drop-in MySQL replacement</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/postgresql" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/postgresql.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">PostgreSQL 17</p>
+      <p class="service-desc">Advanced open-source relational database with rich extensibility</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/mysql" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/mysql.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">MySQL 8.4</p>
+      <p class="service-desc">World's most widely deployed open-source relational database</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/valkey" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/valkey.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Valkey 9.0</p>
+      <p class="service-desc">High-performance in-memory data store, Redis-compatible</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/elasticsearch" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/elasticsearch.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Elasticsearch 8</p>
+      <p class="service-desc">Distributed search and analytics engine built on Apache Lucene</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/influxdb" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/influxdb.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">InfluxDB 2</p>
+      <p class="service-desc">Purpose-built time series database for metrics and real-time analytics</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/mongodb" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/mongodb.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">MongoDB 8.0</p>
+      <p class="service-desc">Document-oriented NoSQL database for flexible, JSON-like data storage</p>
+    </div>
+  </a>
+
+</div>
+</div>
+
+<div class="mp-section">
+<div class="mp-cat-header">
+  <div class="mp-cat-icon" style="--cat-color: #14b8a6; --cat-dim: rgba(20,184,166,0.12);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+  </div>
+  <h2 class="mp-cat-title">Business Apps</h2>
+</div>
+<div class="service-grid mp-solo">
+
+  <a href="/public-cloud/marketplace/n8n" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/n8n.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">n8n</p>
+      <p class="service-desc">Workflow automation platform with a visual node-based editor</p>
+    </div>
+  </a>
+
+</div>
+</div>
+
+<div class="mp-section">
+<div class="mp-cat-header">
   <div class="mp-cat-icon" style="--cat-color: #06b6d4; --cat-dim: rgba(6,182,212,0.12);">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
   </div>
-  <h2 class="mp-cat-title">Networking &amp; VPN</h2>
+  <h2 class="mp-cat-title">Security &amp; VPN</h2>
 </div>
 <div class="service-grid">
+
+  <a href="/public-cloud/marketplace/netbird" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/netbird.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">NetBird</p>
+      <p class="service-desc">Open-source WireGuard overlay network with peer-to-peer connections</p>
+    </div>
+  </a>
 
   <a href="/public-cloud/marketplace/tailscale" class="service-card">
     <div class="mp-brand-icon">
@@ -780,13 +792,25 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
-  <a href="/public-cloud/marketplace/netbird" class="service-card">
+</div>
+</div>
+
+<div class="mp-section">
+<div class="mp-cat-header">
+  <div class="mp-cat-icon" style="--cat-color: #3b82f6; --cat-dim: rgba(59,130,246,0.12);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+  </div>
+  <h2 class="mp-cat-title">Monitoring</h2>
+</div>
+<div class="service-grid mp-solo">
+
+  <a href="/public-cloud/marketplace/grafana" class="service-card">
     <div class="mp-brand-icon">
-      <img src="/icons/marketplace/netbird.svg" alt="" width="26" height="26" aria-hidden="true">
+      <img src="/icons/marketplace/grafana.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">NetBird</p>
-      <p class="service-desc">Open-source WireGuard overlay network with peer-to-peer connections</p>
+      <p class="service-name">Grafana</p>
+      <p class="service-desc">Open-source platform for visualising metrics, logs, and traces</p>
     </div>
   </a>
 
@@ -795,20 +819,20 @@ automatically. Credentials are generated, services are configured, and the image
 
 <div class="mp-section">
 <div class="mp-cat-header">
-  <div class="mp-cat-icon" style="--cat-color: #f59e0b; --cat-dim: rgba(245,158,11,0.12);">
-    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+  <div class="mp-cat-icon" style="--cat-color: #ec4899; --cat-dim: rgba(236,72,153,0.12);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 4.6L18 9.5l-4.1 1.9L12 16l-1.9-4.6L6 9.5l4.1-1.9z"/><path d="M19 14l.95 2.3L22 17.25l-2.05.95L19 20.5l-.95-2.3L16 17.25l2.05-.95z"/></svg>
   </div>
-  <h2 class="mp-cat-title">Control Panels</h2>
+  <h2 class="mp-cat-title">AI &amp; Agents</h2>
 </div>
 <div class="service-grid mp-solo">
 
-  <a href="/public-cloud/marketplace/cpanel" class="service-card">
+  <a href="/public-cloud/marketplace/openclaw" class="service-card">
     <div class="mp-brand-icon">
-      <img src="/icons/marketplace/cpanel.svg" alt="" width="26" height="26" aria-hidden="true">
+      <img src="/icons/marketplace/openclaw-dark.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">cPanel</p>
-      <p class="service-desc">Industry-standard web hosting control panel with WHM. Manage websites, email, DNS, and databases from a single interface</p>
+      <p class="service-name">OpenClaw</p>
+      <p class="service-desc">Node.js-based tool for automated workflows and integrations</p>
     </div>
   </a>
 

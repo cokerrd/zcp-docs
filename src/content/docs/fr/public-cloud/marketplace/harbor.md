@@ -26,7 +26,7 @@ vous-même.
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Harbor** et cliquez sur **Deploy**
-   — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux vous donnent
+   ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux vous donnent
    une VM Ubuntu 24.04 propre.
 2. Choisissez un plan répondant aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -44,7 +44,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Installer Harbor
 
-Harbor s'exécute comme un ensemble de conteneurs orchestrés par Docker Compose; installez donc
+Harbor s'exécute comme un ensemble de conteneurs orchestrés par Docker Compose. Installez donc
 d'abord Docker Engine (qui inclut le plugin Compose) à l'aide du script d'installation officiel:
 
 ```bash
@@ -85,12 +85,12 @@ sudo nano harbor.yml
 
 Définissez au minimum ces valeurs:
 
-- `hostname` — l'adresse IP publique ou le nom DNS de votre VM (les clients l'utilisent pour
+- `hostname` : l'adresse IP publique ou le nom DNS de votre VM (les clients l'utilisent pour
   atteindre le registre).
-- `harbor_admin_password` — changez-le par rapport à la valeur par défaut `Harbor12345`.
-- TLS — pour un démarrage rapide, commentez tout le bloc `https:` afin de servir en HTTP sur le
+- `harbor_admin_password` : changez-le par rapport à la valeur par défaut `Harbor12345`.
+- TLS : pour un démarrage rapide, commentez tout le bloc `https:` afin de servir en HTTP sur le
   port 80. En production, gardez `https:` activé et pointez `certificate` et `private_key` vers un
-  certificat TLS valide; les clients de conteneurs exigent HTTPS, sauf si le registre est
+  certificat TLS valide. Les clients de conteneurs exigent HTTPS, sauf si le registre est
   explicitement considéré comme non sécurisé (insecure).
 
 Exécutez l'installateur:

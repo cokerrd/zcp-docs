@@ -23,9 +23,9 @@ from the marketplace and follow the steps below to install SeaweedFS yourself.
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **SeaweedFS**, and click **Deploy** — or
-   create an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu
-   24.04 VM.
+1. In the ZSoftly Cloud portal, open **Apps**, select **SeaweedFS**, and click **Deploy**, or create
+   an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
+   VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
 3. When the instance is **Running**, connect over SSH:
 
@@ -62,7 +62,7 @@ sudo chown -R seaweedfs:seaweedfs /var/lib/seaweedfs
 
 ## Configure SeaweedFS
 
-`weed server` runs the master, volume, and filer in one process; adding `-s3` also starts the S3
+`weed server` runs the master, volume, and filer in one process. Adding `-s3` also starts the S3
 gateway. Run it as a systemd service so it starts on boot. Create the unit file:
 
 ```bash

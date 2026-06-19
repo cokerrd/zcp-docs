@@ -26,7 +26,7 @@ LTS** vierge depuis la marketplace et suivez les étapes ci-dessous pour install
 ## Déployer l'instance de base
 
 1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Wiki.js**, puis cliquez sur
-   **Deploy** — ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
+   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
    vous donnent une VM Ubuntu 24.04 vierge.
 2. Choisissez un forfait qui répond aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
    YUL-1).
@@ -68,7 +68,7 @@ exit
 ```
 
 Reconnectez-vous en SSH, créez un répertoire de projet et ajoutez un fichier `compose.yaml`. Wiki.js
-n'inclut pas de base de données ; cette pile l'associe donc à PostgreSQL 14 :
+n'inclut pas de base de données. Cette pile l'associe donc à PostgreSQL 14 :
 
 ```bash
 mkdir ~/wikijs && cd ~/wikijs

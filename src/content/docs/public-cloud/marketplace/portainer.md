@@ -23,9 +23,9 @@ from the marketplace and follow the steps below to install Portainer yourself.
 
 ## Deploy the base instance
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **Portainer**, and click **Deploy** — or
-   create an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu
-   24.04 VM.
+1. In the ZSoftly Cloud portal, open **Apps**, select **Portainer**, and click **Deploy**, or create
+   an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
+   VM.
 2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
 3. When the instance is **Running**, connect over SSH:
 
@@ -82,13 +82,13 @@ docker ps
 ## Configure Portainer
 
 Portainer serves the UI on port 9443 over HTTPS with a self-signed certificate. Open
-`https://<your-vm-ip>:9443` in a browser within a few minutes of starting the container — for
+`https://<your-vm-ip>:9443` in a browser within a few minutes of starting the container. For
 security, Portainer locks initial setup if no admin account is created shortly after first boot.
 
 On first load, create your administrator account by setting a username and a strong password.
 Portainer then connects to the local Docker environment through the mounted socket, so your
 containers, images, and volumes appear immediately. The self-signed certificate triggers a browser
-warning; for a production setup, put Portainer behind a reverse proxy such as nginx with a trusted
+warning. For a production setup, put Portainer behind a reverse proxy such as nginx with a trusted
 TLS certificate.
 
 ## Open the firewall
