@@ -487,6 +487,16 @@ automatically. Credentials are generated, services are configured, and the image
 </div>
 <div class="service-grid mp-featured">
 
+  <a href="/public-cloud/marketplace/openclaw" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/openclaw.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">OpenClaw</p>
+      <p class="service-desc">Self-hosted personal AI assistant and multi-channel gateway.</p>
+    </div>
+  </a>
+
   <a href="/public-cloud/marketplace/wordpress" class="service-card">
     <div class="mp-brand-icon">
       <img src="/icons/marketplace/wordpress.svg" alt="" width="26" height="26" aria-hidden="true">
@@ -507,13 +517,43 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
-  <a href="/public-cloud/marketplace/lamp" class="service-card">
+  <a href="/public-cloud/marketplace/cpanel" class="service-card">
     <div class="mp-brand-icon">
-      <img src="/icons/marketplace/lamp.svg" alt="" width="26" height="26" aria-hidden="true">
+      <img src="/icons/marketplace/cpanel.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">LAMP Stack</p>
-      <p class="service-desc">Linux, Apache, MariaDB, and PHP. The classic web application stack</p>
+      <p class="service-name">cPanel</p>
+      <p class="service-desc">Industry-standard web hosting control panel with WHM</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/gitlab" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/gitlab.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">GitLab CE 18.11</p>
+      <p class="service-desc">Self-hosted DevOps platform with Git, CI/CD, and issue tracking</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/n8n" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/n8n.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">n8n</p>
+      <p class="service-desc">Workflow automation platform with a visual node-based editor</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/netbird" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/netbird.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">NetBird</p>
+      <p class="service-desc">Open-source WireGuard overlay network with peer-to-peer connections</p>
     </div>
   </a>
 
@@ -527,13 +567,23 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
-  <a href="/public-cloud/marketplace/gitlab" class="service-card">
+  <a href="/public-cloud/marketplace/mariadb" class="service-card">
     <div class="mp-brand-icon">
-      <img src="/icons/marketplace/gitlab.svg" alt="" width="26" height="26" aria-hidden="true">
+      <img src="/icons/marketplace/mariadb.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">GitLab CE 18.11</p>
-      <p class="service-desc">Self-hosted DevOps platform with Git, CI/CD, and issue tracking</p>
+      <p class="service-name">MariaDB 11.4</p>
+      <p class="service-desc">Open-source relational database and drop-in MySQL replacement</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/grafana" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/grafana.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Grafana</p>
+      <p class="service-desc">Open-source platform for visualising metrics, logs, and traces</p>
     </div>
   </a>
 
@@ -832,7 +882,7 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
     <div>
       <p class="service-name">OpenClaw</p>
-      <p class="service-desc">Node.js-based tool for automated workflows and integrations</p>
+      <p class="service-desc">Self-hosted personal AI assistant and multi-channel gateway.</p>
     </div>
   </a>
 
