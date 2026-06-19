@@ -170,7 +170,7 @@ toutes dernières versions. Sur une version récente comme Ubuntu 26.04, l'insta
 
 Le slug de projet **n'est pas** le mot `default`. Le premier projet d'un nouveau compte a un slug
 comme `default-9`. Passer `--project default` échoue avec `The selected project is invalid`.
-utilisez donc toujours le slug affiché par `zcp project list`.
+Utilisez donc toujours le slug affiché par `zcp project list`.
 
 La catégorie de stockage est propre à une région. `nvme` est valide dans `yow-1`, et d'autres
 régions peuvent exposer `pro-nvme`, `premium-ssd` ou `hdd-storage`. Vérifiez avec `zcp plan storage`

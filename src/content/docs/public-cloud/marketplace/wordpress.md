@@ -18,8 +18,9 @@ pre-installed and ready to configure.
 
 ## Environment variables
 
-You can optionally set these when deploying WordPress from the marketplace. Leave any field blank to
-have a secure random value generated automatically.
+Set these when deploying WordPress from the marketplace. `SITE_URL` and `ADMIN_EMAIL` must contain
+your deployment's real values. You can leave `ADMIN_USER` and `ADMIN_PASSWORD` blank to have secure
+random values generated automatically.
 
 | Variable         | Description                 |
 | ---------------- | --------------------------- |
