@@ -4,14 +4,7 @@ WORKDIR /app
 RUN corepack enable pnpm
 
 COPY pnpm-lock.yaml package.json ./
-# Install deps, then assert Sharp's native binary is loadable. pnpm 10 skips
-# Sharp's build script ("Ignored build scripts: sharp"), so the build depends on
-# the platform-specific @img/sharp-* optional dep being installed. Astro's image
-# optimization loads Sharp the same way (require('sharp')) and aborts the whole
-# build with "MissingSharp" if it isn't there. Folding the check into this RUN
-# keeps it in the install layer and surfaces a missing/stale binary here, with a
-# clear message, instead of 40s later mid-build.
-RUN pnpm install --frozen-lockfile && node -e "require('sharp')"
+RUN pnpm install --frozen-lockfile
 
 # Chromium for Playwright — rehype-mermaid renders Mermaid diagrams to static
 # SVG at build time. Debian base (not Alpine) is required because Playwright's

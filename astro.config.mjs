@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightLinksValidator from 'starlight-links-validator';
 import rehypeMermaid from 'rehype-mermaid';
@@ -135,6 +135,14 @@ export default defineConfig({
   // Prod builds (iaas play, no PUBLIC_SITE_URL) resolve to the canonical host;
   // dev/stg Docker builds set PUBLIC_SITE_URL to their own host.
   site: process.env.PUBLIC_SITE_URL ?? 'https://docs.zcp.zsoftly.ca',
+  // Screenshots in src/assets are already optimized .webp exported at display
+  // size, so skip Sharp's build-time re-encoding — it produced near-identical
+  // files (one output was larger than its source) and required a native libvips
+  // binary the Dokploy build host's CPU can't run (no x86-64-v2). Passthrough
+  // still content-hashes filenames and infers width/height (via image-size, not
+  // Sharp), so caching and layout-shift prevention are unaffected. Mermaid's
+  // Chromium-rendered SVGs don't go through this path either.
+  image: { service: passthroughImageService() },
   // Build-time Mermaid. remarkMermaid rewrites mermaid code fences to
   // <pre class="mermaid"> so Expressive Code ignores them; rehype-mermaid then
   // renders static inline SVG via Playwright/Chromium — no client JS, no CSP
