@@ -984,39 +984,23 @@ body,
 }
 .zs-bokeh .zs-far {
   filter: blur(2px);
-  animation: zs-far 70s ease-in-out infinite alternate;
-}
-.zs-bokeh .zs-near {
-  animation: zs-near 90s ease-in-out infinite alternate;
 }
 
-@keyframes zs-far {
-  from {
-    transform: translate(-18px, -10px);
-  }
-  to {
-    transform: translate(20px, 16px);
-  }
-}
-@keyframes zs-near {
-  from {
-    transform: translate(14px, 18px);
-  }
-  to {
-    transform: translate(-16px, -20px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .zs-bokeh .zs-far,
-  .zs-bokeh .zs-near {
-    animation: none;
-  }
-}
+/* The bokeh field is intentionally static. An earlier version drifted via
+   infinite transform animations, which forced the GPU to recompute the panel
+   surfaces below every frame and froze low-power machines. A static field looks
+   identical in any snapshot (and matches the prefers-reduced-motion
+   experience). Do not re-add a background animation here. */
 
 /* Translucent surfaces so the bokeh bubbles stay DISTINCT through the whole
-   site. No blur on the content panel — blur smears the dots into a haze; the
-   light tint alone keeps body text legible. Chrome keeps a faint blur. */
+   site. The light tint alone keeps body text legible.
+
+   No backdrop-filter: blur() anywhere. backdrop-filter re-blurs everything
+   behind the panel on every scroll/compositor frame, and on Retina / low-power
+   GPUs that recompute (over the full-height sidebar + full-width header + TOC)
+   was the dominant runtime cost — it kept the page heavy even with the
+   background animation removed. The opaque tint carries the frosted look on its
+   own. Do not re-introduce backdrop-filter on these surfaces. */
 .content-panel {
   background-color: rgba(255, 255, 255, 0.56);
 }
@@ -1024,8 +1008,6 @@ body,
 .right-sidebar,
 .header {
   background-color: rgba(255, 255, 255, 0.46);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
 }
 
 :root[data-theme='dark'] .content-panel {
