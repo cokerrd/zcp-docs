@@ -82,9 +82,9 @@ zcp sub-user list
 zcp sub-user list --role service-administrator
 zcp sub-user list --blocked
 
-# Créer un sous-utilisateur. --email doit être une adresse d'entreprise ; --password
-# exige 8+ caractères avec majuscules/minuscules, un chiffre et un symbole ; --role est
-# un slug de rôle (voir `zcp role list`) ; --project est répétable. Les nouveaux
+# Créer un sous-utilisateur. --email doit être une adresse d'entreprise. --password
+# exige 8+ caractères avec majuscules/minuscules, un chiffre et un symbole. --role est
+# un slug de rôle (voir `zcp role list`). --project est répétable. Les nouveaux
 # sous-utilisateurs sont bloqués jusqu'à ce que vous les débloquiez.
 zcp sub-user create --name "Jane Doe" --email jane@yourco.com \
   --password 'S3cret!pass' --role service-viewer --project default-9
