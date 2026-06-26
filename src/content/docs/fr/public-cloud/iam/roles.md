@@ -76,8 +76,8 @@ la facturation.
 
 Tout ce qui précède est aussi disponible dans la [CLI ZCP](/fr/public-cloud/cli/installation). Les
 commandes de rôle sont de niveau compte ; elles n'ont donc pas besoin de `--region`/`--project`.
-Utilisez les slugs de la [référence des permissions](#référence-des-permissions) ci-dessous —
-`zcp permission list` les affiche.
+Utilisez les slugs de la [référence des permissions](#référence-des-permissions) ci-dessous. La
+commande `zcp permission list` les affiche.
 
 ```bash
 # Découvrir les slugs de permissions (filtrer par catégorie au besoin)
@@ -106,7 +106,7 @@ zcp role delete developer
 :::note
 
 Les rôles intégrés **Owner**, **Service Administrator** et **Service Viewer** ne peuvent être ni
-modifiés ni supprimés — la CLI rejette ces opérations avec un message clair.
+modifiés ni supprimés. La CLI rejette ces opérations avec un message clair.
 
 :::
 

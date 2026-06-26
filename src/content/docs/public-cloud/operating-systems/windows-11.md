@@ -6,9 +6,9 @@ description:
 ---
 
 ZCP offers a **Windows 11 Pro (64-bit)** image, available in every region. It boots with the
-firmware Windows 11 requires (UEFI Secure Boot and a TPM 2.0 device), ships with the drivers and
-agents needed for good performance and clean management, and sets a unique administrator password on
-first boot for immediate sign-in.
+firmware Windows 11 requires (UEFI Secure Boot and a TPM 2.0 device) and ships with the drivers and
+agents needed for good performance and clean management. On first boot it sets a unique
+administrator password for immediate sign-in.
 
 Windows 11 is licensed **bring-your-own-license (BYOL)**. The image is not activated, and you supply
 your own valid Windows 11 license. See [Licensing](#licensing-bring-your-own-license-byol) below.

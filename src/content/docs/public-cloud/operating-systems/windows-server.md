@@ -16,8 +16,8 @@ supply your own valid Windows Server license. See
 
 :::tip
 
-**All Windows Server editions are validated and available.** That covers 2025 and 2022, in both
-Standard and Datacenter.
+**Windows Server is available under BYOL:** 2025 in both Standard and Datacenter, plus 2022
+Standard. Windows Server 2022 Datacenter is still in preparation.
 
 :::
 
@@ -31,7 +31,7 @@ and **Datacenter** editions.
 | Windows Server 2025 | Standard   | ✅ Available |
 | Windows Server 2025 | Datacenter | ✅ Available |
 | Windows Server 2022 | Standard   | ✅ Available |
-| Windows Server 2022 | Datacenter | ✅ Available |
+| Windows Server 2022 | Datacenter | 🚧 Pending   |
 
 ## Editions: Standard vs Datacenter
 
@@ -61,7 +61,7 @@ The default choice for most Windows workloads:
 - **Database hosting** (e.g. SQL Server) for line-of-business applications.
 - General-purpose, low-density server roles where you run one workload per instance.
 
-### Windows Server 2022 Datacenter
+### Windows Server 2022 Datacenter (Pending)
 
 Standard's full feature set plus the software-defined datacenter capabilities:
 
@@ -83,7 +83,7 @@ The same role coverage as 2022 Standard, on the newest Long-Term Servicing Chann
 
 The 2025 feature set plus every Datacenter capability:
 
-- Next-generation **hyperconverged and software-defined datacenter** builds on the latest release.
+- **Hyperconverged and software-defined datacenter** builds on the latest release.
 - **GPU partitioning** and advanced virtualization for AI/graphics and dense consolidation.
 - The longest support runway for **software-defined storage and networking** estates.
 
@@ -127,8 +127,8 @@ Confirm activation with `slmgr /xpr`.
 
 1. Go to **Compute → Create Instance** (see
    [Create Instance](/public-cloud/compute/create-instance/)).
-2. Choose a **Windows Server** image. All editions are available: Windows Server 2025 and 2022, in
-   Standard and Datacenter.
+2. Choose a **Windows Server** image. Available editions: Windows Server 2025 (Standard and
+   Datacenter) and Windows Server 2022 Standard. Windows Server 2022 Datacenter is in preparation.
 3. Pick a region and a plan. Windows Server needs at least **4 GB RAM and 2 vCPUs**. Size the plan
    for your workload, not the minimum.
 4. Attach to a network and create the instance.

@@ -7,7 +7,7 @@ description:
 
 A **role** is a named bundle of permissions. Rather than granting access to each user individually,
 you define roles once and assign them to [users](/public-cloud/iam/users). Change a role's
-permissions and every user with that role is updated.
+permissions and the change reaches every user with that role.
 
 Every service in the platform exposes two permission levels:
 
@@ -54,10 +54,9 @@ The role is now available to assign when you [add or edit a user](/public-cloud/
 :::tip
 
 Apply **least privilege**: start with no permissions and add only what the job needs. Grant **Read**
-where someone only needs visibility, and reserve **Manage** for the resources they actually operate.
-Combine the role with
-[Project scoping](/public-cloud/iam/users#restrict-a-user-to-specific-projects) to also limit
-_which_ resources it applies to.
+where someone only needs visibility, and reserve **Manage** for the resources they operate. Combine
+the role with [Project scoping](/public-cloud/iam/users#restrict-a-user-to-specific-projects) to
+also limit _which_ resources it applies to.
 
 :::
 

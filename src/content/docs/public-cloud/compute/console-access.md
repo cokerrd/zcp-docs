@@ -4,7 +4,7 @@ sidebar_position: 5
 ---
 
 Console Access opens a browser-based **VNC** session to your instance. Use it to reach the operating
-system without SSH or RDP, watch the boot screen while you troubleshoot startup or network problems,
+system without SSH or RDP. Watch the boot screen while you troubleshoot startup or network problems,
 or recover an instance after you lock yourself out.
 
 ## Open the console

@@ -5,9 +5,9 @@ description:
   and passwords, and the full catalog of Linux and Windows images with links to each.
 ---
 
-ZCP **operating system images** are the base images you start an instance from. Every image is built
-and maintained by ZSoftly, rebuilt and re-validated for each release, and tuned to boot fast and run
-cleanly on the platform.
+ZCP **operating system images** are the base images you start an instance from. ZSoftly builds and
+maintains every image, rebuilds and re-validates it for each release, and tunes it to boot fast and
+run cleanly on the platform.
 
 This is different from the [Marketplace](/public-cloud/marketplace/), where each image is an
 **application** (WordPress, GitLab, a database, …) pre-installed and auto-configured on top of
@@ -18,9 +18,9 @@ when you want a ready-to-run app.
 
 Every OS image, Linux or Windows, behaves the same way on first boot:
 
-- **Maintained base**: ZSoftly builds each image from the vendor's official release, adds the
+- **Maintained base**: ZSoftly builds each image from the vendor's official release and adds the
   paravirtual drivers and a guest agent for fast I/O, graceful shutdown/reboot, and
-  application-consistent VM snapshots, then validates it before publishing.
+  application-consistent VM snapshots. Each image is validated before publishing.
 - **First-boot setup**: the image sets a unique hostname and a unique administrator credential per
   instance automatically, so no two instances ship with the same password.
 - **Access**: Linux images accept an **SSH key** (recommended) or a portal-generated password.
@@ -66,7 +66,8 @@ Free and open-source, with no license or activation required.
 
 Licensed **bring-your-own-license (BYOL)**. You supply and activate your own license.
 
-| Image                                                             | Editions / versions      | Status       |
-| ----------------------------------------------------------------- | ------------------------ | ------------ |
-| [Windows Server](/public-cloud/operating-systems/windows-server/) | 2022 Std/DC, 2025 Std/DC | ✅ Available |
-| [Windows 11 Pro](/public-cloud/operating-systems/windows-11/)     | 11 Pro                   | ✅ Available |
+| Image                                                             | Editions / versions        | Status       |
+| ----------------------------------------------------------------- | -------------------------- | ------------ |
+| [Windows Server](/public-cloud/operating-systems/windows-server/) | 2022 Standard, 2025 Std/DC | ✅ Available |
+| [Windows Server](/public-cloud/operating-systems/windows-server/) | 2022 Datacenter            | 🚧 Pending   |
+| [Windows 11 Pro](/public-cloud/operating-systems/windows-11/)     | 11 Pro                     | ✅ Available |
