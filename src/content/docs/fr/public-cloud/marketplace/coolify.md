@@ -2,17 +2,18 @@
 title: Coolify
 ---
 
-Coolify est une PaaS open source et auto-hébergée, alternative directe à Heroku, Netlify et Vercel.
-Elle déploie des applications, des bases de données et des services sur votre propre serveur grâce à
-des workflows basés sur Git et à un tableau de bord web, tout en gardant l'ensemble de vos données
-sous votre contrôle.
+Coolify est un PaaS open source auto-hébergé et une solution de remplacement a Heroku, Netlify et
+Vercel. Il déploie des applications, bases de données et services sur votre propre serveur avec des
+flux Git et un tableau de bord web, tout en gardant vos données sous votre contrôle.
 
-:::note[Bientôt disponible]
+## Logiciels inclus
 
-Une image Coolify préconfigurée arrive bientôt. Pour l'instant, déployez une instance **Ubuntu 24.04
-LTS** neuve depuis la marketplace et suivez les étapes ci-dessous pour installer Coolify vous-même.
-
-:::
+| Composant      | Version         |
+| -------------- | --------------- |
+| Coolify        | 4.1.2           |
+| Docker         | Dernière stable |
+| Docker Compose | Dernière stable |
+| Ubuntu         | 24.04 LTS       |
 
 ## Prérequis
 
@@ -22,74 +23,93 @@ LTS** neuve depuis la marketplace et suivez les étapes ci-dessous pour installe
 | RAM       | 2 Go    | 4 Go       |
 | Stockage  | 30 Go   | 60 Go      |
 
-## Déployer l'instance de base
+Coolify exécute aussi les applications que vous déployez. Dimensionnez donc l'instance pour ces
+charges de travail.
 
-1. Dans le portail ZSoftly Cloud, ouvrez **Apps** et passez à l'onglet **Marketplace**. Il s'ouvre
-   sur **Featured** par défaut, sélectionnez donc **Marketplace** à côté. Choisissez votre région
-   (YOW-1 ou YUL-1), recherchez **Ubuntu 24.04 LTS** et cliquez sur **Deploy**. Vous pouvez aussi
-   créer l'instance depuis **Instances → Create**. Dans les deux cas, vous obtenez une VM Ubuntu
-   24.04 propre.
+## Variables d'environnement
 
-   ![L'onglet Marketplace du portail ZSoftly Cloud, avec le sélecteur de région, la liste des catégories, la barre de recherche et les boutons Deploy](../../../../../assets/marketplace/deploy-marketplace-tab.webp)
+Vous pouvez définir cette variable au déploiement de Coolify depuis le Marketplace.
 
-   ![Recherche d'une application dans le Marketplace, la barre de recherche filtrant le catalogue jusqu'à une carte Deploy correspondante](../../../../../assets/marketplace/deploy-marketplace-search.webp)
+| Variable       | Description                                                                 |
+| -------------- | --------------------------------------------------------------------------- |
+| `COOLIFY_FQDN` | Nom de domaine complet du tableau de bord, par exemple `deploy.example.com` |
 
-2. Choisissez un plan qui répond aux prérequis ci-dessus.
+## Démarrage
 
-3. Lorsque l'instance est **Running**, connectez-vous en SSH:
+### 1. Se connecter à la VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Mettez le système à jour:
+### 2. Attendre la configuration au premier démarrage
+
+Au premier démarrage, un script génère les secrets de l'application et démarre toute la pile Coolify
+avec Docker Compose. Cela prend 1 à 2 minutes. Suivez la progression:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u coolify-first-boot.service -f
 ```
 
-## Installer Coolify
+Le message de connexion (MOTD) confirme quand Coolify est prêt.
 
-Coolify fournit un installeur officiel en une ligne qui met en place Docker, Docker Compose et la
-pile Coolify complète pour vous. Exécutez-le en tant que root:
+### 3. Creer le compte administrateur
+
+Ouvrez le tableau de bord dans votre navigateur:
+
+```text
+http://<your-vm-ip>:8000
+```
+
+Le premier compte cree devient l'administrateur racine. Definissez immediatement une adresse
+courriel et un mot de passe forts, car l'inscription se ferme apres le premier utilisateur.
+
+### 4. Configurer l'instance
+
+1. Dans **Settings**, definissez le domaine de l'instance afin que Coolify emette des certificats
+   TLS Let's Encrypt et serve le tableau de bord en HTTPS. Coolify inclut un proxy inverse intégré
+   qui gère le routage et les certificats pour le tableau de bord et vos applications déployées. Le
+   DNS doit pointer vers la VM avant l'emission des certificats.
+2. Connectez une source Git (GitHub, GitLab ou dépôt générique) pour commencer a déployer des
+   applications.
+
+## Gérer Coolify
+
+Coolify s'exécute comme pile Docker Compose dans `/data/coolify/source`.
 
 ```bash
-curl -fsSL https://cdn.coollabs.io/coolify/install.sh | sudo bash
+# Vérifier l'état
+cd /data/coolify/source && docker compose ps
+
+# Redémarrer
+cd /data/coolify/source && docker compose restart
+
+# Voir les journaux
+cd /data/coolify/source && docker compose logs -f
 ```
 
-L'installeur télécharge les images requises et démarre chaque service. Une fois terminé, il affiche
-l'URL du tableau de bord. Rien d'autre n'a besoin d'être installé manuellement.
+Un resume des URL et des chemins est écrit dans `/data/coolify/info.txt`.
 
-## Configurer Coolify
+## Sécurité
 
-1. Ouvrez le tableau de bord dans votre navigateur à l'adresse `http://<your-vm-ip>:8000`.
-2. Le premier compte que vous créez devient l'administrateur racine. Définissez immédiatement une
-   adresse e-mail et un mot de passe robustes, car les inscriptions se ferment après le premier
-   utilisateur.
-3. Sous **Settings**, définissez le domaine de votre instance afin que Coolify puisse émettre des
-   certificats TLS Let's Encrypt et servir le tableau de bord en HTTPS. Coolify inclut un reverse
-   proxy Traefik intégré qui gère le routage et les certificats à la fois pour le tableau de bord et
-   pour vos applications déployées, aucun proxy distinct n'est donc nécessaire.
-4. Ajoutez la clé SSH publique de votre serveur et connectez une source Git (GitHub, GitLab ou un
-   dépôt générique) pour commencer à déployer des applications.
+Les ports 8000 (tableau de bord), 6001 (temps reel), 6002 (terminal), 80 et 443 sont ouverts sur
+l'interface réseau de la VM. UFW est activé et autorise ces ports ainsi que SSH (port 22). Les ports
+80 et 443 servent vos applications déployées et TLS.
 
-## Ouvrir le pare-feu
-
-Par défaut, l'instance n'autorise que le SSH (port 22) depuis l'extérieur. Ouvrez les ports dont
-Coolify a besoin et ajoutez-les aux règles réseau/sécurité de l'instance dans le portail:
+Lorsque vous configurez un domaine personnalise avec Let's Encrypt, accedez au tableau de bord en
+HTTPS sur le port 443. Vous pouvez ensuite fermer les ports 8000, 6001 et 6002 si l'accès direct
+n'est plus necessaire:
 
 ```bash
-sudo ufw allow 8000/tcp
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw allow 6001/tcp
-sudo ufw allow 6002/tcp
+sudo ufw delete allow 8000/tcp
+sudo ufw delete allow 6001/tcp
+sudo ufw delete allow 6002/tcp
 ```
 
-Les ports 80 et 443 servent vos applications déployées et le TLS. Les ports 6001 et 6002 sont
-utilisés par les fonctionnalités temps réel et terminal de Coolify.
+Terminez rapidement la configuration administrateur apres le premier démarrage afin que personne
+d'autre ne puisse reclamer le compte racine.
 
-## Étapes suivantes
+## Prochaines étapes
 
 - [Documentation Coolify](https://coolify.io/docs)
-- [Guide d'installation de Coolify](https://coolify.io/docs/get-started/installation)
+- [Demarrer avec Coolify](https://coolify.io/docs/get-started/introduction)

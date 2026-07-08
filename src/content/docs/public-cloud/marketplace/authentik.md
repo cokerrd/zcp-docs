@@ -4,15 +4,20 @@ title: Authentik
 
 Authentik is an open-source identity provider that centralises authentication for your applications.
 It supports SSO over OAuth 2.0, OpenID Connect, SAML, LDAP, and proxy/forward-auth, with flexible
-flows, policies, and a self-service user portal. This guide deploys Authentik with its official
-Docker Compose stack.
+flows, policies, and a self-service user portal.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Authentik image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance
-from the marketplace and follow the steps below to install Authentik yourself.
+| Component  | Version       |
+| ---------- | ------------- |
+| Authentik  | 2025.6.3      |
+| PostgreSQL | 16            |
+| Redis      | Alpine        |
+| Docker     | Latest stable |
+| Ubuntu     | 24.04 LTS     |
 
-:::
+Authentik runs its server and worker containers with PostgreSQL and Redis, as a Docker Compose
+stack.
 
 ## Requirements
 
@@ -22,99 +27,93 @@ from the marketplace and follow the steps below to install Authentik yourself.
 | RAM      | 2 GB    | 4 GB        |
 | Storage  | 20 GB   | 40 GB       |
 
-## Deploy the base instance
+## Environment variables
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **Authentik**, and click **Deploy**, or create
-   an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
-   VM.
-2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
-3. When the instance is **Running**, connect over SSH:
+You can optionally set these when deploying Authentik from the marketplace. Leave a password field
+blank to have a secure random value generated automatically.
+
+| Variable                   | Description                                   |
+| -------------------------- | --------------------------------------------- |
+| `AUTHENTIK_ADMIN_EMAIL`    | Email for the initial `akadmin` account       |
+| `AUTHENTIK_ADMIN_PASSWORD` | Password for the initial `akadmin` account    |
+| `PG_PASS`                  | Password for the internal PostgreSQL database |
+| `AUTHENTIK_SECRET_KEY`     | Secret key used to sign sessions and tokens   |
+
+## Getting started
+
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script generates the admin, database, and secret-key values, writes the
+environment file, and starts the stack with Docker Compose. This takes 1-2 minutes. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u authentik-first-boot.service -f
 ```
 
-## Install Authentik
+The login message (MOTD) confirms when Authentik is ready and prints the admin credentials.
 
-Authentik ships an official Docker Compose stack, so install Docker Engine and the Compose plugin
-first.
+### 3. Retrieve the admin credentials
 
-Set up Docker's official APT repository for Ubuntu 24.04 LTS (`noble`):
+The credentials are also written to a root-only file:
 
 ```bash
-sudo apt install -y ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-sudo tee /etc/apt/sources.list.d/docker.sources >/dev/null <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: noble
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
+sudo cat /etc/authentik/credentials.txt
 ```
 
-Install Docker Engine and the Compose plugin:
+### 4. Access the admin interface
 
-```bash
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-```
-
-Create a directory for the deployment and download the official Compose file:
-
-```bash
-sudo mkdir -p /opt/authentik && cd /opt/authentik
-sudo wget -O docker-compose.yml https://docs.goauthentik.io/compose.yml
-```
-
-Generate a PostgreSQL password and a secret key into a `.env` file:
-
-```bash
-echo "PG_PASS=$(openssl rand -base64 36 | tr -d '\n')" | sudo tee -a .env
-echo "AUTHENTIK_SECRET_KEY=$(openssl rand -base64 60 | tr -d '\n')" | sudo tee -a .env
-```
-
-## Configure Authentik
-
-Pull the images and start the stack:
-
-```bash
-sudo docker compose pull
-sudo docker compose up -d
-```
-
-Authentik serves HTTP on port 9000 and HTTPS on port 9443 by default. Complete the first-run setup
-by browsing to the initial-setup flow, which creates the default `akadmin` account and sets its
-password:
+Open a browser and navigate to:
 
 ```text
-http://<your-vm-ip>:9000/if/flow/initial-setup/
+http://<your-vm-ip>:9000
 ```
 
-For a production deployment, point a DNS record at the VM and front Authentik with TLS. You can use
-the built-in HTTPS on port 9443, or place it behind a reverse proxy (Caddy, nginx, or Traefik) that
-terminates TLS and forwards to port 9000.
+Sign in with the `akadmin` email and the generated password. HTTPS is also available on port 9443
+with a self-signed certificate.
 
-## Open the firewall
+## Managing Authentik
 
-The instance allows only SSH (port 22) externally by default. Open the ports Authentik serves and
-add them to the instance's network/security rules in the portal:
+Authentik runs as a Docker Compose stack in `/opt/authentik`.
 
 ```bash
-sudo ufw allow 9000/tcp
-sudo ufw allow 9443/tcp
+# Check status
+cd /opt/authentik && docker compose ps
+
+# Restart
+cd /opt/authentik && docker compose restart
+
+# View logs
+cd /opt/authentik && docker compose logs -f
 ```
+
+Environment configuration: `/opt/authentik/.env`. Database, media, and certificate data are stored
+under `/opt/authentik`.
+
+## Security
+
+Ports 9000 (HTTP) and 9443 (HTTPS) are open on the VM's network interface. UFW is enabled and allows
+those ports plus SSH (port 22). Authentik serves a default self-signed certificate on 9443.
+
+**To restrict access to a specific IP:**
+
+```bash
+sudo ufw delete allow 9000/tcp
+sudo ufw delete allow 9443/tcp
+sudo ufw allow from <trusted-ip> to any port 9000
+sudo ufw allow from <trusted-ip> to any port 9443
+```
+
+**For production use**, point a DNS record at the VM and front Authentik with TLS, either using the
+built-in HTTPS on 9443 with your own certificate, or a reverse proxy (Caddy, nginx, or Traefik) that
+terminates TLS and forwards to port 9000.
 
 ## Next steps
 
 - [Authentik documentation](https://docs.goauthentik.io/)
-- [Authentik installation guide](https://docs.goauthentik.io/install-config/install/docker-compose/)
+- [Configuration reference](https://docs.goauthentik.io/docs/install-config/configuration/)

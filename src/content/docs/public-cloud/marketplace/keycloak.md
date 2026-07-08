@@ -4,15 +4,18 @@ title: Keycloak
 
 Keycloak is an open-source identity and access management platform. It provides single sign-on
 (SSO), user federation, social and identity-broker login, and fine-grained authorization through
-standard protocols such as OpenID Connect, OAuth 2.0, and SAML. This guide runs the official
-Keycloak container, with notes for both a quick development start and a production setup.
+standard protocols such as OpenID Connect, OAuth 2.0, and SAML.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Keycloak image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance from
-the marketplace and follow the steps below to install Keycloak yourself.
+| Component  | Version       |
+| ---------- | ------------- |
+| Keycloak   | 26.0.7        |
+| PostgreSQL | 16            |
+| Docker     | Latest stable |
+| Ubuntu     | 24.04 LTS     |
 
-:::
+Keycloak runs in production mode (`start`) with a PostgreSQL database, as a Docker Compose stack.
 
 ## Requirements
 
@@ -22,129 +25,103 @@ the marketplace and follow the steps below to install Keycloak yourself.
 | RAM      | 2 GB    | 4 GB        |
 | Storage  | 20 GB   | 40 GB       |
 
-## Deploy the base instance
+## Environment variables
 
-1. In the ZSoftly Cloud portal, open **Apps**, select **Keycloak**, and click **Deploy**, or create
-   an **Ubuntu 24.04 LTS** instance from **Instances → Create**. Both give you a clean Ubuntu 24.04
-   VM.
-2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
-3. When the instance is **Running**, connect over SSH:
+You can optionally set these when deploying Keycloak from the marketplace. Leave a password field
+blank to have a secure random value generated automatically.
+
+| Variable                  | Description                                                               |
+| ------------------------- | ------------------------------------------------------------------------- |
+| `KEYCLOAK_ADMIN_PASSWORD` | Password for the initial `admin` account                                  |
+| `KC_DB_PASSWORD`          | Password for the internal PostgreSQL database                             |
+| `KC_HOSTNAME`             | Public hostname or IP Keycloak is served from. Defaults to the VM's IP    |
+| `KC_BEHIND_PROXY`         | Set to `true` only when fronting Keycloak with your own TLS reverse proxy |
+
+## Getting started
+
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script generates the admin and database passwords, writes the environment
+file, and starts the stack with Docker Compose. This takes 1-2 minutes. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u keycloak-first-boot.service -f
 ```
 
-## Install Keycloak
+The login message (MOTD) confirms when Keycloak is ready and prints the admin credentials.
 
-Keycloak is distributed as an official Docker image from `quay.io`, so install Docker Engine first.
+### 3. Retrieve the admin credentials
 
-Set up Docker's official APT repository for Ubuntu 24.04 LTS (`noble`):
+The credentials are also written to a root-only file:
 
 ```bash
-sudo apt install -y ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-sudo tee /etc/apt/sources.list.d/docker.sources >/dev/null <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: noble
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
+sudo cat /etc/keycloak/credentials.txt
 ```
 
-Install Docker Engine and the Compose plugin:
+### 4. Access the admin console
+
+Open a browser and navigate to:
+
+```text
+http://<your-vm-ip>:8080
+```
+
+Sign in with the `admin` user and the generated password.
+
+| Field    | Value                                |
+| -------- | ------------------------------------ |
+| Username | `admin`                              |
+| Password | From `/etc/keycloak/credentials.txt` |
+
+## Managing Keycloak
+
+Keycloak runs as a Docker Compose stack in `/opt/keycloak`.
 
 ```bash
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# Check status
+cd /opt/keycloak && docker compose ps
+
+# Restart
+cd /opt/keycloak && docker compose restart
+
+# View logs
+cd /opt/keycloak && docker compose logs -f
 ```
 
-To try Keycloak quickly, start it in development mode. This bootstraps an initial admin user and
-serves the console on port 8080:
+Environment configuration: `/opt/keycloak/.env`. PostgreSQL data is stored under
+`/opt/keycloak/data/postgres` and is not exposed outside the Docker network.
+
+## Security
+
+Port 8080 is open on the VM's network interface. UFW is enabled and allows SSH (port 22) and
+Keycloak (port 8080). Keycloak serves plain HTTP on 8080.
+
+:::caution
+
+`KC_HOSTNAME` defaults to the VM's private IP. If you later attach a public IP, DNS name, or reverse
+proxy, set `KC_HOSTNAME` at deploy time (or edit `/opt/keycloak/.env` and run
+`cd /opt/keycloak && docker compose up -d`), otherwise production-mode hostname checks can reject
+requests from the new address.
+
+:::
+
+**For production use**, front Keycloak with a reverse proxy (Caddy, nginx, or Traefik) that
+terminates TLS on port 443 and forwards to port 8080, and set `KC_BEHIND_PROXY=true`. Restrict
+direct access to port 8080:
 
 ```bash
-sudo docker run -d --name keycloak --restart unless-stopped \
-  -p 8080:8080 \
-  -e KEYCLOAK_ADMIN=admin \
-  -e KEYCLOAK_ADMIN_PASSWORD='<choose-a-strong-password>' \
-  quay.io/keycloak/keycloak:latest start-dev
+sudo ufw delete allow 8080/tcp
+sudo ufw allow from <trusted-ip> to any port 8080
 ```
-
-Open `http://<your-vm-ip>:8080` and sign in to the admin console with the credentials above.
-
-## Configure Keycloak
-
-Development mode uses an in-memory database and insecure defaults, so it is not suitable for
-production. For a production deployment, run Keycloak with the `start` command, an external
-database, HTTPS on port 8443, and an explicit hostname.
-
-The example below uses Docker Compose with PostgreSQL. Create `docker-compose.yml`:
-
-```yaml
-services:
-  postgres:
-    image: postgres:16
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: <db-password>
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  keycloak:
-    image: quay.io/keycloak/keycloak:latest
-    restart: unless-stopped
-    command: start
-    environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: <admin-password>
-      KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
-      KC_DB_USERNAME: keycloak
-      KC_DB_PASSWORD: <db-password>
-      KC_HOSTNAME: auth.example.com
-      KC_PROXY_HEADERS: xforwarded
-      KC_HTTP_ENABLED: 'true'
-    ports:
-      - '8080:8080'
-    depends_on:
-      - postgres
-
-volumes:
-  postgres_data:
-```
-
-Start the stack:
-
-```bash
-sudo docker compose up -d
-```
-
-Point `auth.example.com` at the VM and place Keycloak behind a reverse proxy (Caddy, nginx, or
-Traefik) that terminates TLS on 443 and forwards to host port 8080.
-
-## Open the firewall
-
-The instance allows only SSH (port 22) externally by default. Open the port Keycloak serves and add
-it to the instance's network/security rules in the portal:
-
-```bash
-sudo ufw allow 8080/tcp
-```
-
-If you front Keycloak with a reverse proxy, open 443 instead and keep 8080 internal.
 
 ## Next steps
 
 - [Keycloak documentation](https://www.keycloak.org/documentation)
-- [Keycloak installation guide](https://www.keycloak.org/getting-started/getting-started-docker)
+- [Configuring the hostname](https://www.keycloak.org/server/hostname)
+- [Reverse proxy setup](https://www.keycloak.org/server/reverseproxy)

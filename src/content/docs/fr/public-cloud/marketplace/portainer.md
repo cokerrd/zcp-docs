@@ -3,17 +3,16 @@ title: Portainer
 ---
 
 Portainer est une interface de gestion légère pour les environnements Docker et Kubernetes. Elle
-vous permet de déployer des conteneurs, de gérer les images, les volumes et les réseaux, et de
-surveiller vos piles depuis une seule console web. L'interface s'exécute sur le port 9443 en HTTPS
-(port 9000 pour le HTTP simple).
+permet de déployer des conteneurs, gérer les images, volumes et réseaux, et surveiller vos piles
+depuis une console web unique. L'interface s'exécute sur le port 9443 en HTTPS.
 
-:::note[Bientôt disponible]
+## Logiciels inclus
 
-Une image Portainer préinstallée arrive bientôt. Pour l'instant, déployez une nouvelle instance
-**Ubuntu 24.04 LTS** depuis la marketplace et suivez les étapes ci-dessous pour installer Portainer
-vous-même.
-
-:::
+| Composant    | Version         |
+| ------------ | --------------- |
+| Portainer CE | 2.27.9          |
+| Docker       | Dernière stable |
+| Ubuntu       | 24.04 LTS       |
 
 ## Prérequis
 
@@ -23,88 +22,87 @@ vous-même.
 | RAM       | 1 Go    | 2 Go       |
 | Stockage  | 20 Go   | 40 Go      |
 
-## Déployer l'instance de base
+## Démarrage
 
-1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **Portainer** et cliquez sur
-   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
-   vous donnent une VM Ubuntu 24.04 propre.
-2. Choisissez un plan répondant aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
-   YUL-1).
-3. Lorsque l'instance est **Running**, connectez-vous en SSH:
+### 1. Se connecter à la VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Mettez le système à jour:
+### 2. Attendre la configuration au premier démarrage
+
+Au premier démarrage, un script lance le conteneur Portainer avec Docker Compose. Cela prend moins
+d'une minute. Suivez la progression:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u portainer-first-boot.service -f
 ```
 
-## Installer Portainer
+Le message de connexion (MOTD) confirme quand Portainer est prêt.
 
-Portainer s'exécute en tant que conteneur Docker. Installez donc d'abord Docker Engine à l'aide du
-script d'installation officiel:
+### 3. Créer le compte administrateur
 
-```bash
-curl -fsSL https://get.docker.com | sudo sh
+Ouvrez un navigateur et allez à:
+
+```text
+https://<your-vm-ip>:9443
 ```
-
-Vérifiez que Docker fonctionne:
-
-```bash
-docker version
-```
-
-Créez un volume pour les données persistantes de Portainer:
-
-```bash
-docker volume create portainer_data
-```
-
-Exécutez le conteneur du serveur Portainer CE:
-
-```bash
-sudo docker run -d \
-  -p 8000:8000 \
-  -p 9443:9443 \
-  --name portainer \
-  --restart=always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  portainer/portainer-ce:lts
-```
-
-Vérifiez que le conteneur est en cours d'exécution:
-
-```bash
-docker ps
-```
-
-## Configurer Portainer
-
-Portainer sert l'interface sur le port 9443 en HTTPS avec un certificat auto-signé. Ouvrez
-`https://<your-vm-ip>:9443` dans un navigateur dans les quelques minutes suivant le démarrage du
-conteneur. Pour des raisons de sécurité, Portainer verrouille la configuration initiale si aucun
-compte administrateur n'est créé peu après le premier démarrage.
 
 Au premier chargement, créez votre compte administrateur en définissant un nom d'utilisateur et un
-mot de passe fort. Portainer se connecte ensuite à l'environnement Docker local via le socket monté,
-de sorte que vos conteneurs, images et volumes apparaissent immédiatement. Le certificat auto-signé
-déclenche un avertissement du navigateur. Pour un déploiement de production, placez Portainer
-derrière un reverse proxy tel que nginx avec un certificat TLS de confiance.
+mot de passe fort. Portainer se connecte à l'environnement Docker local via le socket monté. Vos
+conteneurs, images et volumes apparaissent donc immédiatement.
 
-## Ouvrir le pare-feu
+:::caution
 
-L'instance n'autorise que le SSH (port 22) en externe par défaut. Ouvrez le ou les ports dont
-Portainer a besoin et ajoutez-les aux règles réseau/sécurité de l'instance dans le portail:
+Portainer verrouille la configuration initiale si aucun compte administrateur n'est créé peu après
+le démarrage du conteneur. Si la fenêtre de configuration expire, redémarrez Portainer et rechargez
+la page:
 
 ```bash
-sudo ufw allow 9443/tcp
+cd /opt/portainer && docker compose restart
 ```
 
-## Étapes suivantes
+L'interface utilise un certificat autosigné. Votre navigateur affiche donc un avertissement de
+sécurité. Acceptez l'exception pour continuer.
+
+:::
+
+## Gérer Portainer
+
+Portainer s'exécute comme pile Docker Compose dans `/opt/portainer`.
+
+```bash
+# Vérifier l'état
+cd /opt/portainer && docker compose ps
+
+# Redémarrer
+cd /opt/portainer && docker compose restart
+
+# Voir les journaux
+cd /opt/portainer && docker compose logs -f
+```
+
+Les données persistantes de Portainer sont stockées dans `/var/lib/portainer`. Un résumé des URL et
+chemins est écrit dans `/etc/portainer/info.txt`.
+
+## Sécurité
+
+Le port 9443 est ouvert sur l'interface réseau de la VM. UFW est activé et autorise SSH (port 22) et
+Portainer (port 9443). Les ports 8000, 9000 et l'API Docker ne sont pas ouverts par défaut.
+
+Portainer monte le socket Docker de l'hôte, ce qui lui donne le contrôle complet du démon Docker de
+la VM. Limitez l'accès au port 9443:
+
+```bash
+sudo ufw delete allow 9443/tcp
+sudo ufw allow from <trusted-ip> to any port 9443
+```
+
+**En production**, placez Portainer derrière un proxy inverse comme nginx avec un certificat TLS de
+confiance.
+
+## Prochaines étapes
 
 - [Documentation Portainer](https://docs.portainer.io/)
-- [Guide d'installation Portainer](https://docs.portainer.io/start/install-ce/server/docker/linux)
+- [Gérer les environnements Docker](https://docs.portainer.io/user/docker)

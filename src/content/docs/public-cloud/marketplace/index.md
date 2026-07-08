@@ -9,11 +9,11 @@ automatically. Credentials are generated, services are configured, and the image
 
 <div class="mp-stats">
   <div class="mp-stat">
-    <span class="mp-num">20</span>
+    <span class="mp-num">32</span>
     <span class="mp-label">live images</span>
   </div>
   <div class="mp-stat">
-    <span class="mp-num">45</span>
+    <span class="mp-num">33</span>
     <span class="mp-label">coming soon</span>
   </div>
   <div class="mp-stat">
@@ -199,7 +199,7 @@ automatically. Credentials are generated, services are configured, and the image
   </div>
   <h2 class="mp-cat-title">CMS</h2>
 </div>
-<div class="service-grid mp-solo">
+<div class="service-grid">
 
   <a href="/public-cloud/marketplace/wordpress" class="service-card">
     <div class="mp-brand-icon">
@@ -208,6 +208,26 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">WordPress</p>
       <p class="service-desc">World's most popular content management system, with full LAMP stack</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/drupal" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/drupal.png" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Drupal</p>
+      <p class="service-desc">Flexible open-source CMS for content-heavy sites and applications.</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/ghost" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/ghost.png" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Ghost</p>
+      <p class="service-desc">Publishing platform for newsletters, blogs, and memberships.</p>
     </div>
   </a>
 
@@ -250,6 +270,36 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">GitLab CE 18.11</p>
       <p class="service-desc">Self-hosted DevOps platform with Git, CI/CD, and issue tracking in one application</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/jenkins" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/jenkins.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Jenkins</p>
+      <p class="service-desc">Automation server for building, testing, and deploying.</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/portainer" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/portainer.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Portainer</p>
+      <p class="service-desc">Web UI to manage Docker, Swarm, and Kubernetes.</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/coolify" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/coolify.png" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Coolify</p>
+      <p class="service-desc">Self-hosted PaaS for deploying apps, databases, and services.</p>
     </div>
   </a>
 
@@ -335,6 +385,16 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
+  <a href="/public-cloud/marketplace/supabase" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/supabase.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Supabase</p>
+      <p class="service-desc">Open-source Firebase alternative built on PostgreSQL.</p>
+    </div>
+  </a>
+
 </div>
 </div>
 
@@ -390,6 +450,36 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
+  <a href="/public-cloud/marketplace/keycloak" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/keycloak.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Keycloak</p>
+      <p class="service-desc">Open-source identity and access management with SSO.</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/authentik" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/authentik.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Authentik</p>
+      <p class="service-desc">Flexible identity provider for SSO, OAuth, and SAML.</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/vaultwarden" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/vaultwarden.png" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Vaultwarden</p>
+      <p class="service-desc">Lightweight self-hosted Bitwarden-compatible password manager.</p>
+    </div>
+  </a>
+
 </div>
 </div>
 
@@ -400,7 +490,7 @@ automatically. Credentials are generated, services are configured, and the image
   </div>
   <h2 class="mp-cat-title">Monitoring</h2>
 </div>
-<div class="service-grid mp-solo">
+<div class="service-grid">
 
   <a href="/public-cloud/marketplace/grafana" class="service-card">
     <div class="mp-brand-icon">
@@ -409,6 +499,16 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">Grafana</p>
       <p class="service-desc">Open-source platform for visualising metrics, logs, and traces</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/prometheus" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/prometheus.png" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Prometheus</p>
+      <p class="service-desc">Metrics collection and alerting toolkit for infrastructure.</p>
     </div>
   </a>
 
@@ -422,7 +522,7 @@ automatically. Credentials are generated, services are configured, and the image
   </div>
   <h2 class="mp-cat-title">AI &amp; Agents</h2>
 </div>
-<div class="service-grid mp-solo">
+<div class="service-grid">
 
   <a href="/public-cloud/marketplace/openclaw" class="service-card">
     <div class="mp-brand-icon">
@@ -431,6 +531,26 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">OpenClaw</p>
       <p class="service-desc">Self-hosted personal AI assistant and multi-channel gateway.</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/ollama" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/ollama.png" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Ollama</p>
+      <p class="service-desc">Run local LLMs on your VM and serve models through the Ollama API.</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/dify" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/dify.png" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Dify</p>
+      <p class="service-desc">Build LLM apps and AI agents with workflows, RAG, and model providers.</p>
     </div>
   </a>
 
@@ -445,26 +565,6 @@ automatically. Credentials are generated, services are configured, and the image
   <h2 class="mp-cat-title">Coming soon</h2>
 </div>
 <div class="service-grid">
-
-  <a href="/public-cloud/marketplace/ollama" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/ollama.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Ollama <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Run local LLMs on your VM and serve models through the Ollama API.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/dify" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/dify.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Dify <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Build LLM apps and AI agents with workflows, RAG, and model providers.</p>
-    </div>
-  </a>
 
   <a href="/public-cloud/marketplace/qdrant" class="service-card">
     <div class="mp-brand-icon">
@@ -546,16 +646,6 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
-  <a href="/public-cloud/marketplace/ghost" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/ghost.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Ghost <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Publishing platform for newsletters, blogs, and memberships.</p>
-    </div>
-  </a>
-
   <a href="/public-cloud/marketplace/uptime-kuma" class="service-card">
     <div class="mp-brand-icon">
       <img src="/icons/marketplace/uptime-kuma.png" alt="" width="26" height="26" aria-hidden="true">
@@ -583,36 +673,6 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">Gatus <span class="mp-status">Coming soon</span></p>
       <p class="service-desc">Automated status page and health dashboard for services.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/prometheus" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/prometheus.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Prometheus <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Metrics collection and alerting toolkit for infrastructure.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/coolify" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/coolify.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Coolify <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Self-hosted PaaS for deploying apps, databases, and services.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/vaultwarden" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/vaultwarden.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Vaultwarden <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Lightweight self-hosted Bitwarden-compatible password manager.</p>
     </div>
   </a>
 
@@ -736,36 +796,6 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
-  <a href="/public-cloud/marketplace/jenkins" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/jenkins.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Jenkins <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Automation server for building, testing, and deploying.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/keycloak" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/keycloak.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Keycloak <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Open-source identity and access management with SSO.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/authentik" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/authentik.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Authentik <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Flexible identity provider for SSO, OAuth, and SAML.</p>
-    </div>
-  </a>
-
   <a href="/public-cloud/marketplace/nexus" class="service-card">
     <div class="mp-brand-icon">
       <img src="/icons/marketplace/nexus.svg" alt="" width="26" height="26" aria-hidden="true">
@@ -773,16 +803,6 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">Nexus <span class="mp-status">Coming soon</span></p>
       <p class="service-desc">Universal artifact repository for builds and dependencies.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/portainer" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/portainer.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Portainer <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Web UI to manage Docker, Swarm, and Kubernetes.</p>
     </div>
   </a>
 
@@ -823,16 +843,6 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">Gitea <span class="mp-status">Coming soon</span></p>
       <p class="service-desc">Lightweight self-hosted Git service.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/supabase" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/supabase.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Supabase <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Open-source Firebase alternative built on PostgreSQL.</p>
     </div>
   </a>
 
@@ -883,16 +893,6 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">WG-Easy <span class="mp-status">Coming soon</span></p>
       <p class="service-desc">The easiest way to run WireGuard VPN with a web UI.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/drupal" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/drupal.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Drupal <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Flexible open-source CMS for content-heavy sites and applications.</p>
     </div>
   </a>
 

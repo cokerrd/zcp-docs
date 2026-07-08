@@ -6,12 +6,14 @@ Coolify is an open-source, self-hosted PaaS and a drop-in alternative to Heroku,
 Vercel. It deploys applications, databases, and services to your own server with Git-based workflows
 and a web dashboard, while keeping all your data under your control.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Coolify image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance from
-the marketplace and follow the steps below to install Coolify yourself.
-
-:::
+| Component      | Version       |
+| -------------- | ------------- |
+| Coolify        | 4.1.2         |
+| Docker         | Latest stable |
+| Docker Compose | Latest stable |
+| Ubuntu         | 24.04 LTS     |
 
 ## Requirements
 
@@ -21,72 +23,90 @@ the marketplace and follow the steps below to install Coolify yourself.
 | RAM      | 2 GB    | 4 GB        |
 | Storage  | 30 GB   | 60 GB       |
 
-## Deploy the base instance
+Coolify also runs the applications you deploy, so size the instance for those workloads too.
 
-1. In the ZSoftly Cloud portal, open **Apps** and switch to the **Marketplace** tab. It opens on
-   **Featured** by default, so select **Marketplace** next to it. Pick your region (YOW-1 or YUL-1),
-   search for **Ubuntu 24.04 LTS**, and click **Deploy**. You can also create the instance from
-   **Instances → Create**. Either way you get a clean Ubuntu 24.04 VM.
+## Environment variables
 
-   ![The Marketplace tab in the ZSoftly Cloud portal, showing the region selector, category list, search box, and Deploy buttons](../../../../assets/marketplace/deploy-marketplace-tab.webp)
+You can optionally set this when deploying Coolify from the marketplace.
 
-   ![Searching the Marketplace for an app, with the search box filtering the catalog down to a matching Deploy card](../../../../assets/marketplace/deploy-marketplace-search.webp)
+| Variable       | Description                                                                     |
+| -------------- | ------------------------------------------------------------------------------- |
+| `COOLIFY_FQDN` | Fully qualified domain name for the dashboard, for example `deploy.example.com` |
 
-2. Choose a plan that meets the requirements above.
+## Getting started
 
-3. When the instance is **Running**, connect over SSH:
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script generates the application secrets and starts the full Coolify
+stack with Docker Compose. This takes 1-2 minutes. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u coolify-first-boot.service -f
 ```
 
-## Install Coolify
+The login message (MOTD) confirms when Coolify is ready.
 
-Coolify ships an official one-line installer that sets up Docker, Docker Compose, and the full
-Coolify stack for you. Run it as root:
+### 3. Create the administrator account
+
+Open the dashboard in your browser:
+
+```text
+http://<your-vm-ip>:8000
+```
+
+The first account you create becomes the root administrator. Set a strong email and password
+immediately, since registration closes after the first user.
+
+### 4. Configure your instance
+
+1. Under **Settings**, set your instance's domain so Coolify can issue Let's Encrypt TLS
+   certificates and serve the dashboard over HTTPS. Coolify includes a built-in reverse proxy that
+   handles routing and certificates for both the dashboard and your deployed apps. DNS must point at
+   the VM before certificates can be issued.
+2. Connect a Git source (GitHub, GitLab, or a generic repository) to start deploying applications.
+
+## Managing Coolify
+
+Coolify runs as a Docker Compose stack in `/data/coolify/source`.
 
 ```bash
-curl -fsSL https://cdn.coollabs.io/coolify/install.sh | sudo bash
+# Check status
+cd /data/coolify/source && docker compose ps
+
+# Restart
+cd /data/coolify/source && docker compose restart
+
+# View logs
+cd /data/coolify/source && docker compose logs -f
 ```
 
-The installer pulls the required images and starts every service. When it finishes, it prints the
-dashboard URL. Nothing else needs to be installed by hand.
+A summary of URLs and paths is written to `/data/coolify/info.txt`.
 
-## Configure Coolify
+## Security
 
-1. Open the dashboard in your browser at `http://<your-vm-ip>:8000`.
-2. The first account you create becomes the root administrator. Set a strong email and password
-   immediately, as registration closes after the first user.
-3. Under **Settings**, set your instance's domain so Coolify can issue Let's Encrypt TLS
-   certificates and serve the dashboard over HTTPS. Coolify includes a built-in Traefik reverse
-   proxy that handles routing and certificates for both the dashboard and your deployed apps, so no
-   separate proxy is required.
-4. Add your server's public SSH key and connect a Git source (GitHub, GitLab, or a generic
-   repository) to start deploying applications.
+Ports 8000 (dashboard), 6001 (realtime), 6002 (terminal), 80, and 443 are open on the VM's network
+interface. UFW is enabled and allows those ports plus SSH (port 22). Ports 80 and 443 serve your
+deployed apps and TLS.
 
-## Open the firewall
-
-The instance allows only SSH (port 22) externally by default. Open the ports Coolify needs and add
-them to the instance's network/security rules in the portal:
+Once you configure a custom domain with Let's Encrypt, reach the dashboard over HTTPS on port 443.
+You can then close ports 8000, 6001, and 6002 if you no longer need direct access:
 
 ```bash
-sudo ufw allow 8000/tcp
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw allow 6001/tcp
-sudo ufw allow 6002/tcp
+sudo ufw delete allow 8000/tcp
+sudo ufw delete allow 6001/tcp
+sudo ufw delete allow 6002/tcp
 ```
 
-Ports 80 and 443 serve your deployed apps and TLS. Ports 6001 and 6002 are used by Coolify's
-realtime and terminal features.
+Complete the administrator setup promptly after first boot so no one else can claim the root
+account.
 
 ## Next steps
 
 - [Coolify documentation](https://coolify.io/docs)
-- [Coolify installation guide](https://coolify.io/docs/get-started/installation)
+- [Getting started with Coolify](https://coolify.io/docs/get-started/introduction)
