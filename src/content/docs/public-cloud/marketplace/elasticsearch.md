@@ -9,7 +9,7 @@ used for full-text search, log aggregation, application monitoring, and real-tim
 
 | Component     | Version   |
 | ------------- | --------- |
-| Elasticsearch | 8.x       |
+| Elasticsearch | 9.x       |
 | Ubuntu        | 24.04 LTS |
 
 ## Environment variables

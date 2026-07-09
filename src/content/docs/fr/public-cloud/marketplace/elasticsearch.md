@@ -10,7 +10,7 @@ l'analyse de données en temps réel.
 
 | Composant     | Version   |
 | ------------- | --------- |
-| Elasticsearch | 8.x       |
+| Elasticsearch | 9.x       |
 | Ubuntu        | 24.04 LTS |
 
 ## Variables d'environnement

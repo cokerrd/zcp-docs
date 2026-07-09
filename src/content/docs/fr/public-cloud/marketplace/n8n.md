@@ -11,7 +11,7 @@ flux de travail.
 
 | Composant      | Version         |
 | -------------- | --------------- |
-| n8n            | 1.121.0         |
+| n8n            | 2.29.8          |
 | Docker         | Dernière stable |
 | Docker Compose | Dernière stable |
 | Ubuntu         | 24.04 LTS       |

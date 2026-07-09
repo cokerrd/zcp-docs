@@ -38,3 +38,17 @@ Vous apprenez à :
 - [Démarrage rapide Public Cloud](/fr/public-cloud/getting-started/quickstart) : le même premier
   déploiement depuis le portail web
 - [Journal des modifications](/fr/changelog) : les nouveautés de la plateforme
+
+### [Gérer ZCP avec Terraform ou OpenTofu](/tutorials/manage-infrastructure-terraform)
+
+Provisionnez un réseau et une machine virtuelle de manière déclarative avec le fournisseur officiel
+`zsoftly/zcp`, publié dans les registres Terraform et OpenTofu. Vous écrivez un fichier de
+configuration, l'appliquez, le modifiez et le détruisez, et chaque ressource reste suivie. Environ
+15 minutes. (Tutoriel en anglais.)
+
+Vous apprenez à :
+
+- Installer le fournisseur et vous authentifier avec un jeton API
+- Décrire un réseau et une VM en HCL puis appliquer le plan
+- Redimensionner une VM sans la recréer et importer des ressources créées ailleurs
+- Détruire la pile entière sans laisser de ressources orphelines

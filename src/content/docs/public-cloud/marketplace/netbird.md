@@ -11,7 +11,7 @@ ready to join your network.
 
 | Component | Version   |
 | --------- | --------- |
-| NetBird   | 0.71.4    |
+| NetBird   | 0.74.3    |
 | Ubuntu    | 24.04 LTS |
 
 ## Environment variables

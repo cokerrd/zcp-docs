@@ -40,6 +40,57 @@ Images d'applications en un clic pour les instances de calcul.
 L'outil en ligne de commande officiel de la plateforme. Les entrées ci-dessous reflètent le
 [`CHANGELOG.md`](https://github.com/zsoftly/zcp-cli/blob/main/CHANGELOG.md) du CLI sur GitHub.
 
+### v0.0.23 : 8 juillet 2026
+
+**`--wait` rapporte désormais l'état réel de l'instance.** L'état en cache de la plateforme accuse
+parfois plusieurs minutes de retard sur la réalité, si bien que `instance create/start/stop --wait`
+continuait d'attendre une VM déjà démarrée. Le CLI interroge maintenant le point de terminaison
+d'état en direct, réconcilié avec l'hyperviseur, et rend la main dès que la VM est en marche.
+
+- **Aide corrigée pour `instance delete --delete-public-ip`** : la plateforme ne libère pas encore
+  l'adresse IP publique attribuée automatiquement lors de la suppression (un correctif est en cours
+  côté API). L'option, l'invite et l'aide l'indiquent désormais clairement. Libérez l'adresse
+  manuellement avec `zcp ip release <ip-slug>` après la suppression.
+
+### v0.0.22 : 7 juillet 2026
+
+**Les enregistrements DNS s'affichent et se suppriment correctement.** Le service DNS modélise les
+enregistrements comme des ensembles d'enregistrements adressés par nom et type. `zcp dns show` et
+`record-create` affichent maintenant le contenu des enregistrements (ensembles à valeurs multiples
+inclus), et `dns record-delete` fonctionne avec `--name` et `--type`. Les noms d'enregistrements
+sont relatifs : le CLI ajoute la zone pour vous.
+
+- **`egress create` rapporte honnêtement** lorsque la plateforme accepte une règle qui n'apparaît
+  jamais dans la liste des règles, au lieu d'échouer avec une erreur de recherche déroutante.
+- **La validation automatisée couvre désormais la référence des commandes** : un script confronte
+  les 264 exemples au CLI compilé, et nous avons réécrit six sections selon les arborescences
+  réelles des commandes.
+- **Les instances L2 fonctionnent et les exemples de `instance create` s'exécutent tels quels**,
+  contribution de [@cokerrd](https://github.com/cokerrd), qui signe ici sa première contribution
+  communautaire : la nouvelle option `--is-public` débloque `--network-type L2`, et les options
+  requises `--network-plan` et `--storage-category` figurent désormais dans chaque exemple.
+
+### v0.0.21 : 2 juillet 2026
+
+**Les valeurs par défaut du profil s'appliquent maintenant aux commandes de création.** Avec des
+valeurs par défaut configurées via `zcp profile add`, les commandes de création et de modification
+n'exigent plus `--region`/`--project`. Configurez-les une fois, comme le permettaient déjà les
+commandes de liste et de lecture.
+
+- **Accompagnement au premier lancement** : les installateurs affichent la configuration à
+  copier-coller pour les valeurs par défaut de production (`--region yul-1 --project default-9`),
+  reprises dans toute la documentation.
+- **Nous confrontons chaque slug d'exemple au catalogue en production** (modèles, plans, plans de
+  sauvegarde et d'équilibreur de charge), donc les exemples s'exécutent tels quels.
+
+### v0.0.20 : 30 juin 2026
+
+**`zcp instance delete` demande par défaut la libération de l'adresse IP publique attribuée
+automatiquement**, pour ne plus laisser d'adresses allouées et facturées après la suppression de la
+VM. Passez `--delete-public-ip=false` pour conserver l'adresse. Les adresses acquises manuellement
+et les adresses source-NAT ne sont pas touchées. Voir la note de la v0.0.23 : la libération côté
+plateforme n'est pas encore active.
+
 ### v0.0.19 : 21 juin 2026
 
 **Gérer l'IAM depuis la CLI : sous-utilisateurs, rôles et permissions.** Tout ce qui se trouve dans
@@ -254,6 +305,29 @@ arrivé :
 
 ## Fournisseur Terraform / OpenTofu
 
-Gérez l'infrastructure ZCP comme du code. Le fournisseur est en développement actif sur
-[github.com/zsoftly/terraform-provider-zcp](https://github.com/zsoftly/terraform-provider-zcp) ; les
-versions publiées seront listées ici.
+Gérez l'infrastructure ZCP comme du code avec le fournisseur officiel, publié sous `zsoftly/zcp` sur
+le [registre OpenTofu](https://search.opentofu.org/provider/zsoftly/zcp) et le
+[registre Terraform](https://registry.terraform.io/providers/zsoftly/zcp). Le code source se trouve
+sur [github.com/zsoftly/terraform-provider-zcp](https://github.com/zsoftly/terraform-provider-zcp).
+
+### v0.1.0 : 8 juillet 2026
+
+**Première version publique, disponible sur les deux registres.** 38 ressources et 12 sources de
+données couvrent tout ce que le CLI `zcp` prend en charge : instances, volumes, instantanés et
+sauvegardes, VPC et réseaux, règles de pare-feu et de sortie, équilibreurs de charge, mise à
+l'échelle automatique, grappes Kubernetes, DNS, stockage objet, VPN et gouvernance de compte. Chaque
+ressource prend en charge `terraform import`, et nous signons chaque version publiée.
+
+```hcl
+terraform {
+  required_providers {
+    zcp = {
+      source  = "zsoftly/zcp"
+      version = "~> 0.1"
+    }
+  }
+}
+```
+
+Définissez `ZCP_BEARER_TOKEN` dans votre environnement, puis exécutez `terraform init` ou
+`tofu init`. Générez le jeton dans la console sous **Compte → Clés API**.

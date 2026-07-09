@@ -38,6 +38,52 @@ One-click application images for compute instances.
 The official command-line tool for the platform. The entries below mirror the CLI's
 [`CHANGELOG.md`](https://github.com/zsoftly/zcp-cli/blob/main/CHANGELOG.md) on GitHub.
 
+### v0.0.23: July 8, 2026
+
+**`--wait` now reports the real instance state.** The platform's cached state sometimes lags minutes
+behind reality, so `instance create/start/stop --wait` kept waiting on a VM already up. The CLI now
+polls the live state endpoint, which reconciles with the hypervisor, and returns as soon as the VM
+is running.
+
+- **Corrected `instance delete --delete-public-ip` help**: the platform does not release the
+  auto-assigned public IP on delete yet (an API-side fix is in progress). The option, prompt, and
+  help now say so plainly. Release the address manually with `zcp ip release <ip-slug>` after
+  deleting.
+
+### v0.0.22: July 7, 2026
+
+**DNS records display and delete correctly.** The DNS service models records as record sets
+addressed by name and type. `zcp dns show` and `record-create` now display record content
+(multi-value sets included), and `dns record-delete` works with `--name` and `--type`. Record names
+are relative: the CLI appends the zone for you.
+
+- **`egress create` reports honestly** when the platform accepts a rule but never lists it, instead
+  of failing with a confusing lookup error.
+- **Automated validation now covers the command reference**: a script checks all 264 examples
+  against the built CLI, and we rewrote six sections to match the real command trees.
+- **L2 instances work, and `instance create` examples run as pasted**, contributed by first-time
+  community contributor [@cokerrd](https://github.com/cokerrd): the new `--is-public` option
+  unblocks `--network-type L2`, and the required `--network-plan` and `--storage-category` options
+  are now in every example.
+
+### v0.0.21: July 2, 2026
+
+**Profile defaults now apply to create commands.** With defaults configured through
+`zcp profile add`, create and mutate commands no longer error asking for `--region`/`--project`. Set
+them once. List and get commands already worked this way.
+
+- **First-run guidance**: the installers print copy-paste setup for the production defaults
+  (`--region yul-1 --project default-9`), and the docs use them throughout.
+- **We verify every example slug against the live catalog** (templates, plans, backup and load
+  balancer plans), so examples run as pasted.
+
+### v0.0.20: June 30, 2026
+
+**`zcp instance delete` requests release of the VM's auto-assigned public IP by default**, so no
+address stays allocated and billed after the VM is gone. Pass `--delete-public-ip=false` to keep the
+address. Manually acquired and source-NAT addresses are unaffected. See the v0.0.23 note: the
+platform-side release is not active yet.
+
 ### v0.0.19: June 21, 2026
 
 **Manage IAM from the CLI: sub-users, roles, and permissions.** Everything in the portal's Profile
@@ -227,6 +273,28 @@ consistent response format. A large set of command groups arrived:
 
 ## Terraform / OpenTofu provider
 
-Manage ZCP infrastructure as code. The provider is in active development at
+Manage ZCP infrastructure as code with the official provider, published as `zsoftly/zcp` on the
+[OpenTofu registry](https://search.opentofu.org/provider/zsoftly/zcp) and the
+[Terraform Registry](https://registry.terraform.io/providers/zsoftly/zcp). Source code lives at
 [github.com/zsoftly/terraform-provider-zcp](https://github.com/zsoftly/terraform-provider-zcp).
-Released versions will be listed here.
+
+### v0.1.0: July 8, 2026
+
+**First public release, live on both registries.** 38 resources and 12 data sources cover everything
+the `zcp` CLI supports: instances, volumes, snapshots and backups, VPCs and networks, firewall and
+egress rules, load balancers, auto-scaling, Kubernetes clusters, DNS, object storage, VPN, and
+account governance. Every resource supports `terraform import`, and we sign every release.
+
+```hcl
+terraform {
+  required_providers {
+    zcp = {
+      source  = "zsoftly/zcp"
+      version = "~> 0.1"
+    }
+  }
+}
+```
+
+Set `ZCP_BEARER_TOKEN` in your environment, then run `terraform init` or `tofu init`. Generate the
+token in the console under **Account → API Keys**.

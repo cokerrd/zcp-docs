@@ -13,7 +13,7 @@ Compose pour simplifier la gestion.
 | -------------- | --------------- |
 | Nginx          | Dernière stable |
 | MariaDB        | Dernière stable |
-| PHP-FPM        | 8.3             |
+| PHP-FPM        | 8.4             |
 | Docker         | Dernière stable |
 | Docker Compose | Dernière stable |
 | Ubuntu         | 24.04 LTS       |

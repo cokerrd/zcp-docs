@@ -10,8 +10,8 @@ rapide, pilotée par des thèmes.
 
 | Composant | Version   |
 | --------- | --------- |
-| Ghost     | 5.97.0    |
-| Node.js   | 20.x      |
+| Ghost     | 6.51.0    |
+| Node.js   | 22.x      |
 | MySQL     | 8.0       |
 | nginx     | Dernière  |
 | Ubuntu    | 24.04 LTS |

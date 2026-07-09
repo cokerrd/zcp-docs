@@ -11,7 +11,7 @@ privé sans envoyer de données à un fournisseur tiers.
 
 | Composant | Version   |
 | --------- | --------- |
-| Ollama    | 0.9.2     |
+| Ollama    | 0.31.2    |
 | Ubuntu    | 24.04 LTS |
 
 Aucun modèle n'est préchargé. Téléchargez les modèles nécessaires au premier démarrage (voir

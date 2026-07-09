@@ -12,7 +12,7 @@ to work together, ready for you to deploy your application.
 | -------------- | ------------------------------------------------------ |
 | Apache         | 2.4.x                                                  |
 | MariaDB        | Latest stable                                          |
-| PHP            | 8.3                                                    |
+| PHP            | 8.4                                                    |
 | PHP extensions | cli, mysql, curl, gd, mbstring, xml, zip, bcmath, intl |
 | Ubuntu         | 24.04 LTS                                              |
 
@@ -103,7 +103,7 @@ Key directories and files:
 | ------------------------------- | ---------------------------- |
 | `/var/www/html/`                | Default web root             |
 | `/etc/apache2/sites-available/` | Apache virtual hosts         |
-| `/etc/php/8.3/apache2/php.ini`  | PHP configuration for Apache |
+| `/etc/php/8.4/apache2/php.ini`  | PHP configuration for Apache |
 | `/etc/mysql/mariadb.conf.d/`    | MariaDB configuration        |
 
 **To create a virtual host** for a domain, add a configuration file to

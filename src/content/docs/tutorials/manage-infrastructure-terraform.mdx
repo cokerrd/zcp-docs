@@ -1,0 +1,261 @@
+---
+title: 'Manage ZCP with Terraform or OpenTofu'
+description:
+  Provision a network and a virtual machine on the ZSoftly Cloud Platform declaratively with the
+  official zsoftly/zcp provider, from init to destroy.
+sidebar:
+  label: 'Manage ZCP with Terraform / OpenTofu'
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Start with an empty directory and finish with a running virtual machine managed as code, using the
+official `zsoftly/zcp` provider. The provider ships on the
+[OpenTofu registry](https://search.opentofu.org/provider/zsoftly/zcp) and the
+[Terraform Registry](https://registry.terraform.io/providers/zsoftly/zcp), and it behaves the same
+with either tool, so pick whichever you already use.
+
+By the end you have:
+
+- The provider installed and authenticated with your account
+- A network and a virtual machine defined in one configuration file
+- The full lifecycle under your control: plan, apply, change, and destroy
+
+Plan for about 15 minutes. Most of it is the VM booting.
+
+:::note
+
+The slugs in this tutorial (region `yul-1`, project `default-9`, template `ubuntu-2204-lts-4`,
+plans, and so on) are **examples from one account**. Yours will differ. Each step shows the `zcp`
+CLI command to print the right value for your account and region. Always use those, don't copy the
+examples verbatim.
+
+:::
+
+## Before you start
+
+- A ZSoftly Public Cloud account. [Sign up](/public-cloud/getting-started/account-signup) first if
+  you do not have one.
+- [Terraform](https://developer.hashicorp.com/terraform/install) 1.0 or later, or
+  [OpenTofu](https://opentofu.org/docs/intro/install/) 1.6 or later.
+- Optional but handy: the [`zcp` CLI](/public-cloud/cli/installation) to look up slugs for your
+  account.
+
+## Step 1: Get an API token
+
+The provider authenticates with the same bearer token as the CLI and the API. In the
+[console](https://cloud.zcp.zsoftly.ca), go to **Account → API Keys** and create a token, then
+export it:
+
+```bash
+export ZCP_BEARER_TOKEN="<your-token>"
+```
+
+The provider reads it from the environment, so the token never appears in your configuration or in
+your state file.
+
+## Step 2: Declare the provider
+
+Create an empty directory with one file, `main.tf`, and declare the provider. The same source
+address works for both tools:
+
+```hcl
+terraform {
+  required_providers {
+    zcp = {
+      source  = "zsoftly/zcp"
+      version = "~> 0.1"
+    }
+  }
+}
+
+provider "zcp" {
+  default_project = "default-9"
+}
+```
+
+`default_project` plays the role of a default region setting in other providers: resources without
+an explicit project use it. Every account starts with a project whose slug ends in a number, like
+`default-9`. Find yours with `zcp project list`.
+
+Then initialize the directory:
+
+<Tabs syncKey="iac-tool">
+
+<TabItem label="OpenTofu">
+
+```bash
+tofu init
+```
+
+</TabItem>
+
+<TabItem label="Terraform">
+
+```bash
+terraform init
+```
+
+</TabItem>
+
+</Tabs>
+
+The tool downloads the provider from its registry and verifies the release signature.
+
+## Step 3: Describe a network and a VM
+
+Append the resources to `main.tf`. The region data source feeds the correct `cloud_provider` value
+to everything else, so you hardcode nothing twice:
+
+```hcl
+data "zcp_region" "yul" {
+  slug = "yul-1"
+}
+
+resource "zcp_network" "app" {
+  name           = "app-network"
+  cloud_provider = data.zcp_region.yul.cloud_provider
+  region         = data.zcp_region.yul.slug
+  network_plan   = "pnet-yul"
+  billing_cycle  = "hourly"
+}
+
+resource "zcp_instance" "web" {
+  name             = "web-01"
+  template         = "ubuntu-2204-lts-4"
+  plan             = "ca2sxs"
+  billing_cycle    = "hourly"
+  network          = zcp_network.app.id
+  storage_category = "premium-ssd"
+  cloud_provider   = data.zcp_region.yul.cloud_provider
+  region           = data.zcp_region.yul.slug
+}
+
+output "public_ip" {
+  value = zcp_instance.web.public_ip
+}
+
+output "private_ip" {
+  value = zcp_instance.web.private_ip
+}
+```
+
+Look up the slugs for your account with the CLI: `zcp region list`, `zcp plan vm`,
+`zcp plan network`, `zcp template list`, and `zcp storage-category list`.
+
+:::tip
+
+Declare the network as its own resource and attach the instance to it with `network`, as above. The
+instance also accepts a `network_plan` shortcut. The platform then creates a network for you, but it
+stays invisible to your configuration, so `destroy` leaves it behind. A tracked network comes and
+goes with your stack.
+
+:::
+
+## Step 4: Plan and apply
+
+<Tabs syncKey="iac-tool">
+
+<TabItem label="OpenTofu">
+
+```bash
+tofu plan
+tofu apply
+```
+
+</TabItem>
+
+<TabItem label="Terraform">
+
+```bash
+terraform plan
+terraform apply
+```
+
+</TabItem>
+
+</Tabs>
+
+The plan shows two resources to add. Confirm with `yes` and wait: the apply blocks until the VM
+reports **Running**, then prints the outputs. Expect about two to three minutes.
+
+```
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+private_ip = "10.0.0.194"
+public_ip = "23.229.49.88"
+```
+
+Run the plan again and it reports **No changes**: your file and the platform agree.
+
+## Step 5: Change something
+
+Edit the instance's `plan` to a bigger size (pick one from `zcp plan vm`) and apply again. The
+provider resizes the VM in place: it stops the instance, changes the compute offering, and starts it
+again, the same way an instance type change works on other clouds. Attributes shown as **forces
+replacement** in the plan output (the template, the region) recreate the VM instead: read the plan
+before you confirm.
+
+## Step 6: Import existing resources
+
+Bring resources you created in the console or with the CLI into the configuration rather than
+recreating them. Write the matching resource block, then import by slug:
+
+<Tabs syncKey="iac-tool">
+
+<TabItem label="OpenTofu">
+
+```bash
+tofu import zcp_instance.existing <instance-slug>
+```
+
+</TabItem>
+
+<TabItem label="Terraform">
+
+```bash
+terraform import zcp_instance.existing <instance-slug>
+```
+
+</TabItem>
+
+</Tabs>
+
+Every resource in the provider supports import. Each resource's page on the registry documents its
+import ID format: some are a plain slug, others are composite, like the SSH key's `<slug>/<region>`.
+
+## Clean up
+
+<Tabs syncKey="iac-tool">
+
+<TabItem label="OpenTofu">
+
+```bash
+tofu destroy
+```
+
+</TabItem>
+
+<TabItem label="Terraform">
+
+```bash
+terraform destroy
+```
+
+</TabItem>
+
+</Tabs>
+
+Both resources go: the VM first, then the network, together with the network's public address.
+Nothing keeps billing after a destroy of a fully tracked stack.
+
+## Next steps
+
+- Browse all 38 resources and 12 data sources in the provider documentation on the
+  [Terraform Registry](https://registry.terraform.io/providers/zsoftly/zcp/latest/docs) or the
+  [OpenTofu registry](https://search.opentofu.org/provider/zsoftly/zcp).
+- Add an [SSH key resource](/public-cloud/compute/settings/ssh-keys) to your configuration to log in
+  to the instances you create.
+- Watch the [changelog](/changelog) for new provider releases.

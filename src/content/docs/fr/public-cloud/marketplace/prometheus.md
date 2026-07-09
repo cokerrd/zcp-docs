@@ -12,7 +12,7 @@ pour les tableaux de bord.
 
 | Composant  | Version   |
 | ---------- | --------- |
-| Prometheus | 3.4.1     |
+| Prometheus | 3.13.0    |
 | Ubuntu     | 24.04 LTS |
 
 L'image inclut seulement le serveur Prometheus. Ajoutez les exporters (comme `node_exporter`) comme

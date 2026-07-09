@@ -1,5 +1,5 @@
 ---
-title: Valkey 9.0
+title: Valkey 9.1
 ---
 
 Valkey is an open-source, high-performance in-memory data store and Redis-compatible alternative. It
@@ -10,7 +10,7 @@ queues.
 
 | Component | Version   |
 | --------- | --------- |
-| Valkey    | 9.0.x     |
+| Valkey    | 9.1.x     |
 | Ubuntu    | 24.04 LTS |
 
 ## Environment variables

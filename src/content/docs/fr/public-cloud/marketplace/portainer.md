@@ -10,7 +10,7 @@ depuis une console web unique. L'interface s'exécute sur le port 9443 en HTTPS.
 
 | Composant    | Version         |
 | ------------ | --------------- |
-| Portainer CE | 2.27.9          |
+| Portainer CE | 2.39.4          |
 | Docker       | Dernière stable |
 | Ubuntu       | 24.04 LTS       |
 

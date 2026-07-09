@@ -10,8 +10,8 @@ standard protocols such as OpenID Connect, OAuth 2.0, and SAML.
 
 | Component  | Version       |
 | ---------- | ------------- |
-| Keycloak   | 26.0.7        |
-| PostgreSQL | 16            |
+| Keycloak   | 26.6.4        |
+| PostgreSQL | 18            |
 | Docker     | Latest stable |
 | Ubuntu     | 24.04 LTS     |
 

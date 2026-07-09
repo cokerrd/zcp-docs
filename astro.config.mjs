@@ -215,6 +215,10 @@ export default defineConfig({
               label: 'Deploy OpenClaw (Marketplace, CLI)',
               slug: 'tutorials/deploy-openclaw-marketplace-cli',
             },
+            {
+              label: 'Manage ZCP with Terraform / OpenTofu',
+              slug: 'tutorials/manage-infrastructure-terraform',
+            },
           ],
         },
 

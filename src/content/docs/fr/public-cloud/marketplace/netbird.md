@@ -11,7 +11,7 @@ client NetBird préinstallé, prêt à joindre votre réseau.
 
 | Composant | Version   |
 | --------- | --------- |
-| NetBird   | 0.71.4    |
+| NetBird   | 0.74.3    |
 | Ubuntu    | 24.04 LTS |
 
 ## Variables d'environnement

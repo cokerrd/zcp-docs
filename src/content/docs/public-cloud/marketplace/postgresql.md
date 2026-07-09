@@ -1,17 +1,20 @@
 ---
-title: PostgreSQL 17
+title: PostgreSQL
 ---
 
 PostgreSQL is an open-source object-relational database known for its reliability, standards
 compliance, and extensibility. It supports advanced data types, full-text search, JSON, and a wide
 range of extensions.
 
+PostgreSQL is published as one image per supported major version. Pick 16, 17, or 18 when you
+deploy.
+
 ## Software included
 
-| Component  | Version   |
-| ---------- | --------- |
-| PostgreSQL | 17.x      |
-| Ubuntu     | 24.04 LTS |
+| Component  | Version                            |
+| ---------- | ---------------------------------- |
+| PostgreSQL | 16.x, 17.x, or 18.x (per template) |
+| Ubuntu     | 24.04 LTS                          |
 
 ## Environment variables
 
@@ -80,7 +83,7 @@ sudo systemctl restart postgresql
 sudo journalctl -u postgresql -f
 ```
 
-Configuration directory: `/etc/postgresql/17/main/`
+Configuration directory: `/etc/postgresql/<major-version>/main/`
 
 Key files:
 
@@ -119,5 +122,5 @@ Avoid exposing port 5432 to `0.0.0.0`. Restrict access to known IPs or use an SS
 
 ## Next steps
 
-- [PostgreSQL 17 documentation](https://www.postgresql.org/docs/17/)
+- [PostgreSQL documentation](https://www.postgresql.org/docs/current/)
 - [PostgreSQL security guide](https://www.postgresql.org/docs/current/security.html)

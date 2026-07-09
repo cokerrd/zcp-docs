@@ -1,17 +1,20 @@
 ---
-title: PostgreSQL 17
+title: PostgreSQL
 ---
 
 PostgreSQL est une puissante base de données relationnelle-objet libre, reconnue pour sa fiabilité,
 sa conformité aux standards et son extensibilité. Elle prend en charge les types de données avancés,
 la recherche plein texte, JSON et un vaste éventail d'extensions.
 
+PostgreSQL est publié sous forme d'une image par version majeure prise en charge. Choisissez 16, 17
+ou 18 au moment du déploiement.
+
 ## Logiciels inclus
 
-| Composant  | Version   |
-| ---------- | --------- |
-| PostgreSQL | 17.x      |
-| Ubuntu     | 24.04 LTS |
+| Composant  | Version                              |
+| ---------- | ------------------------------------ |
+| PostgreSQL | 16.x, 17.x ou 18.x (selon le modèle) |
+| Ubuntu     | 24.04 LTS                            |
 
 ## Variables d'environnement
 
@@ -81,7 +84,7 @@ sudo systemctl restart postgresql
 sudo journalctl -u postgresql -f
 ```
 
-Répertoire de configuration: `/etc/postgresql/17/main/`
+Répertoire de configuration: `/etc/postgresql/<version-majeure>/main/`
 
 Fichiers importants:
 
@@ -122,5 +125,5 @@ tunnel SSH.
 
 ## Prochaines étapes
 
-- [Documentation PostgreSQL 17](https://www.postgresql.org/docs/17/)
+- [Documentation PostgreSQL](https://www.postgresql.org/docs/current/)
 - [Guide de sécurité PostgreSQL](https://www.postgresql.org/docs/current/security.html)

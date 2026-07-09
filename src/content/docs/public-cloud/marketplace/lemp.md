@@ -13,7 +13,7 @@ management.
 | -------------- | ------------- |
 | Nginx          | Latest stable |
 | MariaDB        | Latest stable |
-| PHP-FPM        | 8.3           |
+| PHP-FPM        | 8.4           |
 | Docker         | Latest stable |
 | Docker Compose | Latest stable |
 | Ubuntu         | 24.04 LTS     |

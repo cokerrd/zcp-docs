@@ -4,14 +4,20 @@ title: Forgejo
 
 Forgejo is a self-hosted Git forge, maintained as a community-driven fork of Gitea. It bundles
 repository hosting, pull requests, issue tracking, packages, and CI actions into a single Go binary
-that runs well on modest hardware. The web UI runs on port 3000 and Git over SSH on port 22.
+that runs well on modest hardware. This image ships the Forgejo LTS line, which is released every
+April and supported for about 15 months.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Forgejo image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance from
-the marketplace and follow the steps below to install Forgejo yourself.
+| Component  | Version       |
+| ---------- | ------------- |
+| Forgejo    | 15.0.3 (LTS)  |
+| PostgreSQL | 18            |
+| Docker     | Latest stable |
+| Ubuntu     | 24.04 LTS     |
 
-:::
+Forgejo runs with PostgreSQL as a Docker Compose stack. The web UI is served on port 3000 and Git
+over SSH on port 2222, which leaves the VM's own SSH daemon on port 22.
 
 ## Requirements
 
@@ -21,100 +27,116 @@ the marketplace and follow the steps below to install Forgejo yourself.
 | RAM      | 1 GB    | 2 GB        |
 | Storage  | 20 GB   | 40 GB       |
 
-## Deploy the base instance
+## Environment variables
 
-1. In the ZSoftly Cloud portal, open **Apps** and switch to the **Marketplace** tab, search for
-   **Ubuntu 24.04 LTS**, and click **Deploy**. You can also create the instance from **Instances →
-   Create**. Either way you get a clean Ubuntu 24.04 VM.
-2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
-3. When the instance is **Running**, connect over SSH:
+These values are optional during marketplace deployment. Leave a password field blank to have a
+secure random value generated automatically.
+
+| Variable                 | Description                                                 |
+| ------------------------ | ----------------------------------------------------------- |
+| `FORGEJO_ADMIN_PASSWORD` | Password for the initial `zadmin` account                   |
+| `FORGEJO_DB_PASSWORD`    | Password for the `forgejo` PostgreSQL user                  |
+| `FORGEJO_DOMAIN`         | Public hostname used in clone URLs, defaults to the VM's IP |
+
+## Getting started
+
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script generates the database password, starts Forgejo and PostgreSQL
+with Docker Compose, and creates the administrator account. This takes 1-2 minutes. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u forgejo-first-boot.service -f
 ```
 
-## Install Forgejo
+The login message (MOTD) confirms when Forgejo is ready and prints the admin credentials.
 
-Install Git and a couple of dependencies first:
+### 3. Retrieve the admin credentials
+
+The credentials are also written to a root-only file:
 
 ```bash
-sudo apt install -y git git-lfs
+sudo cat /etc/forgejo/credentials.txt
 ```
 
-Download the latest Forgejo binary and install it to `/usr/local/bin`. Check the
-[Forgejo download page](https://forgejo.org/download/) for the current version and replace `15.0.3`
-below if a newer release is available:
+### 4. Access the web interface
+
+Open a browser and navigate to:
+
+```text
+http://<your-vm-ip>:3000
+```
+
+Sign in as `zadmin` with the generated password. The web installer is locked, so the instance is
+configured from the moment it boots.
+
+:::note
+
+`admin` is a reserved username in Forgejo, so the administrator account is named `zadmin`.
+
+:::
+
+### 5. Clone over SSH
+
+Add your public key under **Settings → SSH / GPG Keys**, then clone using port 2222:
 
 ```bash
-wget -O forgejo \
-  https://codeberg.org/forgejo/forgejo/releases/download/v15.0.3/forgejo-15.0.3-linux-amd64
-sudo cp forgejo /usr/local/bin/forgejo
-sudo chmod 755 /usr/local/bin/forgejo
+git clone ssh://git@<your-vm-ip>:2222/<owner>/<repo>.git
 ```
 
-Create a dedicated `git` system user that Forgejo runs as:
+## Managing Forgejo
+
+Forgejo and PostgreSQL run as a Docker Compose stack in `/opt/forgejo`.
 
 ```bash
-sudo adduser --system --shell /bin/bash --gecos 'Git Version Control' \
-  --group --disabled-password --home /home/git git
+# Check status
+cd /opt/forgejo && docker compose ps
+
+# Restart
+cd /opt/forgejo && docker compose restart
+
+# View logs
+cd /opt/forgejo && docker compose logs -f server
 ```
 
-Create the data and configuration directories:
+Repository data lives in `/opt/forgejo/data/forgejo` and the database in
+`/opt/forgejo/data/postgres`. Configuration is generated at
+`/opt/forgejo/data/forgejo/gitea/conf/app.ini`, and most settings accept overrides through
+`FORGEJO__section__KEY` environment variables in the compose file.
+
+## Security
+
+Ports 3000 (HTTP) and 2222 (Git over SSH) are open on the VM's network interface. UFW is enabled and
+allows those ports plus SSH (port 22).
+
+Each VM generates its own `SECRET_KEY` and `INTERNAL_TOKEN` the first time Forgejo starts, so no two
+deployments share encryption secrets.
+
+:::caution
+
+Do not copy `app.ini` between VMs, and do not rotate `SECRET_KEY` after use. Doing so makes existing
+two-factor secrets and stored credentials impossible to decrypt.
+
+:::
+
+**To restrict access to a specific IP:**
 
 ```bash
-sudo mkdir -p /var/lib/forgejo
-sudo chown git:git /var/lib/forgejo && sudo chmod 750 /var/lib/forgejo
-sudo mkdir /etc/forgejo
-sudo chown root:git /etc/forgejo && sudo chmod 770 /etc/forgejo
+sudo ufw delete allow 3000/tcp
+sudo ufw allow from <trusted-ip> to any port 3000
 ```
 
-Install the systemd service shipped with Forgejo, then enable and start it:
-
-```bash
-sudo wget -O /etc/systemd/system/forgejo.service \
-  https://codeberg.org/forgejo/forgejo/raw/branch/forgejo/contrib/systemd/forgejo.service
-sudo systemctl daemon-reload
-sudo systemctl enable --now forgejo
-sudo systemctl status forgejo
-```
-
-## Configure Forgejo
-
-Forgejo listens on port 3000. Open `http://<your-vm-ip>:3000` in a browser to run the initial
-installation wizard. Accept the default SQLite database for a small instance, or point Forgejo at
-PostgreSQL/MySQL for larger deployments.
-
-Before finishing, set the **Application URL** to your server's address and create the first
-administrator account at the bottom of the form. The first registered user becomes the admin. The
-wizard writes its settings to `/etc/forgejo/app.ini`, so tighten file permissions afterward:
-
-```bash
-sudo chmod 750 /etc/forgejo
-sudo chmod 640 /etc/forgejo/app.ini
-```
-
-For a production setup, put Forgejo behind a reverse proxy such as nginx with a TLS certificate,
-then serve the UI over HTTPS instead of exposing port 3000 directly.
-
-## Open the firewall
-
-The instance allows only SSH (port 22) externally by default. Open the port(s) Forgejo needs and add
-them to the instance's network/security rules in the portal:
-
-```bash
-sudo ufw allow 3000/tcp
-```
-
-Git over SSH uses the existing port 22. To run Forgejo's built-in SSH server on a separate port
-instead, open that port as well (for example `sudo ufw allow 2222/tcp`).
+**For production use**, point a DNS record at the VM and front Forgejo with TLS via a reverse proxy
+(Caddy, nginx, or Traefik), then set `FORGEJO_DOMAIN` so clone URLs match.
 
 ## Next steps
 
 - [Forgejo documentation](https://forgejo.org/docs/latest/)
-- [Forgejo installation guide](https://forgejo.org/docs/latest/admin/installation/binary/)
+- [Forgejo administration guide](https://forgejo.org/docs/latest/admin/)
+- [Forgejo Actions](https://forgejo.org/docs/latest/user/actions/)

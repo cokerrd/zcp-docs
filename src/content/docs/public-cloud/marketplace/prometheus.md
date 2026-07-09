@@ -11,7 +11,7 @@ well with Grafana for dashboards.
 
 | Component  | Version   |
 | ---------- | --------- |
-| Prometheus | 3.4.1     |
+| Prometheus | 3.13.0    |
 | Ubuntu     | 24.04 LTS |
 
 The image ships the Prometheus server only. Add exporters (such as `node_exporter`) as scrape

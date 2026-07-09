@@ -283,6 +283,16 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
+  <a href="/public-cloud/marketplace/forgejo" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/forgejo.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Forgejo</p>
+      <p class="service-desc">Lightweight self-hosted Git forge (Gitea fork).</p>
+    </div>
+  </a>
+
   <a href="/public-cloud/marketplace/portainer" class="service-card">
     <div class="mp-brand-icon">
       <img src="/icons/marketplace/portainer.svg" alt="" width="26" height="26" aria-hidden="true">
@@ -447,6 +457,16 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">Tailscale</p>
       <p class="service-desc">Zero-config WireGuard-based VPN for connecting devices and servers</p>
+    </div>
+  </a>
+
+  <a href="/public-cloud/marketplace/headplane" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/headplane.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Headplane</p>
+      <p class="service-desc">Web UI to manage your self-hosted Headscale network.</p>
     </div>
   </a>
 
@@ -676,16 +696,6 @@ automatically. Credentials are generated, services are configured, and the image
     </div>
   </a>
 
-  <a href="/public-cloud/marketplace/headplane" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/headplane.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Headplane <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Web UI to manage your self-hosted Headscale network.</p>
-    </div>
-  </a>
-
   <a href="/public-cloud/marketplace/zammad" class="service-card">
     <div class="mp-brand-icon">
       <img src="/icons/marketplace/zammad.svg" alt="" width="26" height="26" aria-hidden="true">
@@ -823,16 +833,6 @@ automatically. Credentials are generated, services are configured, and the image
     <div>
       <p class="service-name">Harbor <span class="mp-status">Coming soon</span></p>
       <p class="service-desc">Secure container registry with vulnerability scanning.</p>
-    </div>
-  </a>
-
-  <a href="/public-cloud/marketplace/forgejo" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/forgejo.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Forgejo <span class="mp-status">Coming soon</span></p>
-      <p class="service-desc">Lightweight self-hosted Git forge (Gitea fork).</p>
     </div>
   </a>
 

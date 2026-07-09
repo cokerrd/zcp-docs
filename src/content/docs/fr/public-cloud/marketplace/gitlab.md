@@ -1,5 +1,5 @@
 ---
-title: GitLab CE 18.11
+title: GitLab CE 19.1
 ---
 
 GitLab Community Edition est une plateforme DevOps complète fournie sous forme d'application unique.
@@ -10,7 +10,7 @@ conteneurs et plus encore. L'ensemble s'exécute sur votre propre infrastructure
 
 | Composant | Version   |
 | --------- | --------- |
-| GitLab CE | 18.11.x   |
+| GitLab CE | 19.1.x    |
 | Ubuntu    | 24.04 LTS |
 
 ## Variables d'environnement

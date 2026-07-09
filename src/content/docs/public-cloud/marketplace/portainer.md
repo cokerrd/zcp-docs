@@ -10,7 +10,7 @@ The UI runs on port 9443 over HTTPS.
 
 | Component    | Version       |
 | ------------ | ------------- |
-| Portainer CE | 2.27.9        |
+| Portainer CE | 2.39.4        |
 | Docker       | Latest stable |
 | Ubuntu       | 24.04 LTS     |
 

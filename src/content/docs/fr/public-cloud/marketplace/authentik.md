@@ -10,14 +10,15 @@ proxy/forward-auth, avec des flux, des politiques et un portail utilisateur en l
 
 | Composant  | Version         |
 | ---------- | --------------- |
-| Authentik  | 2025.6.3        |
-| PostgreSQL | 16              |
-| Redis      | Alpine          |
+| Authentik  | 2026.5.4        |
+| PostgreSQL | 18              |
 | Docker     | Dernière stable |
 | Ubuntu     | 24.04 LTS       |
 
-Authentik exécute ses conteneurs serveur et worker avec PostgreSQL et Redis, sous forme de pile
-Docker Compose.
+Authentik exécute ses conteneurs serveur et worker avec PostgreSQL, sous forme de pile Docker
+Compose. Redis n'est plus requis. Authentik a déplacé la mise en cache, les tâches d'arrière-plan et
+la communication WebSocket vers PostgreSQL, si bien que la pile se limite à PostgreSQL, au serveur
+et au worker.
 
 ## Prérequis
 

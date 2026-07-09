@@ -11,7 +11,7 @@ provider.
 
 | Component | Version   |
 | --------- | --------- |
-| Ollama    | 0.9.2     |
+| Ollama    | 0.31.2    |
 | Ubuntu    | 24.04 LTS |
 
 No models are pre-loaded. You pull the models you need on first boot (see

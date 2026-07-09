@@ -284,6 +284,16 @@ identifiants sont générés, les services sont configurés et l'image est prêt
     </div>
   </a>
 
+  <a href="/fr/public-cloud/marketplace/forgejo" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/forgejo.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Forgejo</p>
+      <p class="service-desc">Forge Git auto-hébergée légère, dérivée de Gitea.</p>
+    </div>
+  </a>
+
   <a href="/fr/public-cloud/marketplace/portainer" class="service-card">
     <div class="mp-brand-icon">
       <img src="/icons/marketplace/portainer.svg" alt="" width="26" height="26" aria-hidden="true">
@@ -448,6 +458,16 @@ identifiants sont générés, les services sont configurés et l'image est prêt
     <div>
       <p class="service-name">Tailscale</p>
       <p class="service-desc">VPN WireGuard sans configuration pour connecter appareils et serveurs</p>
+    </div>
+  </a>
+
+  <a href="/fr/public-cloud/marketplace/headplane" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/headplane.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Headplane</p>
+      <p class="service-desc">Interface web pour gérer votre réseau Headscale auto-hébergé.</p>
     </div>
   </a>
 
@@ -677,16 +697,6 @@ identifiants sont générés, les services sont configurés et l'image est prêt
     </div>
   </a>
 
-  <a href="/fr/public-cloud/marketplace/headplane" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/headplane.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Headplane <span class="mp-status">À venir</span></p>
-      <p class="service-desc">Interface web pour gérer votre réseau Headscale auto-hébergé.</p>
-    </div>
-  </a>
-
   <a href="/fr/public-cloud/marketplace/zammad" class="service-card">
     <div class="mp-brand-icon">
       <img src="/icons/marketplace/zammad.svg" alt="" width="26" height="26" aria-hidden="true">
@@ -824,16 +834,6 @@ identifiants sont générés, les services sont configurés et l'image est prêt
     <div>
       <p class="service-name">Harbor <span class="mp-status">À venir</span></p>
       <p class="service-desc">Registre de conteneurs sécurisé avec analyse des vulnérabilités.</p>
-    </div>
-  </a>
-
-  <a href="/fr/public-cloud/marketplace/forgejo" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/forgejo.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Forgejo <span class="mp-status">À venir</span></p>
-      <p class="service-desc">Forge Git auto-hébergée légère, dérivée de Gitea.</p>
     </div>
   </a>
 

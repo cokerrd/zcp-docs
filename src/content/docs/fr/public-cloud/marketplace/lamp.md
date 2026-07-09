@@ -12,7 +12,7 @@ configurés pour fonctionner ensemble, prêts pour le déploiement de votre appl
 | -------------- | ------------------------------------------------------ |
 | Apache         | 2.4.x                                                  |
 | MariaDB        | Dernière stable                                        |
-| PHP            | 8.3                                                    |
+| PHP            | 8.4                                                    |
 | Extensions PHP | cli, mysql, curl, gd, mbstring, xml, zip, bcmath, intl |
 | Ubuntu         | 24.04 LTS                                              |
 
@@ -104,7 +104,7 @@ Répertoires et fichiers importants:
 | ------------------------------- | ----------------------------- |
 | `/var/www/html/`                | Racine Web par défaut         |
 | `/etc/apache2/sites-available/` | Hôtes virtuels Apache         |
-| `/etc/php/8.3/apache2/php.ini`  | Configuration PHP pour Apache |
+| `/etc/php/8.4/apache2/php.ini`  | Configuration PHP pour Apache |
 | `/etc/mysql/mariadb.conf.d/`    | Configuration MariaDB         |
 
 **Pour créer un hôte virtuel** pour un domaine, ajoutez un fichier de configuration dans

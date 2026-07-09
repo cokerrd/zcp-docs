@@ -10,14 +10,14 @@ flows, policies, and a self-service user portal.
 
 | Component  | Version       |
 | ---------- | ------------- |
-| Authentik  | 2025.6.3      |
-| PostgreSQL | 16            |
-| Redis      | Alpine        |
+| Authentik  | 2026.5.4      |
+| PostgreSQL | 18            |
 | Docker     | Latest stable |
 | Ubuntu     | 24.04 LTS     |
 
-Authentik runs its server and worker containers with PostgreSQL and Redis, as a Docker Compose
-stack.
+Authentik runs its server and worker containers with PostgreSQL, as a Docker Compose stack. Redis is
+no longer required. Authentik moved caching, background tasks, and WebSocket communication to
+PostgreSQL, so the stack is PostgreSQL, the server, and the worker.
 
 ## Requirements
 
