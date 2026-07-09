@@ -6,12 +6,17 @@ Vaultwarden is a lightweight, self-hosted password manager that implements the B
 fully compatible with official Bitwarden client apps and browser extensions, letting you store and
 sync passwords, secure notes, and other secrets on infrastructure you control.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Vaultwarden image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance
-from the marketplace and follow the steps below to install Vaultwarden yourself.
+| Component      | Version       |
+| -------------- | ------------- |
+| Vaultwarden    | 1.36.0        |
+| Docker         | Latest stable |
+| Docker Compose | Latest stable |
+| Ubuntu         | 24.04 LTS     |
 
-:::
+Vaultwarden stores its data in an embedded SQLite database and serves the web vault over HTTPS on
+port 8000 with a self-signed certificate generated on first boot.
 
 ## Requirements
 
@@ -21,118 +26,99 @@ from the marketplace and follow the steps below to install Vaultwarden yourself.
 | RAM      | 1 GB    | 2 GB        |
 | Storage  | 10 GB   | 20 GB       |
 
-Vaultwarden is resource-light. A domain name and TLS certificate are strongly recommended, since
-Bitwarden clients require HTTPS to connect.
+Vaultwarden is resource-light.
 
-## Deploy the base instance
+## Environment variables
 
-1. In the ZSoftly Cloud portal, open **Apps** and switch to the **Marketplace** tab. It opens on
-   **Featured** by default, so select **Marketplace** next to it. Pick your region (YOW-1 or YUL-1),
-   search for **Ubuntu 24.04 LTS**, and click **Deploy**. You can also create the instance from
-   **Instances → Create**. Either way you get a clean Ubuntu 24.04 VM.
+You can optionally set these when deploying Vaultwarden from the marketplace. Leave `ADMIN_TOKEN`
+blank to have a secure random value generated automatically.
 
-   ![The Marketplace tab in the ZSoftly Cloud portal, showing the region selector, category list, search box, and Deploy buttons](../../../../assets/marketplace/deploy-marketplace-tab.webp)
+| Variable             | Description                                                          |
+| -------------------- | -------------------------------------------------------------------- |
+| `VAULTWARDEN_DOMAIN` | Full public URL clients use, for example `https://vault.example.com` |
+| `ADMIN_TOKEN`        | Token for the `/admin` panel                                         |
 
-   ![Searching the Marketplace for an app, with the search box filtering the catalog down to a matching Deploy card](../../../../assets/marketplace/deploy-marketplace-search.webp)
+## Getting started
 
-2. Choose a plan that meets the requirements above.
-
-3. When the instance is **Running**, connect over SSH:
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script generates a self-signed TLS certificate and the admin token, then
+starts the container with Docker Compose. This takes under a minute. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u vaultwarden-first-boot.service -f
 ```
 
-## Install Vaultwarden
+The login message (MOTD) confirms when Vaultwarden is ready.
 
-Vaultwarden is distributed as an official Docker image, so install Docker Engine and the Compose
-plugin first.
+### 3. Retrieve the admin token
 
-Set up Docker's official APT repository for Ubuntu 24.04 LTS (`noble`):
+The admin token signs in to the `/admin` panel. It is written to a root-only file:
 
 ```bash
-sudo apt install -y ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-sudo tee /etc/apt/sources.list.d/docker.sources >/dev/null <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: noble
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
+sudo cat /root/.credentials/vaultwarden.txt
 ```
 
-Install Docker Engine and the Compose plugin:
+### 4. Open the web vault
 
-```bash
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+Open a browser and navigate to:
+
+```text
+https://<your-vm-ip>:8000
 ```
 
-Generate an `ADMIN_TOKEN` for the admin page. The `hash` command outputs an Argon2 PHC string. Copy
-the full value, including the leading `$argon2id$`:
+The self-signed certificate triggers a browser warning. Accept the exception to proceed. The admin
+panel is at `https://<your-vm-ip>:8000/admin`.
 
-```bash
-docker run --rm -it vaultwarden/server /vaultwarden hash
-```
+:::note
 
-Run Vaultwarden, persisting data to the host and mapping the container's internal port 80 to host
-port 8080:
-
-```bash
-docker run -d --name vaultwarden --restart unless-stopped \
-  -e ADMIN_TOKEN='<paste-the-argon2-hash-here>' \
-  -e DOMAIN='https://vault.example.com' \
-  -v /opt/vaultwarden/data:/data \
-  -p 8080:80 \
-  vaultwarden/server:latest
-```
-
-## Configure Vaultwarden
-
-:::caution
-
-Bitwarden client apps refuse to connect over plain HTTP. Do not expose Vaultwarden directly. Always
-place it behind a reverse proxy (Caddy, nginx, or Traefik) that terminates TLS and forwards to host
-port 8080.
+User self-registration is disabled by default (`SIGNUPS_ALLOWED=false`). To add users, open the
+admin panel and invite them under **Users**, or enable open registration under **General Settings**.
 
 :::
 
-A minimal Caddy reverse proxy gives you automatic HTTPS. Point your domain's DNS at the VM, then:
+## Managing Vaultwarden
+
+Vaultwarden runs as a Docker Compose stack in `/data/vaultwarden`.
 
 ```bash
-sudo apt install -y caddy
-echo 'vault.example.com {
-  reverse_proxy 127.0.0.1:8080
-}' | sudo tee /etc/caddy/Caddyfile
-sudo systemctl restart caddy
+# Check status
+cd /data/vaultwarden && docker compose ps
+
+# Restart
+cd /data/vaultwarden && docker compose restart
+
+# View logs
+cd /data/vaultwarden && docker compose logs -f
 ```
 
-Set `DOMAIN` in the `docker run` command above to your real `https://` URL so vault item icons,
-attachments, and WebAuthn work correctly. Once TLS is live, reach the admin page at
-`https://vault.example.com/admin` and sign in with the password you hashed into `ADMIN_TOKEN`. Treat
-that token like a root password.
+Environment configuration: `/data/vaultwarden/vaultwarden.env`. The vault database and certificate
+are stored under `/data/vaultwarden/data`.
 
-## Open the firewall
+## Security
 
-The instance allows only SSH (port 22) externally by default. Open the HTTPS port your reverse proxy
-serves and add it to the instance's network/security rules in the portal:
+Port 8000 is open on the VM's network interface. UFW is enabled and allows SSH (port 22) and the
+Vaultwarden web vault (port 8000). Bitwarden clients require HTTPS, which the image serves with a
+self-signed certificate by default.
+
+Treat the admin token like a root password.
+
+**For production use**, set `DOMAIN` to the full public URL clients use, including the scheme and
+any port or path (for example `https://vault.example.com` or `https://<public-ip>:8000`), in
+`/data/vaultwarden/vaultwarden.env`, replace the self-signed certificate with a trusted one (or
+front Vaultwarden with a reverse proxy such as Caddy that terminates TLS), and restart the stack:
 
 ```bash
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
+cd /data/vaultwarden && docker compose restart
 ```
 
 ## Next steps
 
 - [Vaultwarden documentation](https://github.com/dani-garcia/vaultwarden/wiki)
-- [Vaultwarden installation guide](https://github.com/dani-garcia/vaultwarden/wiki/Starting-with-Docker)
+- [Enabling HTTPS](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-HTTPS)

@@ -7,12 +7,18 @@ authentication, instant REST and GraphQL APIs, realtime subscriptions, storage, 
 dashboard into one self-hostable stack. The Studio and APIs are served through the Kong gateway on
 port 8000.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Supabase image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance from
-the marketplace and follow the steps below to install Supabase yourself.
+| Component      | Version           |
+| -------------- | ----------------- |
+| Supabase       | Self-hosted stack |
+| PostgreSQL     | 17                |
+| Docker         | Latest stable     |
+| Docker Compose | Latest stable     |
+| Ubuntu         | 24.04 LTS         |
 
-:::
+The stack includes Studio, the Kong API gateway, Auth (GoTrue), PostgREST, Realtime, Storage, and
+postgres-meta, all on PostgreSQL 17.
 
 ## Requirements
 
@@ -22,109 +28,90 @@ the marketplace and follow the steps below to install Supabase yourself.
 | RAM      | 4 GB    | 8 GB        |
 | Storage  | 30 GB   | 80 GB       |
 
-## Deploy the base instance
+## Environment variables
 
-1. In the ZSoftly Cloud portal, open **Apps** and switch to the **Marketplace** tab, search for
-   **Ubuntu 24.04 LTS**, and click **Deploy**. You can also create the instance from **Instances →
-   Create**. Either way you get a clean Ubuntu 24.04 VM.
-2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
-3. When the instance is **Running**, connect over SSH:
+You can optionally set these when deploying Supabase from the marketplace. Leave a password field
+blank to have a secure random value generated automatically.
+
+| Variable             | Description                                               |
+| -------------------- | --------------------------------------------------------- |
+| `SITE_URL`           | Public URL for the Supabase instance and Studio dashboard |
+| `POSTGRES_PASSWORD`  | Password for the PostgreSQL database                      |
+| `DASHBOARD_PASSWORD` | Password for the Studio dashboard login                   |
+
+These are the only variables you set at deploy time. `SUPABASE_PUBLIC_URL` and `API_EXTERNAL_URL`,
+referenced under [Security](#security), are edited in `/data/supabase/.env` on the running VM.
+
+## Getting started
+
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script generates the database password, JWT secret, API keys, and Studio
+credentials, then pulls the container images and starts the stack. The image pull is large, so this
+takes roughly 15-20 minutes. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u supabase-first-boot.service -f
 ```
 
-## Install Supabase
+The login message (MOTD) confirms when Supabase is ready.
 
-Supabase self-hosts as a Docker Compose stack, so install Docker Engine and the Compose plugin
-first.
+### 3. Retrieve the dashboard credentials and API keys
 
-Set up Docker's official APT repository for Ubuntu 24.04 LTS (`noble`):
+The Studio username and password, plus the `anon` and `service_role` API keys, are written to a
+root-only file:
 
 ```bash
-sudo apt install -y ca-certificates curl git
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-sudo tee /etc/apt/sources.list.d/docker.sources >/dev/null <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: noble
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
+sudo cat /root/.credentials/supabase.txt
 ```
 
-Install Docker Engine and the Compose plugin:
+### 4. Access the Studio dashboard
+
+Open a browser and navigate to:
+
+```text
+http://<your-vm-ip>:8000
+```
+
+Sign in with the `supabase` username and the generated password. The REST and Auth APIs are served
+through the same gateway at `http://<your-vm-ip>:8000/rest/v1/` and
+`http://<your-vm-ip>:8000/auth/v1/`.
+
+## Managing Supabase
+
+Supabase runs as a Docker Compose stack in `/data/supabase`.
 
 ```bash
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# Check status
+cd /data/supabase && docker compose ps
+
+# Restart
+cd /data/supabase && docker compose restart
+
+# View logs
+cd /data/supabase && docker compose logs -f
 ```
 
-Clone the Supabase repository and copy the `docker` directory into a project folder:
+Environment configuration: `/data/supabase/.env`. Database and storage data are stored under
+`/data/supabase/volumes`.
 
-```bash
-git clone --depth 1 https://github.com/supabase/supabase
-mkdir supabase-project
-cp -rf supabase/docker/* supabase-project
-cp supabase/docker/.env.example supabase-project/.env
-cd supabase-project
-```
+## Security
 
-## Configure Supabase
+Ports 8000, 80, and 443 are open on the VM's network interface. UFW is enabled and allows those
+ports plus SSH (port 22). Direct PostgreSQL access (5432) is not exposed.
 
-Never run the stack with the example defaults. Open `.env` and set strong, unique values for at
-least these variables before starting anything:
-
-- `POSTGRES_PASSWORD`: the Postgres database password
-- `JWT_SECRET`: secret used to sign API tokens
-- `ANON_KEY`: public (anonymous) API key
-- `SERVICE_ROLE_KEY`: privileged service-role API key
-- `DASHBOARD_USERNAME`: Studio login username
-- `DASHBOARD_PASSWORD`: Studio login password
-
-The repository ships helper scripts to generate matching secrets and API keys for you:
-
-```bash
-sh utils/generate-keys.sh
-sh utils/add-new-auth-keys.sh
-```
-
-Pull the images and start the stack:
-
-```bash
-sudo docker compose pull
-sudo docker compose up -d --wait
-```
-
-Once the containers are healthy, the Studio dashboard and APIs are served through Kong on port 8000:
-
-- Studio dashboard: `http://<your-vm-ip>:8000` (log in with `DASHBOARD_USERNAME` /
-  `DASHBOARD_PASSWORD`)
-- REST API: `http://<your-vm-ip>:8000/rest/v1/`
-- Auth API: `http://<your-vm-ip>:8000/auth/v1/`
-
-For a production setup, put Supabase behind a reverse proxy such as nginx with a TLS certificate,
-then serve Studio and the APIs over HTTPS instead of exposing port 8000 directly.
-
-## Open the firewall
-
-The instance allows only SSH (port 22) externally by default. Open the port(s) Supabase needs and
-add them to the instance's network/security rules in the portal:
-
-```bash
-sudo ufw allow 8000/tcp
-```
+Change the Studio dashboard password after first login. **For production use**, set
+`SUPABASE_PUBLIC_URL`, `API_EXTERNAL_URL`, and `SITE_URL` in `/data/supabase/.env` to your domain,
+restart the stack, and place Supabase behind a reverse proxy such as nginx with a TLS certificate so
+Studio and the APIs are served over HTTPS instead of exposing port 8000 directly.
 
 ## Next steps
 
 - [Supabase documentation](https://supabase.com/docs)
-- [Supabase self-hosting guide](https://supabase.com/docs/guides/self-hosting/docker)
+- [Self-hosting guide](https://supabase.com/docs/guides/self-hosting/docker)

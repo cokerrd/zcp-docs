@@ -1,17 +1,20 @@
 ---
-title: MySQL 8.4
+title: MySQL
 ---
 
 MySQL est l'une des bases de données relationnelles libres les plus déployées au monde. Cette image
-fournit MySQL 8.4 LTS, une version à support à long terme destinée aux charges de travail de
-production.
+fournit une version à support à long terme destinée aux charges de travail de production.
+
+MySQL est publié sous forme d'une image par ligne LTS maintenue. Choisissez la version voulue au
+moment du déploiement. Les lignes 8.4 et 9.7 sont toutes deux des LTS actuelles, et 9.7 est la suite
+logique de 8.4.
 
 ## Logiciels inclus
 
-| Composant    | Version     |
-| ------------ | ----------- |
-| MySQL Server | 8.4.x (LTS) |
-| Ubuntu       | 24.04 LTS   |
+| Composant    | Version                               |
+| ------------ | ------------------------------------- |
+| MySQL Server | 8.4.x ou 9.7.x (LTS, selon le modèle) |
+| Ubuntu       | 24.04 LTS                             |
 
 ## Variables d'environnement
 
@@ -109,5 +112,6 @@ tunnel SSH.
 
 ## Prochaines étapes
 
+- [Documentation MySQL 9.7](https://dev.mysql.com/doc/refman/9.7/en/)
 - [Documentation MySQL 8.4](https://dev.mysql.com/doc/refman/8.4/en/)
-- [Guide de sécurité MySQL](https://dev.mysql.com/doc/refman/8.4/en/security.html)
+- [Guide de sécurité MySQL](https://dev.mysql.com/doc/refman/9.7/en/security.html)

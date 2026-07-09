@@ -1,16 +1,19 @@
 ---
-title: MySQL 8.4
+title: MySQL
 ---
 
 MySQL is one of the most widely deployed open-source relational databases in the world. This image
-ships MySQL 8.4 LTS, a long-term support release intended for production workloads.
+ships a long-term support release intended for production workloads.
+
+MySQL is published as one image per maintained LTS line. Pick the version you need when you deploy.
+Both 8.4 and 9.7 are current LTS lines, and 9.7 is the forward path off 8.4.
 
 ## Software included
 
-| Component    | Version     |
-| ------------ | ----------- |
-| MySQL Server | 8.4.x (LTS) |
-| Ubuntu       | 24.04 LTS   |
+| Component    | Version                            |
+| ------------ | ---------------------------------- |
+| MySQL Server | 8.4.x or 9.7.x (LTS, per template) |
+| Ubuntu       | 24.04 LTS                          |
 
 ## Environment variables
 
@@ -105,5 +108,6 @@ Avoid exposing port 3306 to `0.0.0.0`. Restrict access to known IPs or use an SS
 
 ## Next steps
 
+- [MySQL 9.7 documentation](https://dev.mysql.com/doc/refman/9.7/en/)
 - [MySQL 8.4 documentation](https://dev.mysql.com/doc/refman/8.4/en/)
-- [MySQL security guide](https://dev.mysql.com/doc/refman/8.4/en/security.html)
+- [MySQL security guide](https://dev.mysql.com/doc/refman/9.7/en/security.html)

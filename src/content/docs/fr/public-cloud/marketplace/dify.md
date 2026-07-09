@@ -2,17 +2,22 @@
 title: Dify
 ---
 
-Dify est une plateforme libre pour créer des applications LLM et des agents d'IA. Elle combine un
-constructeur de flux de travail visuel, des pipelines de génération augmentée par récupération
-(RAG), la gestion des invites et un cadre d'agents, afin que les équipes puissent concevoir, tester
-et déployer des applications d'IA générative depuis une seule interface.
+Dify est une plateforme open source pour creer des applications LLM et des agents IA. Elle combine
+un constructeur visuel de workflows, des pipelines de génération augmentée par récupération (RAG),
+la gestion des prompts et un cadre d'agents pour concevoir, tester et déployer des applications d'IA
+générative depuis une seule interface.
 
-:::note[Bientôt disponible]
+## Logiciels inclus
 
-Une image Dify préconstruite arrive bientôt. Pour l'instant, déployez une instance **Ubuntu 24.04
-LTS** neuve depuis la place de marché et suivez les étapes ci-dessous pour installer Dify vous-même.
+| Composant      | Version         |
+| -------------- | --------------- |
+| Dify           | 1.15.0          |
+| Docker         | Dernière stable |
+| Docker Compose | Dernière stable |
+| Ubuntu         | 24.04 LTS       |
 
-:::
+Dify s'exécute comme pile Docker Compose multi-conteneurs (API, worker, web, PostgreSQL, Redis,
+stockage vectoriel Weaviate et nginx).
 
 ## Prérequis
 
@@ -22,121 +27,84 @@ LTS** neuve depuis la place de marché et suivez les étapes ci-dessous pour ins
 | RAM       | 4 Go    | 8 Go       |
 | Stockage  | 40 Go   | 80 Go      |
 
-Dify fonctionne comme une pile Docker Compose multi-conteneurs (API, worker, web, base de données,
-magasin de vecteurs et nginx), de sorte que les besoins en RAM et en stockage augmentent avec
-l'utilisation.
+Les besoins en RAM et en stockage augmentent avec l'utilisation.
 
-## Déployer l'instance de base
+## Démarrage
 
-1. Dans le portail ZSoftly Cloud, ouvrez **Apps** et passez à l'onglet **Marketplace**. Il s'ouvre
-   sur **Featured** par défaut, sélectionnez donc **Marketplace** à côté. Choisissez votre région
-   (YOW-1 ou YUL-1), recherchez **Ubuntu 24.04 LTS** et cliquez sur **Deploy**. Vous pouvez aussi
-   créer l'instance depuis **Instances → Create**. Dans les deux cas, vous obtenez une VM Ubuntu
-   24.04 propre.
-
-   ![L'onglet Marketplace du portail ZSoftly Cloud, avec le sélecteur de région, la liste des catégories, la barre de recherche et les boutons Deploy](../../../../../assets/marketplace/deploy-marketplace-tab.webp)
-
-   ![Recherche d'une application dans le Marketplace, la barre de recherche filtrant le catalogue jusqu'à une carte Deploy correspondante](../../../../../assets/marketplace/deploy-marketplace-search.webp)
-
-2. Choisissez un plan qui répond aux prérequis ci-dessus.
-
-3. Lorsque l'instance est **Running**, connectez-vous en SSH:
+### 1. Se connecter à la machine virtuelle
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Mettez le système à jour:
+### 2. Attendre la configuration au premier démarrage
+
+Au premier démarrage, un script génère les secrets internes de base de données et Redis, écrit le
+fichier d'environnement, puis démarre la pile avec Docker Compose. Cela prend quelques minutes, le
+temps que les conteneurs deviennent sains. Suivez la progression:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u dify-first-boot.service -f
 ```
 
-## Installer Dify
+Le message de connexion (MOTD) confirme quand Dify est prêt et affiche les identifiants internes.
 
-Dify est fourni sous forme de pile Docker Compose, installez donc d'abord Docker Engine et le plugin
-Compose.
+### 3. Terminer la configuration administrateur
 
-Configurez le dépôt APT officiel de Docker pour Ubuntu 24.04 LTS (`noble`):
-
-```bash
-sudo apt install -y ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-sudo tee /etc/apt/sources.list.d/docker.sources >/dev/null <<EOF
-Types: deb
-URIs: https://download.docker.com/linux/ubuntu
-Suites: noble
-Components: stable
-Architectures: $(dpkg --print-architecture)
-Signed-By: /etc/apt/keyrings/docker.asc
-EOF
-```
-
-Installez Docker Engine et le plugin Compose:
-
-```bash
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-```
-
-Autorisez l'utilisateur `ubuntu` à exécuter Docker sans sudo, puis rouvrez votre session SSH:
-
-```bash
-sudo usermod -aG docker ubuntu
-```
-
-Clonez la dernière version de Dify, copiez le fichier d'environnement et démarrez la pile:
-
-```bash
-sudo apt install -y git jq
-git clone --branch "$(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)" https://github.com/langgenius/dify.git
-cd dify/docker
-cp .env.example .env
-docker compose up -d
-```
-
-Confirmez que tous les conteneurs sont actifs:
-
-```bash
-docker compose ps
-```
-
-## Configurer Dify
-
-Le conteneur nginx de la pile publie les ports 80 et 443. Ouvrez un navigateur et effectuez la
-configuration initiale de l'administrateur:
+Ouvrez un navigateur et terminez la configuration administrateur unique:
 
 ```text
 http://<your-vm-ip>/install
 ```
 
-Créez le compte administrateur, puis connectez-vous à `http://<your-vm-ip>/`. Depuis **Settings →
-Model Provider**, ajoutez un fournisseur de LLM (tel qu'OpenAI, Anthropic ou un point de terminaison
-Ollama auto-hébergé) avant de créer des applications.
+Creez le compte administrateur (adresse courriel et mot de passe de votre choix), puis
+connectez-vous a `http://<your-vm-ip>/`.
 
-Pour la production, modifiez `dify/docker/.env` afin de définir une URL publique et d'activer HTTPS.
-Dify peut terminer TLS via son nginx intégré (définissez `NGINX_HTTPS_ENABLED=true` et montez les
-certificats), ou vous pouvez l'exécuter derrière votre propre proxy inverse. Appliquez les
-modifications avec:
+### 4. Ajouter un fournisseur de modèle
 
-```bash
-cd ~/dify/docker
-docker compose down && docker compose up -d
-```
+Depuis **Settings → Model Provider**, ajoutez un fournisseur LLM (comme OpenAI, Anthropic ou un
+point de terminaison Ollama auto-hébergé) avant de creer des applications.
 
-## Ouvrir le pare-feu
+### 5. Consulter les identifiants génères
 
-L'instance n'autorise par défaut que SSH (port 22) en externe. Ouvrez les ports dont Dify a besoin
-et ajoutez-les aux règles réseau/sécurité de l'instance dans le portail:
+Les mots de passe internes de PostgreSQL et Redis sont écrits dans un fichier réservé à root:
 
 ```bash
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
+sudo cat /etc/dify/credentials.txt
 ```
 
-## Étapes suivantes
+## Gérer Dify
+
+Dify s'exécute comme pile Docker Compose dans `/opt/dify/docker`.
+
+```bash
+# Vérifier l'état
+cd /opt/dify/docker && docker compose ps
+
+# Redémarrer
+cd /opt/dify/docker && docker compose restart
+
+# Voir les journaux
+cd /opt/dify/docker && docker compose logs -f
+```
+
+Configuration d'environnement: `/opt/dify/docker/.env`. Les données persistantes sont stockées sous
+`/opt/dify/docker/volumes`.
+
+## Sécurité
+
+Les ports 80 et 443 sont ouverts sur l'interface réseau de la machine virtuelle. UFW est activé et
+autorise SSH (port 22), HTTP (80) et HTTPS (443).
+
+Dify sert HTTP en clair par défaut. **En production**, placez Dify derrière votre propre proxy
+inverse avec TLS, ou configurez HTTPS et l'URL publique dans `/opt/dify/docker/.env`. Appliquez les
+changements `.env` avec:
+
+```bash
+cd /opt/dify/docker && docker compose down && docker compose up -d
+```
+
+## Prochaines étapes
 
 - [Documentation Dify](https://docs.dify.ai/)
-- [Guide d'installation Dify](https://docs.dify.ai/en/getting-started/install-self-hosted/docker-compose)
+- [Guide d'auto-hébergément Dify](https://docs.dify.ai/en/getting-started/install-self-hosted/docker-compose)

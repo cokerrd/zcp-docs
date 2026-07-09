@@ -10,7 +10,7 @@ logic inside workflows.
 
 | Component      | Version       |
 | -------------- | ------------- |
-| n8n            | 1.121.0       |
+| n8n            | 2.29.8        |
 | Docker         | Latest stable |
 | Docker Compose | Latest stable |
 | Ubuntu         | 24.04 LTS     |

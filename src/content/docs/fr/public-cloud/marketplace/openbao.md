@@ -8,10 +8,21 @@ communautaire de HashiCorp Vault maintenu par la Linux Foundation, et il reste c
 API. La plupart des outils Vault fonctionnent donc sans modification. Vous l'exécutez comme un
 serveur, l'initialisez une seule fois, puis le descellez pour commencer à servir des secrets.
 
-:::note[Bientôt disponible]
+## Logiciels inclus
 
-Une image OpenBao préconfigurée arrive bientôt. Pour l'instant, déployez une instance **Ubuntu 24.04
-LTS** neuve depuis la marketplace et suivez les étapes ci-dessous pour installer OpenBao vous-même.
+| Composant | Version   |
+| --------- | --------- |
+| OpenBao   | 2.5.5     |
+| Ubuntu    | 24.04 LTS |
+
+OpenBao s'exécute comme service systemd avec le stockage Raft intégré. Chaque machine virtuelle
+génère son propre certificat TLS au premier démarrage, aucune clé privée n'est donc partagée entre
+les déploiements.
+
+:::caution
+
+Cette image déploie un seul nœud. Un cluster Raft à un nœud n'offre aucun basculement. Pour la haute
+disponibilité, provisionnez d'autres instances depuis ce modèle et joignez-les comme pairs Raft.
 
 :::
 
@@ -23,121 +34,112 @@ LTS** neuve depuis la marketplace et suivez les étapes ci-dessous pour installe
 | RAM       | 1 Go    | 2 Go       |
 | Stockage  | 10 Go   | 20 Go      |
 
-## Déployer l'instance de base
+## Variables d'environnement
 
-1. Dans le portail ZSoftly Cloud, ouvrez **Apps**, sélectionnez **OpenBao** et cliquez sur
-   **Deploy**, ou créez une instance **Ubuntu 24.04 LTS** depuis **Instances → Create**. Les deux
-   vous donnent une VM Ubuntu 24.04 propre.
-2. Choisissez un forfait conforme aux prérequis ci-dessus et sélectionnez votre région (YOW-1 ou
-   YUL-1).
-3. Lorsque l'instance est **Running**, connectez-vous en SSH:
+Vous pouvez définir ces variables au déploiement d'OpenBao depuis la Marketplace. Laissez-les vides
+pour utiliser l'adresse de la machine virtuelle et recevoir les secrets générés en clair.
+
+| Variable                     | Description                                                                            |
+| ---------------------------- | -------------------------------------------------------------------------------------- |
+| `OPENBAO_ADDR`               | Adresse inscrite dans le certificat TLS et dans l'adresse du cluster Raft              |
+| `OPENBAO_UNSEAL_PGP_KEYS`    | Clés publiques PGP séparées par des virgules. Chaque part de descellement est chiffrée |
+| `OPENBAO_ROOT_TOKEN_PGP_KEY` | Une clé publique PGP. Le jeton racine est renvoyé chiffré avec cette clé               |
+
+Chaque entrée PGP est soit `keybase:<username>`, soit une clé publique ASCII-armored encodée en
+base64. Ces variables ne permettent pas de choisir la valeur des secrets. OpenBao génère toujours
+lui-même le jeton racine et les clés de descellement. Elles déterminent uniquement à qui ces valeurs
+sont chiffrées.
+
+:::note
+
+Lorsque vous fournissez `OPENBAO_UNSEAL_PGP_KEYS`, le nombre de clés devient le nombre de parts et
+le seuil de descellement, et la machine virtuelle ne peut pas se desceller elle-même, car elle ne
+détient aucune clé privée. Déchiffrez votre part localement et exécutez `bao operator unseal`
+vous-même.
+
+:::
+
+## Démarrage
+
+### 1. Connectez-vous à votre VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Mettez le système à jour:
+### 2. Attendez la configuration au premier démarrage
+
+Au premier démarrage, un script génère un certificat TLS pour cette VM, démarre OpenBao,
+l'initialise avec 5 parts de clé et un seuil de 3, puis le descelle. Suivez la progression:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u openbao-first-boot.service -f
 ```
 
-## Installer OpenBao
+### 3. Récupérez les clés de descellement et le jeton racine
 
-OpenBao publie un dépôt APT officiel. Ajoutez sa clé de signature et sa source, puis installez le
-paquet `openbao`.
+Ils sont écrits dans un fichier réservé à root:
 
 ```bash
-sudo apt install -y gpg wget
-sudo mkdir -p /usr/share/keyrings
-wget -qO- https://pkg.openbao.org/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/openbao-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/openbao-keyring.gpg] https://pkg.openbao.org/deb stable main" | sudo tee /etc/apt/sources.list.d/openbao.list
+sudo cat /etc/openbao/credentials.txt
 ```
 
-Installez OpenBao:
+:::danger
+
+Copiez les clés de descellement et le jeton racine en lieu sûr, puis retirez-les de la VM. Quiconque
+détient le jeton racine contrôle entièrement vos secrets, et la perte des clés de descellement rend
+les données irrécupérables.
+
+:::
+
+### 4. Utilisez l'API
 
 ```bash
-sudo apt update
-sudo apt install -y openbao
+export BAO_ADDR=https://<your-vm-ip>:8200
+export BAO_SKIP_VERIFY=true
+bao status
 ```
 
-Le paquet installe la CLI `bao`, un utilisateur `openbao` dédié, un service systemd et un fichier de
-configuration par défaut dans `/etc/openbao/openbao.hcl`.
+Le certificat est auto-signé. Faites-lui confiance ou définissez `BAO_SKIP_VERIFY` pendant vos
+tests. Remplacez-le par votre propre certificat en production.
 
-## Configurer OpenBao
-
-Modifiez `/etc/openbao/openbao.hcl` pour utiliser le stockage intégré (Raft) et écouter sur toutes
-les interfaces. Ce listener de démarrage rapide désactive TLS afin que vous puissiez vérifier
-l'installation. Consultez la note TLS ci-dessous avant de l'exposer.
+## Gérer OpenBao
 
 ```bash
-sudo tee /etc/openbao/openbao.hcl >/dev/null <<'EOF'
-ui = true
+# Vérifier l'état
+sudo systemctl status openbao
 
-storage "raft" {
-  path    = "/opt/openbao/data"
-  node_id = "openbao-1"
-}
+# Redémarrer
+sudo systemctl restart openbao
 
-listener "tcp" {
-  address     = "0.0.0.0:8200"
-  tls_disable = true
-}
-
-api_addr     = "http://127.0.0.1:8200"
-cluster_addr = "https://127.0.0.1:8201"
-EOF
-
-sudo mkdir -p /opt/openbao/data
-sudo chown -R openbao:openbao /opt/openbao
+# Consulter les journaux
+sudo journalctl -u openbao -f
 ```
 
-Activez et démarrez le service, puis pointez la CLI vers l'API locale:
+La configuration se trouve dans `/etc/openbao`, les données Raft dans `/opt/openbao/data`, et le
+certificat propre à la VM dans `/etc/openbao/tls`.
 
-```bash
-sudo systemctl enable --now openbao
-export BAO_ADDR='http://127.0.0.1:8200'
-```
+## Sécurité
 
-Initialisez OpenBao une seule fois. Cette commande affiche les clés de descellement et le jeton root
-initial. Conservez-les en lieu sûr. Ils ne peuvent pas être récupérés:
+Le port 8200 n'est ouvert qu'après que le service a répondu à un contrôle de santé en TLS. UFW est
+activé et autorise ce port ainsi que SSH (port 22).
 
-```bash
-bao operator init
-```
-
-OpenBao démarre **scellé**. Descellez-le en fournissant le seuil de clés de descellement (trois par
-défaut), en exécutant la commande une fois par clé:
+OpenBao se rescelle à chaque redémarrage du service. Descellez-le de nouveau avec trois de vos
+parts:
 
 ```bash
 bao operator unseal
 ```
 
-Une fois descellé, connectez-vous avec le jeton root pour commencer à gérer les secrets:
+**Pour restreindre l'accès à une adresse IP précise:**
 
 ```bash
-bao login
+sudo ufw delete allow 8200/tcp
+sudo ufw allow from <trusted-ip> to any port 8200
 ```
 
-:::caution
-
-Le listener de démarrage rapide ci-dessus fonctionne sans TLS. Avant d'exposer OpenBao au-delà de
-cet hôte, activez TLS dans le bloc `listener "tcp"` (définissez `tls_cert_file` et `tls_key_file`,
-supprimez `tls_disable`) ou placez-le derrière un reverse proxy qui termine HTTPS. Ne servez jamais
-de secrets de production en HTTP non chiffré.
-
-:::
-
-## Ouvrir le pare-feu
-
-L'instance n'autorise que SSH (port 22) en externe par défaut. Ouvrez le port de l'API qu'OpenBao
-sert et ajoutez-le aux règles réseau/sécurité de l'instance dans le portail:
-
-```bash
-sudo ufw allow 8200/tcp
-```
-
-## Étapes suivantes
+## Prochaines étapes
 
 - [Documentation OpenBao](https://openbao.org/docs/)
-- [Guide d'installation d'OpenBao](https://openbao.org/docs/install/)
+- [Concepts de scellement et descellement](https://openbao.org/docs/concepts/seal/)
+- [Stockage Raft intégré](https://openbao.org/docs/internals/integrated-storage/)

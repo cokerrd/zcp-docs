@@ -7,12 +7,15 @@ such as Llama, Qwen, Gemma, and DeepSeek on your own hardware. It exposes a simp
 command-line interface, so you can run inference privately without sending data to a third-party
 provider.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Ollama image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance from
-the marketplace and follow the steps below to install Ollama yourself.
+| Component | Version   |
+| --------- | --------- |
+| Ollama    | 0.31.2    |
+| Ubuntu    | 24.04 LTS |
 
-:::
+No models are pre-loaded. You pull the models you need on first boot (see
+[Getting started](#getting-started)).
 
 ## Requirements
 
@@ -51,64 +54,43 @@ enough RAM, and their root disk holds the model files. See
 
 Adjust from there:
 
-- **Same RAM, lower cost**: the memory-optimized family gives the same RAM with fewer vCPUs, good
-  for occasional use. Use `cim1.*` in YOW-1 or `cam2.*` in YUL-1 (for example `cim1.xl` or `cam2.xl`
-  for 64 GB).
-- **Faster responses**: add vCPUs with the cpu-optimized family (`cac1.*` in YOW-1, `cac2.*` in
+- **Same RAM, lower cost**: the memory-focused family gives the same RAM with fewer vCPUs, good for
+  occasional use. Use `cim1.*` in YOW-1 or `cam2.*` in YUL-1 (for example `cim1.xl` or `cam2.xl` for
+  64 GB).
+- **Faster responses**: add vCPUs with the CPU-focused family (`cac1.*` in YOW-1, `cac2.*` in
   YUL-1), or choose a GPU plan for 13B and larger models.
 - **Several large models on one instance**: attach a
   [block storage volume](/public-cloud/compute/settings/block-storage/) instead of moving to a
   bigger plan.
 
-## Deploy the base instance
+## Getting started
 
-1. In the ZSoftly Cloud portal, open **Apps** and switch to the **Marketplace** tab. It opens on
-   **Featured** by default, so select **Marketplace** next to it. Pick your region (YOW-1 or YUL-1),
-   search for **Ubuntu 24.04 LTS**, and click **Deploy**. You can also create the instance from
-   **Instances → Create**. Either way you get a clean Ubuntu 24.04 VM.
-
-   ![The Marketplace tab in the ZSoftly Cloud portal, showing the region selector, category list, search box, and Deploy buttons](../../../../assets/marketplace/deploy-marketplace-tab.webp)
-
-   ![Searching the Marketplace for an app, with the search box filtering the catalog down to a matching Deploy card](../../../../assets/marketplace/deploy-marketplace-search.webp)
-
-2. Choose a plan that meets the requirements above.
-
-3. When the instance is **Running**, connect over SSH:
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script starts the service. This takes under a minute. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u ollama-first-boot.service -f
 ```
 
-## Install Ollama
+The login message (MOTD) confirms when Ollama is ready.
 
-Run the official install script. It installs the `ollama` binary, creates a dedicated `ollama`
-system user, and sets up a systemd service that starts automatically:
-
-```bash
-curl -fsSL https://ollama.com/install.sh | sh
-```
-
-Confirm the service is running and check the version:
-
-```bash
-systemctl status ollama --no-pager
-ollama --version
-```
-
-Pull a model and run a quick prompt:
+### 3. Pull a model and run a prompt
 
 ```bash
 ollama pull llama3.2
 ollama run llama3.2 "Hello, what can you do?"
 ```
 
-The API listens on `127.0.0.1:11434` by default. Test it locally:
+### 4. Use the API
+
+The API listens on port `11434`. Test it from the VM:
 
 ```bash
 curl http://localhost:11434/api/generate -d '{
@@ -118,42 +100,54 @@ curl http://localhost:11434/api/generate -d '{
 }'
 ```
 
-## Configure Ollama
+From another host, replace `localhost` with the VM's IP.
 
-By default Ollama binds only to localhost. To accept connections from other hosts, set `OLLAMA_HOST`
-on the systemd service:
+## Managing Ollama
 
-```bash
-sudo systemctl edit ollama
-```
-
-Add the following override, then save:
-
-```ini
-[Service]
-Environment="OLLAMA_HOST=0.0.0.0:11434"
-```
-
-Reload and restart:
+Ollama runs as a systemd service.
 
 ```bash
-sudo systemctl daemon-reload
+# Check status
+systemctl status ollama
+
+# Restart
 sudo systemctl restart ollama
+
+# View logs
+sudo journalctl -u ollama -f
+
+# List, pull, and remove models
+ollama list
+ollama pull qwen2.5
+ollama rm qwen2.5
 ```
 
-Ollama has no built-in authentication. If you expose port 11434, place it behind a reverse proxy
-that enforces TLS and authentication, or restrict access to trusted IPs only.
+Models are stored in `/usr/share/ollama/.ollama/models`. A summary of URLs and commands is written
+to `/etc/ollama/info.txt`.
 
-## Open the firewall
+## Security
 
-The instance allows only SSH (port 22) externally by default. Open the port Ollama needs and add it
-to the instance's network/security rules in the portal:
+Port 11434 is open on the VM's network interface, and Ollama has **no built-in authentication**. UFW
+is enabled and allows SSH (port 22) and the Ollama API (port 11434).
+
+**To restrict the API to a specific IP:**
 
 ```bash
-sudo ufw allow 11434/tcp
+sudo ufw delete allow 11434/tcp
+sudo ufw allow from <trusted-ip> to any port 11434
 ```
+
+**To reach the API without opening the firewall, use an SSH tunnel:**
+
+```bash
+# Run this on your local machine
+ssh -L 11434:localhost:11434 ubuntu@<your-vm-ip>
+```
+
+**For production use**, place Ollama behind a reverse proxy that enforces TLS and authentication, or
+restrict access to trusted IPs only.
 
 ## Next steps
 
 - [Ollama documentation](https://docs.ollama.com/)
-- [Ollama installation guide](https://docs.ollama.com/linux)
+- [Ollama API reference](https://docs.ollama.com/api)

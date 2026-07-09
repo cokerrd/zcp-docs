@@ -6,12 +6,13 @@ Jenkins is an open-source automation server for building, testing, and deploying
 pipeline-as-code model and large plugin ecosystem let you wire up continuous integration and
 continuous delivery for almost any toolchain. The web UI runs on port 8080.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Jenkins image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance from
-the marketplace and follow the steps below to install Jenkins yourself.
-
-:::
+| Component | Version       |
+| --------- | ------------- |
+| Jenkins   | 2.555.3 (LTS) |
+| OpenJDK   | 21 (JRE)      |
+| Ubuntu    | 24.04 LTS     |
 
 ## Requirements
 
@@ -21,80 +22,93 @@ the marketplace and follow the steps below to install Jenkins yourself.
 | RAM      | 2 GB    | 4 GB        |
 | Storage  | 20 GB   | 50 GB       |
 
-## Deploy the base instance
+## Environment variables
 
-1. In the ZSoftly Cloud portal, open **Apps** and switch to the **Marketplace** tab, search for
-   **Ubuntu 24.04 LTS**, and click **Deploy**. You can also create the instance from **Instances →
-   Create**. Either way you get a clean Ubuntu 24.04 VM.
-2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
-3. When the instance is **Running**, connect over SSH:
-
-```bash
-ssh ubuntu@<your-vm-ip>
-```
-
-4. Update the system:
-
-```bash
-sudo apt update && sudo apt upgrade -y
-```
-
-## Install Jenkins
-
-Jenkins runs on the JVM. Install a supported OpenJDK (17 or 21) first:
-
-```bash
-sudo apt install -y fontconfig openjdk-21-jre
-java -version
-```
-
-Add the Jenkins LTS apt repository signing key and source list:
-
-```bash
-sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
-  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-
-echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" \
-  | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
-```
-
-Install Jenkins:
-
-```bash
-sudo apt update
-sudo apt install -y jenkins
-```
-
-The package installs a systemd service that starts on boot. Confirm it is running:
-
-```bash
-sudo systemctl enable --now jenkins
-sudo systemctl status jenkins
-```
-
-## Configure Jenkins
-
-Jenkins listens on port 8080. Open `http://<your-vm-ip>:8080` in a browser to start the setup
-wizard. The wizard first asks for the auto-generated setup password. Print it from the server:
+This image takes no deploy-time variables. It creates no shared administrator account. Jenkins
+generates a unique unlock password on every VM. Read it after first boot, then create your own
+administrator in the setup wizard:
 
 ```bash
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 
-Paste the value, install the suggested plugins, and create your first administrator account. For a
-production setup, put Jenkins behind a reverse proxy such as nginx with a TLS certificate, then
-serve the UI over HTTPS instead of exposing port 8080 directly.
+## Getting started
 
-## Open the firewall
-
-The instance allows only SSH (port 22) externally by default. Open the port(s) Jenkins needs and add
-them to the instance's network/security rules in the portal:
+### 1. Connect to your VM
 
 ```bash
-sudo ufw allow 8080/tcp
+ssh ubuntu@<your-vm-ip>
 ```
+
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script starts Jenkins, which generates a unique initial admin password
+for this instance. This can take a few minutes on the first start. Track progress:
+
+```bash
+journalctl -u jenkins-first-boot.service -f
+```
+
+The login message (MOTD) confirms when Jenkins is ready.
+
+### 3. Retrieve the initial admin password
+
+```bash
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+
+### 4. Complete the setup wizard
+
+Open a browser and navigate to:
+
+```text
+http://<your-vm-ip>:8080
+```
+
+Paste the initial admin password, install the suggested plugins, and create your first administrator
+account.
+
+## Managing Jenkins
+
+Jenkins runs as a systemd service.
+
+```bash
+# Check status
+systemctl status jenkins
+
+# Restart
+sudo systemctl restart jenkins
+
+# View logs
+sudo journalctl -u jenkins -f
+```
+
+Jenkins home (jobs, plugins, and configuration): `/var/lib/jenkins`.
+
+## Security
+
+Port 8080 is open on the VM's network interface. UFW is enabled and allows SSH (port 22) and Jenkins
+(port 8080). No build-agent port (50000) is opened by default.
+
+**To restrict the UI to a specific IP:**
+
+```bash
+sudo ufw delete allow 8080/tcp
+sudo ufw allow from <trusted-ip> to any port 8080
+```
+
+**To reach the UI without opening the firewall, use an SSH tunnel:**
+
+```bash
+# Run this on your local machine
+ssh -L 8080:localhost:8080 ubuntu@<your-vm-ip>
+```
+
+**For production use**, place Jenkins behind a reverse proxy such as nginx with a TLS certificate
+and serve the UI over HTTPS instead of exposing port 8080 directly.
 
 ## Next steps
 
 - [Jenkins documentation](https://www.jenkins.io/doc/)
-- [Jenkins installation guide](https://www.jenkins.io/doc/book/installing/linux/)
+- [Managing plugins](https://www.jenkins.io/doc/book/managing/plugins/)
+- [Pipeline reference](https://www.jenkins.io/doc/book/pipeline/)

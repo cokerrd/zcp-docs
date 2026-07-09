@@ -7,12 +7,15 @@ configured targets at intervals, stores them in a time-series database, and eval
 trigger alerts. It exposes a query interface and built-in expression browser on port 9090, and pairs
 well with Grafana for dashboards.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Prometheus image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance
-from the marketplace and follow the steps below to install Prometheus yourself.
+| Component  | Version   |
+| ---------- | --------- |
+| Prometheus | 3.13.0    |
+| Ubuntu     | 24.04 LTS |
 
-:::
+The image ships the Prometheus server only. Add exporters (such as `node_exporter`) as scrape
+targets, and run Alertmanager separately as its own component to handle alert routing.
 
 ## Requirements
 
@@ -22,140 +25,90 @@ from the marketplace and follow the steps below to install Prometheus yourself.
 | RAM      | 2 GB    | 4 GB        |
 | Storage  | 20 GB   | 50 GB       |
 
-## Deploy the base instance
+Storage requirements grow with the number of series and the retention period.
 
-1. In the ZSoftly Cloud portal, open **Apps** and switch to the **Marketplace** tab. It opens on
-   **Featured** by default, so select **Marketplace** next to it. Pick your region (YOW-1 or YUL-1),
-   search for **Ubuntu 24.04 LTS**, and click **Deploy**. You can also create the instance from
-   **Instances → Create**. Either way you get a clean Ubuntu 24.04 VM.
+## Getting started
 
-   ![The Marketplace tab in the ZSoftly Cloud portal, showing the region selector, category list, search box, and Deploy buttons](../../../../assets/marketplace/deploy-marketplace-tab.webp)
-
-   ![Searching the Marketplace for an app, with the search box filtering the catalog down to a matching Deploy card](../../../../assets/marketplace/deploy-marketplace-search.webp)
-
-2. Choose a plan that meets the requirements above.
-
-3. When the instance is **Running**, connect over SSH:
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script starts the service. This takes under a minute. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u prometheus-first-boot.service -f
 ```
 
-## Install Prometheus
+The login message (MOTD) confirms when Prometheus is ready.
 
-Install Prometheus from the official binary release and run it as a systemd service. This is the
-common production method and gives you full control over the version.
+### 3. Access the Prometheus UI
 
-Create a dedicated, unprivileged system user and the config and data directories:
+Open a browser and navigate to the expression browser and built-in UI:
 
-```bash
-sudo useradd --no-create-home --shell /bin/false prometheus
-sudo mkdir -p /etc/prometheus /var/lib/prometheus
+```text
+http://<your-vm-ip>:9090
 ```
 
-Download the latest release from prometheus.io and extract it. Check the
-[releases page](https://prometheus.io/download/) for the current version and update it below:
+### 4. Add scrape targets
+
+Edit the scrape configuration, validate it, and reload without a restart:
 
 ```bash
-PROM_VERSION=3.4.1
-cd /tmp
-curl -fsSLO https://github.com/prometheus/prometheus/releases/download/v${PROM_VERSION}/prometheus-${PROM_VERSION}.linux-amd64.tar.gz
-tar -xzf prometheus-${PROM_VERSION}.linux-amd64.tar.gz
-cd prometheus-${PROM_VERSION}.linux-amd64
-```
-
-Install the binaries and supporting files, then set ownership to the `prometheus` user:
-
-```bash
-sudo cp prometheus promtool /usr/local/bin/
-sudo cp -r consoles console_libraries /etc/prometheus/
-sudo cp prometheus.yml /etc/prometheus/prometheus.yml
-sudo chown -R prometheus:prometheus /usr/local/bin/prometheus /usr/local/bin/promtool /etc/prometheus /var/lib/prometheus
-```
-
-Write a minimal scrape configuration. The default scrapes Prometheus itself on port 9090. Add your
-own targets under `scrape_configs`:
-
-```bash
-sudo tee /etc/prometheus/prometheus.yml > /dev/null <<'EOF'
-global:
-  scrape_interval: 15s
-  evaluation_interval: 15s
-
-scrape_configs:
-  - job_name: prometheus
-    static_configs:
-      - targets: ["localhost:9090"]
-EOF
-sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
-```
-
-Create the systemd service unit:
-
-```bash
-sudo tee /etc/systemd/system/prometheus.service > /dev/null <<'EOF'
-[Unit]
-Description=Prometheus
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-User=prometheus
-Group=prometheus
-Type=simple
-ExecStart=/usr/local/bin/prometheus \
-  --config.file=/etc/prometheus/prometheus.yml \
-  --storage.tsdb.path=/var/lib/prometheus/ \
-  --web.console.templates=/etc/prometheus/consoles \
-  --web.console.libraries=/etc/prometheus/console_libraries \
-  --web.listen-address=0.0.0.0:9090
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-EOF
-```
-
-Reload systemd, then enable and start the service:
-
-```bash
-sudo systemctl daemon-reload
-sudo systemctl enable --now prometheus
-sudo systemctl status prometheus
-```
-
-## Configure Prometheus
-
-1. Open `http://<your-vm-ip>:9090` in a browser to reach the Prometheus expression browser and
-   built-in UI.
-2. Add scrape targets by editing `/etc/prometheus/prometheus.yml` (for example, a `node_exporter`
-   running on a host), then validate and reload:
-
-```bash
+sudo nano /etc/prometheus/prometheus.yml
 promtool check config /etc/prometheus/prometheus.yml
 sudo systemctl reload prometheus
 ```
 
-3. Prometheus has no authentication of its own. For production, place it behind a reverse proxy such
-   as Nginx or Caddy to add TLS and access control on port 443, and restrict direct access to
-   port 9090.
+## Managing Prometheus
 
-## Open the firewall
-
-The instance allows only SSH (port 22) externally by default. Open the port Prometheus needs and add
-it to the instance's network/security rules in the portal:
+Prometheus runs as a systemd service under a dedicated `prometheus` user.
 
 ```bash
-sudo ufw allow 9090/tcp
+# Check status
+systemctl status prometheus
+
+# Restart
+sudo systemctl restart prometheus
+
+# Reload the config without restarting
+sudo systemctl reload prometheus
+
+# View logs
+sudo journalctl -u prometheus -f
 ```
+
+| Path                             | Purpose                     |
+| -------------------------------- | --------------------------- |
+| `/etc/prometheus/prometheus.yml` | Main configuration          |
+| `/var/lib/prometheus/`           | Time-series database (TSDB) |
+
+## Security
+
+Port 9090 is open on the VM's network interface, and Prometheus has **no built-in authentication**.
+UFW is enabled and allows SSH (port 22) and Prometheus (port 9090).
+
+**To restrict the UI to a specific IP:**
+
+```bash
+sudo ufw delete allow 9090/tcp
+sudo ufw allow from <trusted-ip> to any port 9090
+```
+
+**To reach the UI without opening the firewall, use an SSH tunnel:**
+
+```bash
+# Run this on your local machine
+ssh -L 9090:localhost:9090 ubuntu@<your-vm-ip>
+```
+
+**For production use**, place Prometheus behind a reverse proxy such as Nginx or Caddy to add TLS
+and access control on port 443, and restrict direct access to port 9090.
 
 ## Next steps
 
 - [Prometheus documentation](https://prometheus.io/docs/introduction/overview/)
-- [Prometheus installation guide](https://prometheus.io/docs/prometheus/latest/installation/)
+- [Configuration reference](https://prometheus.io/docs/prometheus/latest/configuration/configuration/)

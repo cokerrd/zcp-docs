@@ -1,5 +1,5 @@
 ---
-title: Elasticsearch 8
+title: Elasticsearch 9
 ---
 
 Elasticsearch est un moteur distribué de recherche et d'analyse RESTful basé sur Apache Lucene. Il
@@ -10,7 +10,7 @@ l'analyse de données en temps réel.
 
 | Composant     | Version   |
 | ------------- | --------- |
-| Elasticsearch | 8.x       |
+| Elasticsearch | 9.x       |
 | Ubuntu        | 24.04 LTS |
 
 ## Variables d'environnement
@@ -40,7 +40,7 @@ Au premier démarrage, un script de configuration s'exécute automatiquement. Il
 - réinitialise le mot de passe du superutilisateur `elastic` avec une valeur générée aléatoirement;
 - enregistre le mot de passe dans `/etc/elasticsearch/elastic-password.txt`.
 
-Elasticsearch 8 prend de 60 à 90 secondes pour démarrer avant que la réinitialisation du mot de
+Elasticsearch 9 prend de 60 à 90 secondes pour démarrer avant que la réinitialisation du mot de
 passe puisse s'exécuter. La durée totale du premier démarrage est d'environ 2 à 3 minutes.
 
 Suivez la progression:
@@ -60,7 +60,7 @@ Ce fichier contient le mot de passe du superutilisateur `elastic`. Il est lisibl
 
 ### 4. Connectez-vous à Elasticsearch
 
-Elasticsearch 8 utilise HTTPS avec un certificat autosigné par défaut. Utilisez `-k` pour ignorer la
+Elasticsearch 9 utilise HTTPS avec un certificat autosigné par défaut. Utilisez `-k` pour ignorer la
 vérification du certificat lors des connexions locales, ou utilisez le certificat CA situé à
 `/etc/elasticsearch/certs/http_ca.crt`.
 
@@ -133,7 +133,7 @@ curl -k -u elastic:"<password>" https://localhost:9200
 
 :::caution
 
-Elasticsearch 8 active la sécurité par défaut. L'utilisateur `elastic` dispose d'un accès complet au
+Elasticsearch 9 active la sécurité par défaut. L'utilisateur `elastic` dispose d'un accès complet au
 cluster. Créez des utilisateurs à portée de rôle pour chaque application.
 
 :::

@@ -1,5 +1,5 @@
 ---
-title: MariaDB 11.4
+title: MariaDB 11.8
 ---
 
 MariaDB est un système libre de gestion de bases de données relationnelles et un remplacement direct
@@ -10,7 +10,7 @@ le stockage de données généraliste.
 
 | Composant      | Version      |
 | -------------- | ------------ |
-| MariaDB Server | 11.4.x (LTS) |
+| MariaDB Server | 11.8.x (LTS) |
 | Ubuntu         | 24.04 LTS    |
 
 ## Variables d'environnement

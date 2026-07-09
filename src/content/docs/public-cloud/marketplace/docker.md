@@ -14,6 +14,14 @@ pre-installed, ready for you to deploy any containerised workload.
 | Docker Compose plugin | Latest stable |
 | Ubuntu                | 24.04 LTS     |
 
+:::note
+
+Docker Engine 29 stores images in the containerd image store on a fresh install. Images you pull or
+build are held there rather than in the classic graph driver, which changes the output of some
+`docker image` commands and enables multi-platform images by default.
+
+:::
+
 ## Getting started
 
 ### 1. Connect to your VM

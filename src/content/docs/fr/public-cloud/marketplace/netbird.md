@@ -11,7 +11,7 @@ client NetBird préinstallé, prêt à joindre votre réseau.
 
 | Composant | Version   |
 | --------- | --------- |
-| NetBird   | 0.71.4    |
+| NetBird   | 0.74.3    |
 | Ubuntu    | 24.04 LTS |
 
 ## Variables d'environnement
@@ -20,9 +20,10 @@ Vous pouvez éventuellement fournir une clé de configuration NetBird lors du d�
 marketplace. Si elle est définie, la VM rejoint automatiquement votre réseau NetBird au premier
 démarrage ; sinon, connectez-vous manuellement avec `netbird up` après le déploiement.
 
-| Variable       | Description                                                            |
-| -------------- | ---------------------------------------------------------------------- |
-| `NB_SETUP_KEY` | Clé de configuration NetBird pour rejoindre votre réseau au démarrage. |
+| Variable            | Description                                                             |
+| ------------------- | ----------------------------------------------------------------------- |
+| `NB_SETUP_KEY`      | Clé de configuration NetBird pour rejoindre votre réseau au démarrage.  |
+| `NB_MANAGEMENT_URL` | Serveur de gestion NetBird auto-hébergé. Omettez-le pour NetBird cloud. |
 
 ## Bien démarrer
 

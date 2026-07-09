@@ -1,5 +1,5 @@
 ---
-title: MariaDB 11.4
+title: MariaDB 11.8
 ---
 
 MariaDB is an open-source relational database management system and a drop-in replacement for MySQL.
@@ -10,7 +10,7 @@ storage.
 
 | Component      | Version      |
 | -------------- | ------------ |
-| MariaDB Server | 11.4.x (LTS) |
+| MariaDB Server | 11.8.x (LTS) |
 | Ubuntu         | 24.04 LTS    |
 
 ## Environment variables

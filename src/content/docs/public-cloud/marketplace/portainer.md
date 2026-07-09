@@ -4,14 +4,15 @@ title: Portainer
 
 Portainer is a lightweight management UI for Docker and Kubernetes environments. It lets you deploy
 containers, manage images, volumes, and networks, and monitor your stacks from a single web console.
-The UI runs on port 9443 over HTTPS (port 9000 for plain HTTP).
+The UI runs on port 9443 over HTTPS.
 
-:::note[Coming soon]
+## Software included
 
-A pre-built Portainer image is on its way. For now, deploy a fresh **Ubuntu 24.04 LTS** instance
-from the marketplace and follow the steps below to install Portainer yourself.
-
-:::
+| Component    | Version       |
+| ------------ | ------------- |
+| Portainer CE | 2.39.4        |
+| Docker       | Latest stable |
+| Ubuntu       | 24.04 LTS     |
 
 ## Requirements
 
@@ -21,86 +22,97 @@ from the marketplace and follow the steps below to install Portainer yourself.
 | RAM      | 1 GB    | 2 GB        |
 | Storage  | 20 GB   | 40 GB       |
 
-## Deploy the base instance
+## Environment variables
 
-1. In the ZSoftly Cloud portal, open **Apps** and switch to the **Marketplace** tab, search for
-   **Ubuntu 24.04 LTS**, and click **Deploy**. You can also create the instance from **Instances →
-   Create**. Either way you get a clean Ubuntu 24.04 VM.
-2. Choose a plan that meets the requirements above and pick your region (YOW-1 or YUL-1).
-3. When the instance is **Running**, connect over SSH:
+This image takes no deploy-time variables. It creates no shared administrator account. Open the
+Portainer UI after first boot and create the first administrator there.
+
+If the first-user setup session expires before you finish, restart Portainer and reload the UI:
+
+```bash
+cd /opt/portainer && docker compose restart portainer
+```
+
+## Getting started
+
+### 1. Connect to your VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Update the system:
+### 2. Wait for first-boot configuration
+
+On the first boot, a setup script starts the Portainer container with Docker Compose. This takes
+under a minute. Track progress:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u portainer-first-boot.service -f
 ```
 
-## Install Portainer
+The login message (MOTD) confirms when Portainer is ready.
 
-Portainer runs as a Docker container, so install Docker Engine first using the official convenience
-script:
+### 3. Create the administrator account
 
-```bash
-curl -fsSL https://get.docker.com | sudo sh
+Open a browser and navigate to:
+
+```text
+https://<your-vm-ip>:9443
 ```
-
-Confirm Docker is running:
-
-```bash
-docker version
-```
-
-Create a volume for Portainer's persistent data:
-
-```bash
-docker volume create portainer_data
-```
-
-Run the Portainer CE server container:
-
-```bash
-sudo docker run -d \
-  -p 8000:8000 \
-  -p 9443:9443 \
-  --name portainer \
-  --restart=always \
-  -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
-  portainer/portainer-ce:lts
-```
-
-Confirm the container is running:
-
-```bash
-docker ps
-```
-
-## Configure Portainer
-
-Portainer serves the UI on port 9443 over HTTPS with a self-signed certificate. Open
-`https://<your-vm-ip>:9443` in a browser within a few minutes of starting the container. For
-security, Portainer locks initial setup if no admin account is created shortly after first boot.
 
 On first load, create your administrator account by setting a username and a strong password.
-Portainer then connects to the local Docker environment through the mounted socket, so your
-containers, images, and volumes appear immediately. The self-signed certificate triggers a browser
-warning. For a production setup, put Portainer behind a reverse proxy such as nginx with a trusted
-TLS certificate.
+Portainer connects to the local Docker environment through the mounted socket, so your containers,
+images, and volumes appear immediately.
 
-## Open the firewall
+:::caution
 
-The instance allows only SSH (port 22) externally by default. Open the port(s) Portainer needs and
-add them to the instance's network/security rules in the portal:
+Portainer locks initial setup if no admin account is created shortly after the container starts. If
+the setup window expires, restart Portainer and reload the page:
 
 ```bash
-sudo ufw allow 9443/tcp
+cd /opt/portainer && docker compose restart
 ```
+
+The UI uses a self-signed certificate, so your browser shows a security warning. Accept the
+exception to proceed.
+
+:::
+
+## Managing Portainer
+
+Portainer runs as a Docker Compose stack in `/opt/portainer`.
+
+```bash
+# Check status
+cd /opt/portainer && docker compose ps
+
+# Restart
+cd /opt/portainer && docker compose restart
+
+# View logs
+cd /opt/portainer && docker compose logs -f
+```
+
+Portainer's persistent data is stored in `/var/lib/portainer`. A summary of URLs and paths is
+written to `/etc/portainer/info.txt`.
+
+## Security
+
+Port 9443 is open on the VM's network interface. UFW is enabled and allows SSH (port 22) and
+Portainer (port 9443). Ports 8000, 9000, and the Docker API are not opened by default.
+
+Portainer bind-mounts the host Docker socket, giving it full control of the VM's Docker daemon.
+Restrict access to port 9443:
+
+```bash
+sudo ufw delete allow 9443/tcp
+sudo ufw allow from <trusted-ip> to any port 9443
+```
+
+**For production use**, place Portainer behind a reverse proxy such as nginx with a trusted TLS
+certificate.
 
 ## Next steps
 
 - [Portainer documentation](https://docs.portainer.io/)
-- [Portainer installation guide](https://docs.portainer.io/start/install-ce/server/docker/linux)
+- [Managing Docker environments](https://docs.portainer.io/user/docker)

@@ -11,7 +11,7 @@ ready to join your network.
 
 | Component | Version   |
 | --------- | --------- |
-| NetBird   | 0.71.4    |
+| NetBird   | 0.74.3    |
 | Ubuntu    | 24.04 LTS |
 
 ## Environment variables
@@ -20,9 +20,10 @@ You can optionally provide a NetBird setup key when deploying from the marketpla
 joins your NetBird network automatically at first boot; if left blank, connect manually with
 `netbird up` after deploy.
 
-| Variable       | Description                                          |
-| -------------- | ---------------------------------------------------- |
-| `NB_SETUP_KEY` | NetBird setup key used to join your network on boot. |
+| Variable            | Description                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| `NB_SETUP_KEY`      | NetBird setup key used to join your network on boot.           |
+| `NB_MANAGEMENT_URL` | Self-hosted NetBird management server. Omit for NetBird cloud. |
 
 ## Getting started
 

@@ -14,6 +14,15 @@ Compose préinstallés, prêt pour déployer toute charge de travail conteneuris
 | Plugin Docker Compose | Dernière stable |
 | Ubuntu                | 24.04 LTS       |
 
+:::note
+
+Docker Engine 29 stocke les images dans le magasin d'images containerd lors d'une installation
+neuve. Les images que vous téléchargez ou construisez y sont conservées plutôt que dans l'ancien
+pilote de stockage, ce qui modifie la sortie de certaines commandes `docker image` et active les
+images multiplateformes par défaut.
+
+:::
+
 ## Bien démarrer
 
 ### 1. Connectez-vous à votre VM

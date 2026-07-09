@@ -1,5 +1,5 @@
 ---
-title: Valkey 9.0
+title: Valkey 9.1
 ---
 
 Valkey est un magasin de données en mémoire libre et haute performance, compatible avec Redis. Il
@@ -10,7 +10,7 @@ réel, la messagerie pub/sub et les files de tâches.
 
 | Composant | Version   |
 | --------- | --------- |
-| Valkey    | 9.0.x     |
+| Valkey    | 9.1.x     |
 | Ubuntu    | 24.04 LTS |
 
 ## Variables d'environnement
