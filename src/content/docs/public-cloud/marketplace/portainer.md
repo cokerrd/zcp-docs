@@ -24,12 +24,14 @@ The UI runs on port 9443 over HTTPS.
 
 ## Environment variables
 
-You can optionally set this when deploying Portainer from the marketplace. Leave it blank to create
-the admin account in the UI on first visit.
+This image takes no deploy-time variables. It creates no shared administrator account. Open the
+Portainer UI after first boot and create the first administrator there.
 
-| Variable                   | Description                            |
-| -------------------------- | -------------------------------------- |
-| `PORTAINER_ADMIN_PASSWORD` | Password for the initial admin account |
+If the first-user setup session expires before you finish, restart Portainer and reload the UI:
+
+```bash
+cd /opt/portainer && docker compose restart portainer
+```
 
 ## Getting started
 

@@ -1,5 +1,5 @@
 ---
-title: Elasticsearch 8
+title: Elasticsearch 9
 ---
 
 Elasticsearch is a distributed, RESTful search and analytics engine built on Apache Lucene. It is
@@ -39,7 +39,7 @@ On the first boot, a setup script runs automatically. It:
 - Resets the `elastic` superuser password to a randomly generated value
 - Saves the password to `/etc/elasticsearch/elastic-password.txt`
 
-Elasticsearch 8 takes 60–90 seconds to start before the password reset can run. Total first-boot
+Elasticsearch 9 takes 60–90 seconds to start before the password reset can run. Total first-boot
 time is approximately 2–3 minutes.
 
 Track progress:
@@ -58,7 +58,7 @@ This file contains the `elastic` superuser password. It is only readable by root
 
 ### 4. Connect to Elasticsearch
 
-Elasticsearch 8 uses HTTPS with a self-signed certificate by default. Use `-k` to skip certificate
+Elasticsearch 9 uses HTTPS with a self-signed certificate by default. Use `-k` to skip certificate
 verification for local connections, or use the CA certificate at
 `/etc/elasticsearch/certs/http_ca.crt`.
 
@@ -130,7 +130,7 @@ curl -k -u elastic:"<password>" https://localhost:9200
 
 :::caution
 
-Elasticsearch 8 enables security by default. The `elastic` user has full cluster access. Create
+Elasticsearch 9 enables security by default. The `elastic` user has full cluster access. Create
 role-scoped users for individual applications.
 
 :::

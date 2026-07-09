@@ -501,6 +501,16 @@ identifiants sont générés, les services sont configurés et l'image est prêt
     </div>
   </a>
 
+  <a href="/fr/public-cloud/marketplace/openbao" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/openbao.png" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">OpenBao</p>
+      <p class="service-desc">Gestion open source des secrets et chiffrement des données.</p>
+    </div>
+  </a>
+
 </div>
 </div>
 
@@ -530,6 +540,16 @@ identifiants sont générés, les services sont configurés et l'image est prêt
     <div>
       <p class="service-name">Prometheus</p>
       <p class="service-desc">Outil de collecte de métriques et d'alerte pour infrastructure.</p>
+    </div>
+  </a>
+
+  <a href="/fr/public-cloud/marketplace/zabbix" class="service-card">
+    <div class="mp-brand-icon">
+      <img src="/icons/marketplace/zabbix.svg" alt="" width="26" height="26" aria-hidden="true">
+    </div>
+    <div>
+      <p class="service-name">Zabbix</p>
+      <p class="service-desc">Surveillance d'infrastructure et d applications de niveau entreprise.</p>
     </div>
   </a>
 
@@ -704,26 +724,6 @@ identifiants sont générés, les services sont configurés et l'image est prêt
     <div>
       <p class="service-name">Zammad <span class="mp-status">À venir</span></p>
       <p class="service-desc">Centre d'assistance et billetterie auto-hébergés pour support client.</p>
-    </div>
-  </a>
-
-  <a href="/fr/public-cloud/marketplace/zabbix" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/zabbix.svg" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">Zabbix <span class="mp-status">À venir</span></p>
-      <p class="service-desc">Surveillance d'infrastructure et d applications de niveau entreprise.</p>
-    </div>
-  </a>
-
-  <a href="/fr/public-cloud/marketplace/openbao" class="service-card">
-    <div class="mp-brand-icon">
-      <img src="/icons/marketplace/openbao.png" alt="" width="26" height="26" aria-hidden="true">
-    </div>
-    <div>
-      <p class="service-name">OpenBao <span class="mp-status">À venir</span></p>
-      <p class="service-desc">Gestion open source des secrets et chiffrement des données.</p>
     </div>
   </a>
 

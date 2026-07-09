@@ -2,18 +2,19 @@
 title: Zabbix
 ---
 
-Zabbix est une plateforme de supervision open source de niveau entreprise pour les réseaux,
-serveurs, services cloud et applications. Elle collecte des métriques via des agents, SNMP, IPMI et
-des contrôles sans agent, puis fournit alertes, visualisation et tableaux de bord depuis un frontend
-web unique. Ce guide installe le serveur Zabbix, le frontend web et l'agent avec une base MySQL sur
-Apache.
+Zabbix est une plateforme de supervision open source pour les réseaux, serveurs, services cloud et
+applications. Elle collecte des métriques via des agents, SNMP, IPMI et des contrôles sans agent,
+puis fournit alertes, visualisation et tableaux de bord depuis un frontend web unique. Cette image
+fournit le serveur Zabbix, le frontend web et l'agent avec une base MySQL sur Apache.
 
-:::note[Bientôt disponible]
+## Logiciels inclus
 
-Une image Zabbix préconfigurée arrive bientôt. Pour l'instant, déployez une instance **Ubuntu 24.04
-LTS** neuve depuis la marketplace et suivez les étapes ci-dessous pour installer Zabbix vous-même.
-
-:::
+| Composant | Version   |
+| --------- | --------- |
+| Zabbix    | 7.0 (LTS) |
+| MySQL     | 8.0       |
+| Apache    | 2.4.x     |
+| Ubuntu    | 24.04 LTS |
 
 ## Prérequis
 
@@ -23,111 +24,91 @@ LTS** neuve depuis la marketplace et suivez les étapes ci-dessous pour installe
 | RAM       | 2 Go    | 4 Go       |
 | Stockage  | 30 Go   | 60 Go      |
 
-## Déployer l'instance de base
+## Variables d'environnement
 
-1. Dans le portail ZSoftly Cloud, ouvrez **Apps** et passez à l'onglet **Marketplace**. Il s'ouvre
-   sur **Featured** par défaut, sélectionnez donc **Marketplace** à côté. Choisissez votre région
-   (YOW-1 ou YUL-1), recherchez **Ubuntu 24.04 LTS** et cliquez sur **Deploy**. Vous pouvez aussi
-   créer l'instance depuis **Instances → Create**. Dans les deux cas, vous obtenez une VM Ubuntu
-   24.04 propre.
+Cette image n'accepte aucune variable au déploiement. Elle ne crée aucun mot de passe administrateur
+partagé. Zabbix est livré avec un mot de passe `Admin` par défaut, et le premier démarrage le
+remplace par une valeur propre à votre machine virtuelle.
 
-   ![L'onglet Marketplace du portail ZSoftly Cloud, avec le sélecteur de région, la liste des catégories, la barre de recherche et les boutons Deploy](../../../../../assets/marketplace/deploy-marketplace-tab.webp)
+## Démarrage
 
-   ![Recherche d'une application dans le Marketplace, la barre de recherche filtrant le catalogue jusqu'à une carte Deploy correspondante](../../../../../assets/marketplace/deploy-marketplace-search.webp)
-
-2. Choisissez un plan qui répond aux prérequis ci-dessus.
-
-3. Lorsque l'instance est **Running**, connectez-vous en SSH:
+### 1. Connectez-vous à votre VM
 
 ```bash
 ssh ubuntu@<your-vm-ip>
 ```
 
-4. Mettez le système à jour:
+### 2. Attendez la configuration au premier démarrage
+
+Au premier démarrage, un script initialise MySQL, importe le schéma Zabbix, écrit la configuration
+du frontend, démarre les services et remplace le mot de passe `Admin` par défaut. Suivez la
+progression:
 
 ```bash
-sudo apt update && sudo apt upgrade -y
+journalctl -u zabbix-first-boot.service -f
 ```
 
-## Installer Zabbix
+Le message de connexion (MOTD) confirme que Zabbix est prêt.
 
-Installez d'abord le serveur de base de données MySQL et Apache:
+### 3. Récupérez le mot de passe administrateur
+
+Les identifiants sont écrits dans un fichier réservé à root:
 
 ```bash
-sudo apt install -y mysql-server apache2
+sudo cat /root/.credentials/zabbix.txt
 ```
 
-Ajoutez le dépôt officiel Zabbix. Zabbix 7.4 est la version stable actuelle. Installez le deb
-`zabbix-release` pour Ubuntu 24.04 (`noble`):
+### 4. Ouvrez le frontend web
+
+Ouvrez un navigateur à l'adresse:
+
+```text
+http://<your-vm-ip>/zabbix/
+```
+
+Connectez-vous en tant que `Admin` avec le mot de passe de l'étape précédente.
+
+:::caution
+
+Zabbix est livré avec un mot de passe `Admin` par défaut bien connu. Cette image le remplace au
+premier démarrage, ne réutilisez donc pas la valeur par défaut documentée par le projet en amont.
+
+:::
+
+## Gérer Zabbix
 
 ```bash
-wget https://repo.zabbix.com/zabbix/7.4/release/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.4+ubuntu24.04_all.deb
-sudo dpkg -i zabbix-release_latest_7.4+ubuntu24.04_all.deb
-sudo apt update
+# Vérifier l'état
+sudo systemctl status zabbix-server apache2 mysql
+
+# Redémarrer le serveur
+sudo systemctl restart zabbix-server
+
+# Consulter les journaux
+sudo tail -f /var/log/zabbix/zabbix_server.log
 ```
 
-Installez les paquets du serveur, du frontend et de l'agent Zabbix:
+La configuration du serveur se trouve dans `/etc/zabbix/zabbix_server.conf` et celle du frontend
+dans `/etc/zabbix/web/`.
+
+## Sécurité
+
+Le port 80 (frontend web) et le port 10051 (serveur Zabbix, utilisé par les agents pour remonter
+leurs données) sont ouverts sur l'interface réseau de la VM. UFW est activé et autorise ces ports
+ainsi que SSH (port 22).
+
+**Pour restreindre le frontend web à une adresse IP précise:**
 
 ```bash
-sudo apt install -y zabbix-server-mysql zabbix-frontend-php \
-  zabbix-apache-conf zabbix-sql-scripts zabbix-agent2
+sudo ufw delete allow 80/tcp
+sudo ufw allow from <trusted-ip> to any port 80
 ```
 
-## Configurer Zabbix
+**En production**, pointez un enregistrement DNS vers la VM et placez Apache derrière TLS, avec
+votre propre certificat ou un reverse proxy qui termine le TLS.
 
-1. Créez la base de données et l'utilisateur Zabbix dans MySQL:
+## Prochaines étapes
 
-   ```bash
-   sudo mysql -uroot -e "CREATE DATABASE zabbix CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;"
-   sudo mysql -uroot -e "CREATE USER 'zabbix'@'localhost' IDENTIFIED BY 'ChangeThisPassword';"
-   sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON zabbix.* TO 'zabbix'@'localhost';"
-   sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 1;"
-   ```
-
-2. Importez le schéma et les données initiales (le mot de passe `zabbix` vous sera demandé):
-
-   ```bash
-   sudo zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz \
-     | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix
-   ```
-
-3. Désactivez de nouveau l'option de création de fonctions:
-
-   ```bash
-   sudo mysql -uroot -e "SET GLOBAL log_bin_trust_function_creators = 0;"
-   ```
-
-4. Définissez le mot de passe de la base dans `/etc/zabbix/zabbix_server.conf` en décommentant et en
-   modifiant la ligne `DBPassword=` pour qu'elle corresponde au mot de passe ci-dessus.
-5. Démarrez et activez tous les services:
-
-   ```bash
-   sudo systemctl restart zabbix-server zabbix-agent2 apache2
-   sudo systemctl enable zabbix-server zabbix-agent2 apache2
-   ```
-
-6. Ouvrez `http://<your-vm-ip>/zabbix` dans votre navigateur et complétez l'assistant de
-   configuration web (connexion à la base, détails du serveur, fuseau horaire).
-7. Connectez-vous avec les identifiants par défaut **Admin** / **zabbix**, puis changez
-   immédiatement le mot de passe Admin sous **Users → Users**.
-8. Pour la production, configurez Apache avec votre domaine et un certificat TLS afin que le
-   frontend soit servi en HTTPS sur le port 443.
-
-## Ouvrir le pare-feu
-
-Par défaut, l'instance n'autorise que le SSH (port 22) depuis l'extérieur. Ouvrez les ports dont
-Zabbix a besoin et ajoutez-les aux règles réseau/sécurité de l'instance dans le portail:
-
-```bash
-sudo ufw allow 80/tcp
-sudo ufw allow 443/tcp
-sudo ufw allow 10051/tcp
-```
-
-Les ports 80/443 servent le frontend web. Le port 10051 est le port du serveur Zabbix utilisé par
-les agents actifs et les proxies qui remontent leurs données.
-
-## Étapes suivantes
-
-- [Documentation Zabbix](https://www.zabbix.com/documentation/current/)
-- [Guide d'installation de Zabbix](https://www.zabbix.com/download)
+- [Documentation Zabbix](https://www.zabbix.com/documentation/7.0/en/)
+- [Configuration de l'agent Zabbix](https://www.zabbix.com/documentation/7.0/en/manual/appendix/config/zabbix_agentd)
+- [Référence de l'API Zabbix](https://www.zabbix.com/documentation/7.0/en/manual/api)

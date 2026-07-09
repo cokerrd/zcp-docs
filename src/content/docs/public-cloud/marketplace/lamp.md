@@ -18,15 +18,14 @@ to work together, ready for you to deploy your application.
 
 ## Environment variables
 
-You can optionally set these when deploying LAMP from the marketplace. Leave any field blank to have
-a secure random value generated automatically.
+This image takes no deploy-time variables. MariaDB is installed with socket authentication for
+`root`, and no application database is created. Create one after first boot:
 
-| Variable              | Description                                |
-| --------------------- | ------------------------------------------ |
-| `MYSQL_ROOT_PASSWORD` | Database root password                     |
-| `MYSQL_DATABASE`      | Name of the application database to create |
-| `MYSQL_USER`          | Application database username              |
-| `MYSQL_PASSWORD`      | Application database user password         |
+```bash
+sudo mariadb -e "CREATE DATABASE app;"
+sudo mariadb -e "CREATE USER 'app'@'localhost' IDENTIFIED BY '<password>';"
+sudo mariadb -e "GRANT ALL PRIVILEGES ON app.* TO 'app'@'localhost';"
+```
 
 ## Getting started
 

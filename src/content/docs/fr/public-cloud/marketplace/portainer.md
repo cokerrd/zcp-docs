@@ -24,12 +24,16 @@ depuis une console web unique. L'interface s'exécute sur le port 9443 en HTTPS.
 
 ## Variables d'environnement
 
-Vous pouvez définir cette variable au déploiement de Portainer depuis la Marketplace. Laissez-la
-vide pour créer le compte administrateur dans l'interface au premier accès.
+Cette image n'accepte aucune variable au déploiement. Elle ne crée aucun compte administrateur
+partagé. Ouvrez l'interface Portainer après le premier démarrage et créez-y le premier
+administrateur.
 
-| Variable                   | Description                                   |
-| -------------------------- | --------------------------------------------- |
-| `PORTAINER_ADMIN_PASSWORD` | Mot de passe du compte administrateur initial |
+Si la session de configuration du premier utilisateur expire avant la fin, redémarrez Portainer et
+rechargez l'interface:
+
+```bash
+cd /opt/portainer && docker compose restart portainer
+```
 
 ## Démarrage
 

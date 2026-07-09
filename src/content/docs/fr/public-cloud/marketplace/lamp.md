@@ -18,15 +18,15 @@ configurés pour fonctionner ensemble, prêts pour le déploiement de votre appl
 
 ## Variables d'environnement
 
-Vous pouvez définir ces valeurs lors du déploiement de LAMP depuis la marketplace. Laissez un champ
-vide pour générer automatiquement une valeur aléatoire sécurisée.
+Cette image n'accepte aucune variable au déploiement. MariaDB est installé avec authentification par
+socket pour `root`, et aucune base de données applicative n'est créée. Créez-en une après le premier
+démarrage:
 
-| Variable              | Description                                         |
-| --------------------- | --------------------------------------------------- |
-| `MYSQL_ROOT_PASSWORD` | Mot de passe root de la base de données             |
-| `MYSQL_DATABASE`      | Nom de la base de données applicative à créer       |
-| `MYSQL_USER`          | Nom d'utilisateur de la base de données applicative |
-| `MYSQL_PASSWORD`      | Mot de passe de l'utilisateur applicatif            |
+```bash
+sudo mariadb -e "CREATE DATABASE app;"
+sudo mariadb -e "CREATE USER 'app'@'localhost' IDENTIFIED BY '<password>';"
+sudo mariadb -e "GRANT ALL PRIVILEGES ON app.* TO 'app'@'localhost';"
+```
 
 ## Bien démarrer
 

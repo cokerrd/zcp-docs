@@ -20,9 +20,10 @@ You can optionally provide a NetBird setup key when deploying from the marketpla
 joins your NetBird network automatically at first boot; if left blank, connect manually with
 `netbird up` after deploy.
 
-| Variable       | Description                                          |
-| -------------- | ---------------------------------------------------- |
-| `NB_SETUP_KEY` | NetBird setup key used to join your network on boot. |
+| Variable            | Description                                                    |
+| ------------------- | -------------------------------------------------------------- |
+| `NB_SETUP_KEY`      | NetBird setup key used to join your network on boot.           |
+| `NB_MANAGEMENT_URL` | Self-hosted NetBird management server. Omit for NetBird cloud. |
 
 ## Getting started
 

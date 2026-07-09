@@ -24,13 +24,13 @@ continuous delivery for almost any toolchain. The web UI runs on port 8080.
 
 ## Environment variables
 
-You can optionally set these when deploying Jenkins from the marketplace. Leave a password field
-blank to have a secure random value generated automatically.
+This image takes no deploy-time variables. It creates no shared administrator account. Jenkins
+generates a unique unlock password on every VM. Read it after first boot, then create your own
+administrator in the setup wizard:
 
-| Variable                 | Description                            |
-| ------------------------ | -------------------------------------- |
-| `JENKINS_ADMIN_USER`     | Username for the initial admin account |
-| `JENKINS_ADMIN_PASSWORD` | Password for the initial admin account |
+```bash
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
 
 ## Getting started
 

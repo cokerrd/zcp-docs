@@ -25,13 +25,14 @@ s'exécute sur le port 8080.
 
 ## Variables d'environnement
 
-Vous pouvez les définir au déploiement de Jenkins depuis la Marketplace. Laissez un champ de mot de
-passe vide pour générer automatiquement une valeur aléatoire sécurisée.
+Cette image n'accepte aucune variable au déploiement. Elle ne crée aucun compte administrateur
+partagé. Jenkins génère un mot de passe de déverrouillage unique sur chaque machine virtuelle.
+Lisez-le après le premier démarrage, puis créez votre administrateur dans l'assistant de
+configuration:
 
-| Variable                 | Description                                        |
-| ------------------------ | -------------------------------------------------- |
-| `JENKINS_ADMIN_USER`     | Nom d'utilisateur du compte administrateur initial |
-| `JENKINS_ADMIN_PASSWORD` | Mot de passe du compte administrateur initial      |
+```bash
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
 
 ## Démarrage
 

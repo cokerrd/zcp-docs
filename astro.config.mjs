@@ -426,11 +426,11 @@ export default defineConfig({
                   collapsed: true,
                   items: [
                     { label: 'MongoDB 8.0', slug: 'public-cloud/marketplace/mongodb' },
-                    { label: 'MariaDB 11.4', slug: 'public-cloud/marketplace/mariadb' },
-                    { label: 'MySQL 8.4', slug: 'public-cloud/marketplace/mysql' },
-                    { label: 'PostgreSQL 17', slug: 'public-cloud/marketplace/postgresql' },
-                    { label: 'Valkey 9.0', slug: 'public-cloud/marketplace/valkey' },
-                    { label: 'Elasticsearch 8', slug: 'public-cloud/marketplace/elasticsearch' },
+                    { label: 'MariaDB 11.8', slug: 'public-cloud/marketplace/mariadb' },
+                    { label: 'MySQL', slug: 'public-cloud/marketplace/mysql' },
+                    { label: 'PostgreSQL', slug: 'public-cloud/marketplace/postgresql' },
+                    { label: 'Valkey 9.1', slug: 'public-cloud/marketplace/valkey' },
+                    { label: 'Elasticsearch 9', slug: 'public-cloud/marketplace/elasticsearch' },
                     { label: 'InfluxDB 2', slug: 'public-cloud/marketplace/influxdb' },
                   ],
                 },
@@ -463,7 +463,7 @@ export default defineConfig({
                 {
                   label: 'DevOps & Source Control',
                   collapsed: true,
-                  items: [{ label: 'GitLab CE 18.11', slug: 'public-cloud/marketplace/gitlab' }],
+                  items: [{ label: 'GitLab CE 19.1', slug: 'public-cloud/marketplace/gitlab' }],
                 },
                 {
                   label: 'Networking & VPN',

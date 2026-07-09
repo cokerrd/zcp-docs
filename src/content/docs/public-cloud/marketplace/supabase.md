@@ -39,6 +39,9 @@ blank to have a secure random value generated automatically.
 | `POSTGRES_PASSWORD`  | Password for the PostgreSQL database                      |
 | `DASHBOARD_PASSWORD` | Password for the Studio dashboard login                   |
 
+These are the only variables you set at deploy time. `SUPABASE_PUBLIC_URL` and `API_EXTERNAL_URL`,
+referenced under [Security](#security), are edited in `/data/supabase/.env` on the running VM.
+
 ## Getting started
 
 ### 1. Connect to your VM

@@ -39,6 +39,9 @@ passe vide pour générer automatiquement une valeur aléatoire sécurisée.
 | `POSTGRES_PASSWORD`  | Mot de passe de la base PostgreSQL                               |
 | `DASHBOARD_PASSWORD` | Mot de passe de connexion au tableau de bord Studio              |
 
+Ce sont les seules variables à définir au déploiement. `SUPABASE_PUBLIC_URL` et `API_EXTERNAL_URL`,
+mentionnées dans [Sécurité](#sécurité), se modifient dans `/data/supabase/.env` sur la VM en marche.
+
 ## Démarrage
 
 ### 1. Se connecter à la machine virtuelle
