@@ -10,11 +10,11 @@ identifiants sont générés, les services sont configurés et l'image est prêt
 
 <div class="mp-stats">
   <div class="mp-stat">
-    <span class="mp-num">32</span>
+    <span class="mp-num">35</span>
     <span class="mp-label">images actives</span>
   </div>
   <div class="mp-stat">
-    <span class="mp-num">33</span>
+    <span class="mp-num">29</span>
     <span class="mp-label">à venir</span>
   </div>
   <div class="mp-stat">
@@ -81,7 +81,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/gitlab.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">GitLab CE 18.11</p>
+      <p class="service-name">GitLab CE 19.1</p>
       <p class="service-desc">Plateforme DevOps auto-hébergée avec Git, CI/CD et suivi des tickets</p>
     </div>
   </a>
@@ -111,7 +111,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/postgresql.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">PostgreSQL 17</p>
+      <p class="service-name">PostgreSQL</p>
       <p class="service-desc">Base de données relationnelle open source avancée et très extensible</p>
     </div>
   </a>
@@ -121,7 +121,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/mariadb.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">MariaDB 11.4</p>
+      <p class="service-name">MariaDB 11.8</p>
       <p class="service-desc">Base de données relationnelle open source et remplacement direct de MySQL</p>
     </div>
   </a>
@@ -269,7 +269,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/gitlab.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">GitLab CE 18.11</p>
+      <p class="service-name">GitLab CE 19.1</p>
       <p class="service-desc">Plateforme DevOps auto-hébergée avec Git, CI/CD et suivi des tickets in one application</p>
     </div>
   </a>
@@ -331,7 +331,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/mariadb.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">MariaDB 11.4</p>
+      <p class="service-name">MariaDB 11.8</p>
       <p class="service-desc">Base de données relationnelle open source et remplacement direct de MySQL</p>
     </div>
   </a>
@@ -341,7 +341,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/postgresql.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">PostgreSQL 17</p>
+      <p class="service-name">PostgreSQL</p>
       <p class="service-desc">Base de données relationnelle open source avancée et très extensible</p>
     </div>
   </a>
@@ -351,7 +351,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/mysql.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">MySQL 8.4</p>
+      <p class="service-name">MySQL</p>
       <p class="service-desc">Base de données relationnelle open source la plus déployée au monde</p>
     </div>
   </a>
@@ -361,7 +361,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/valkey.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">Valkey 9.0</p>
+      <p class="service-name">Valkey 9.1</p>
       <p class="service-desc">Stockage de données en mémoire haute performance, compatible Redis</p>
     </div>
   </a>
@@ -371,7 +371,7 @@ identifiants sont générés, les services sont configurés et l'image est prêt
       <img src="/icons/marketplace/elasticsearch.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">Elasticsearch 8</p>
+      <p class="service-name">Elasticsearch 9</p>
       <p class="service-desc">Moteur distribué de recherche et d'analyse basé sur Apache Lucene</p>
     </div>
   </a>

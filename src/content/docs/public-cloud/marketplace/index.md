@@ -9,11 +9,11 @@ automatically. Credentials are generated, services are configured, and the image
 
 <div class="mp-stats">
   <div class="mp-stat">
-    <span class="mp-num">32</span>
+    <span class="mp-num">35</span>
     <span class="mp-label">live images</span>
   </div>
   <div class="mp-stat">
-    <span class="mp-num">33</span>
+    <span class="mp-num">29</span>
     <span class="mp-label">coming soon</span>
   </div>
   <div class="mp-stat">
@@ -80,7 +80,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/gitlab.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">GitLab CE 18.11</p>
+      <p class="service-name">GitLab CE 19.1</p>
       <p class="service-desc">Self-hosted DevOps platform with Git, CI/CD, and issue tracking</p>
     </div>
   </a>
@@ -110,7 +110,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/postgresql.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">PostgreSQL 17</p>
+      <p class="service-name">PostgreSQL</p>
       <p class="service-desc">Advanced open-source relational database with rich extensibility</p>
     </div>
   </a>
@@ -120,7 +120,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/mariadb.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">MariaDB 11.4</p>
+      <p class="service-name">MariaDB 11.8</p>
       <p class="service-desc">Open-source relational database and drop-in MySQL replacement</p>
     </div>
   </a>
@@ -268,7 +268,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/gitlab.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">GitLab CE 18.11</p>
+      <p class="service-name">GitLab CE 19.1</p>
       <p class="service-desc">Self-hosted DevOps platform with Git, CI/CD, and issue tracking in one application</p>
     </div>
   </a>
@@ -330,7 +330,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/mariadb.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">MariaDB 11.4</p>
+      <p class="service-name">MariaDB 11.8</p>
       <p class="service-desc">Open-source relational database and drop-in MySQL replacement</p>
     </div>
   </a>
@@ -340,7 +340,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/postgresql.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">PostgreSQL 17</p>
+      <p class="service-name">PostgreSQL</p>
       <p class="service-desc">Advanced open-source relational database with rich extensibility</p>
     </div>
   </a>
@@ -350,7 +350,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/mysql.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">MySQL 8.4</p>
+      <p class="service-name">MySQL</p>
       <p class="service-desc">World's most widely deployed open-source relational database</p>
     </div>
   </a>
@@ -360,7 +360,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/valkey.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">Valkey 9.0</p>
+      <p class="service-name">Valkey 9.1</p>
       <p class="service-desc">High-performance in-memory data store, Redis-compatible</p>
     </div>
   </a>
@@ -370,7 +370,7 @@ automatically. Credentials are generated, services are configured, and the image
       <img src="/icons/marketplace/elasticsearch.svg" alt="" width="26" height="26" aria-hidden="true">
     </div>
     <div>
-      <p class="service-name">Elasticsearch 8</p>
+      <p class="service-name">Elasticsearch 9</p>
       <p class="service-desc">Distributed search and analytics engine built on Apache Lucene</p>
     </div>
   </a>
