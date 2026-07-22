@@ -1,9 +1,9 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/Footer.astro';
-import { version } from '../../package.json';
 
 const localePrefix = Astro.locals.starlightRoute.locale === 'fr' ? '/fr' : '';
+const buildDate = new Date().toISOString().slice(0, 10);
 ---
 
 <Default {...Astro.props} />
@@ -33,7 +33,7 @@ const localePrefix = Astro.locals.starlightRoute.locale === 'fr' ? '/fr' : '';
     </nav>
     <p class="site-footer__copy">
       © {new Date().getFullYear()} ZSoftly Technologies Inc.
-      <span class="site-footer__version">v{version}</span>
+      <span class="site-footer__version">{Astro.locals.t('zs.footer.build')} {buildDate}</span>
     </p>
   </div>
 </div>
