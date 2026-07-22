@@ -1,7 +1,7 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/Footer.astro';
-import { version } from '../../package.json';
+import { COMMIT_SHA, BUILD_DATE } from '../../build-info.mjs';
 
 const localePrefix = Astro.locals.starlightRoute.locale === 'fr' ? '/fr' : '';
 ---
@@ -33,7 +33,15 @@ const localePrefix = Astro.locals.starlightRoute.locale === 'fr' ? '/fr' : '';
     </nav>
     <p class="site-footer__copy">
       © {new Date().getFullYear()} ZSoftly Technologies Inc.
-      <span class="site-footer__version">v{version}</span>
+      <a
+        class="site-footer__version"
+        href={`https://github.com/zsoftly/zcp-docs/commit/${COMMIT_SHA}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        title={`${Astro.locals.t('zs.footer.build')} ${COMMIT_SHA} · ${BUILD_DATE}`}
+      >
+        {COMMIT_SHA} · {BUILD_DATE}
+      </a>
     </p>
   </div>
 </div>
@@ -44,5 +52,10 @@ const localePrefix = Astro.locals.starlightRoute.locale === 'fr' ? '/fr' : '';
     font-size: 0.7rem;
     color: var(--sl-color-gray-4);
     font-variant-numeric: tabular-nums;
+    text-decoration: none;
+  }
+  .site-footer__version:hover {
+    color: var(--sl-color-gray-3);
+    text-decoration: underline;
   }
 </style>
