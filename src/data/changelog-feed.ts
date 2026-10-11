@@ -1,5 +1,8 @@
 export type ChangelogFeedEntry = {
   title: string;
+  // French title. Set it only once the entry exists in the French changelog, so French pages
+  // never link to a missing anchor. Entries without it are left out of French lists.
+  titleFr?: string;
   description: string;
   // Publication calendar date in YYYY-MM-DD format, not a release timestamp.
   pubDate: string;
@@ -22,7 +25,15 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
     slug: 'compute-storage-separate',
   },
   {
+    title: 'CLI v0.0.31: ACL rule pagination and dependency security updates',
+    description:
+      'zcp acl rules reads every API page by default, with --max-items, --starting-token, --page-size and --no-paginate to control a listing. The CLI builds with Go 1.26.9 and updates golang.org/x/net to v0.60.0.',
+    pubDate: '2026-10-09',
+    slug: 'cli-v0.0.31',
+  },
+  {
     title: 'CLI v0.0.30: custom VM plans and object storage keys',
+    titleFr: 'CLI v0.0.30 : forfaits personnalisés et clés de stockage objet',
     description:
       'The zcp CLI supports custom VM plans, load balancer rule listings, and S3-compatible object storage key rotation. New S3 credentials are visible for five minutes and direct S3 commands validate the saved access key for the selected store.',
     pubDate: '2026-10-03',
@@ -30,6 +41,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'Terraform / OpenTofu provider v0.2.0',
+    titleFr: 'Fournisseur Terraform / OpenTofu v0.2.0',
     description:
       'The provider adds object storage bucket configuration resources, VPC and multi-network instances, and volume lookups. It also fixes volume-backup reads, VM-backup destruction, interval validation, and volume-list pagination.',
     pubDate: '2026-09-07',
@@ -37,6 +49,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'CLI v0.0.29: complete volume listings',
+    titleFr: 'CLI v0.0.29 : listes de volumes complètes',
     description:
       'The zcp CLI and SDK now retrieve every page in volume listings and return explicit pagination errors. When a VPC reaches its subnet limit, the CLI directs you to request a quota increase before retrying.',
     pubDate: '2026-09-07',
@@ -44,6 +57,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'Up to 8 subnets per VPC',
+    titleFr: "Jusqu'à 8 sous-réseaux par VPC",
     description:
       'Each VPC supports up to 8 subnets, up from 3. Existing VPCs get the new limit with no changes. Raise a support ticket if a workload needs more.',
     pubDate: '2026-09-07',
@@ -51,6 +65,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'CLI v0.0.28: security fixes and working backups',
+    titleFr: 'CLI v0.0.28 : correctifs de sécurité et sauvegardes fonctionnelles',
     description:
       'The zcp CLI redacts credentials from --debug output. It fixes the backup and vm-backup commands and makes instance ssh prefer the public IP.',
     pubDate: '2026-09-07',
@@ -58,6 +73,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'Object storage endpoint DNS resolution from VPCs',
+    titleFr: 'Résolution DNS du point de terminaison de stockage objet depuis les VPC',
     description:
       'Fixed DNS configuration for newly created VPCs. Workloads in these VPCs now resolve the object storage endpoint.',
     pubDate: '2026-09-06',
@@ -65,6 +81,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'Kubernetes 1.37 is available',
+    titleFr: 'Kubernetes 1.37 est disponible',
     description:
       'Kubernetes 1.37 is now available for new managed clusters, along with refreshed patch releases for the 1.34, 1.35, and 1.36 lines. The default version for new clusters is 1.36.4.',
     pubDate: '2026-09-06',
@@ -72,6 +89,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'Postpaid billing is available',
+    titleFr: 'La facturation postpayée est disponible',
     description:
       'Customers can now choose Postpaid billing during signup for eligible hourly and monthly services. The selected Prepaid or Postpaid mode remains for the life of the account. Postpaid requires a credit card saved through Stripe.',
     pubDate: '2026-09-01',
@@ -79,6 +97,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'Intel compute in Montréal (YUL)',
+    titleFr: 'Calcul Intel à Montréal (YUL)',
     description:
       'General-purpose ci2 and memory-optimized cim2 Intel plans, custom Intel configurations, and Intel-backed Kubernetes node capacity are now available in the YUL region.',
     pubDate: '2026-08-16',
@@ -86,6 +105,7 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
   },
   {
     title: 'Platform and services updates',
+    titleFr: 'Mises à jour de la plateforme et des services',
     description:
       'New capabilities and operational changes across the ZSoftly Cloud Platform, including SMTP controls, Kubernetes support, Windows Server images, and ZSoftly Cloud Storage.',
     pubDate: '2026-08-08',
@@ -134,3 +154,15 @@ export const changelogFeedEntries: ChangelogFeedEntry[] = [
     slug: 'terraform-opentofu',
   },
 ];
+
+/** Newest entries first. With lang 'fr', only entries that have a French title. */
+export const latestChangelogEntries = (count: number, lang: 'en' | 'fr' = 'en') =>
+  changelogFeedEntries
+    .filter((entry) => lang === 'en' || entry.titleFr)
+    .slice()
+    .sort((a, b) => b.pubDate.localeCompare(a.pubDate))
+    .slice(0, count)
+    .map((entry) => ({
+      ...entry,
+      title: lang === 'fr' ? (entry.titleFr ?? entry.title) : entry.title,
+    }));
