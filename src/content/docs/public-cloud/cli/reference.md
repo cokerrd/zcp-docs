@@ -57,27 +57,28 @@ billing/support/dashboard, and the IAM commands `sub-user`/`role`/`permission`) 
 
 #### Root disk sizing
 
-Plans are compute-only since October 11, 2026, so you choose the root disk separately when you
-create an instance. `--blockstorage-plan` and `--network-plan` are available in earlier releases.
-`--root-disk-size` was added in v1.0.0, released on October 11, 2026, and v1.0.0 makes both
-`--blockstorage-plan` and `--root-disk-size` required. `--storage-category` is also required.
+Plans are compute-only, so you choose the root disk separately when you create an instance. CLI
+v1.0.0 and later require `--blockstorage-plan`, `--root-disk-size`, and `--storage-category` for a
+new instance. The CLI no longer accepts custom CPU, memory, or disk selections. Choose a named
+compute plan.
 
 ```bash
-zcp instance create --name my-vm --project default-9 --region yul-1 \
-  --template ubuntu-2604-lts-1 --plan ca2cxs \
-  --blockstorage-plan b2g1 --root-disk-size 100 \
-  --network-plan pnet-yul --storage-category pro-nvme
+zcp instance create --name my-vm \
+  --template "<template-slug>" --plan "<compute-plan-slug>" \
+  --blockstorage-plan "<root-storage-plan-slug>" --root-disk-size 100 \
+  --network-plan "<network-plan-slug>" --storage-category "<storage-category-slug>" \
+  --billing-cycle hourly
 ```
 
 - `--blockstorage-plan`: the root storage tier slug. List tiers with `zcp plan storage`.
 - `--root-disk-size`: the root disk size in GB for that tier.
 
-The CLI takes slugs, not display names. A plan slug is the plan name without the dot, so `ca2c.xs`
-becomes `ca2cxs` and `b2.g1` becomes `b2g1`. `--storage-category` takes the console's internal
-category value. The values map to tiers as follows: `pro-nvme` is `b2.g1`, `nvme` is `b1.g1`,
-`premium-ssd` is `b2.g2`, `premium-nvme` is `b2.l1`, `ssd-storage` is `b2.l2`, and `hdd-storage` is
-`b1.g3`. List plan slugs with `zcp plan vm`, `zcp plan storage` and `zcp plan network`, and category
-values with `zcp storage-category list --region yul-1`.
+The CLI takes slugs, not display names. List compute, storage, and network plan slugs with
+`zcp plan vm`, `zcp plan storage`, and `zcp plan network`. List storage categories with
+`zcp storage-category list`.
+
+Changing an instance name changes its hostname. The platform can restart a running instance or start
+a stopped instance to apply that change.
 
 ### Compute: Kubernetes
 
@@ -89,6 +90,23 @@ values with `zcp storage-category list --region yul-1`.
 | `zcp kubernetes stop <name>`    | Stop a cluster             |
 | `zcp kubernetes upgrade <name>` | Upgrade Kubernetes version |
 
+#### Kubernetes Cluster Plans
+
+CLI v1.0.0 and later require separate fixed plans for the control plane, workers, and root storage.
+The root storage plan and `--root-disk-size` apply to every node. Use `zcp plan kubernetes` and
+`zcp plan storage` to find values in the selected region.
+
+```bash
+zcp kubernetes create --name my-cluster --version "<kubernetes-version>" \
+  --control-plane-plan "<control-plane-plan-slug>" \
+  --worker-plan "<worker-plan-slug>" --storage-plan "<root-storage-plan-slug>" \
+  --root-disk-size 100 --storage-category "<storage-category-slug>" \
+  --workers 3 --ssh-key "<ssh-key-name>" --billing-cycle hourly
+```
+
+The command `zcp kubernetes scale --enable-autoscaling` submits the requested worker bounds but does
+not confirm that the platform added a worker. Check cluster status after the request.
+
 ### Storage: Volumes
 
 | Command                    | Description                |
@@ -97,12 +115,34 @@ values with `zcp storage-category list --region yul-1`.
 | `zcp volume create`        | Create a new volume        |
 | `zcp volume delete <name>` | Delete a volume            |
 
+Create a volume in a named storage tier with a positive capacity in GB:
+
+```bash
+zcp volume create --name data-volume --plan "<storage-plan-slug>" --size 100 \
+  --storage-category "<storage-category-slug>" --billing-cycle hourly
+```
+
 ### Storage: Snapshots
 
 | Command                | Description           |
 | ---------------------- | --------------------- |
 | `zcp snapshot list`    | List volume snapshots |
 | `zcp vm-snapshot list` | List VM snapshots     |
+
+### Storage: VM Backup Schedules
+
+`zcp vm-backup schedule` creates and manages recurring VM backup policies. Policies support hourly,
+daily, weekly, and monthly intervals, IANA time zones, retention counts, and paused state.
+
+```bash
+zcp vm-backup schedule create my-vm --name nightly --interval dailyAt \
+  --at 01:00 --timezone America/Toronto --retention 7
+zcp vm-backup schedule pause "<schedule-id>"
+zcp vm-backup schedule resume "<schedule-id>"
+```
+
+Do not use `everyOtherDay`. The platform can persist the policy and then return an error. If that
+happens, list schedules and remove any unintended policy before retrying.
 
 ### Storage: Object Storage
 

@@ -39,7 +39,7 @@ backend instances afterwards, open the Load Balancer and click **Add New Policie
 
 ### Manage with Terraform
 
-Provider v0.3.0 exposes `data.zcp_load_balancer` with its rule IDs, so an existing load balancer can
+Provider v1.0.0 exposes `data.zcp_load_balancer` with its rule IDs, so an existing load balancer can
 supply a rule to `zcp_load_balancer_attachment`:
 
 ```hcl

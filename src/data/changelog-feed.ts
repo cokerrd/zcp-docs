@@ -18,6 +18,34 @@ export const publicationDateAtUtcNoon = (date: string) => new Date(`${date}T12:0
 
 export const changelogFeedEntries: ChangelogFeedEntry[] = [
   {
+    title: 'ZCP Store',
+    description:
+      'Buy support plans, professional services, bare metal servers and licences from the Store tab in the console. Products are account level and bill on the same invoice as your instances.',
+    pubDate: '2026-10-11',
+    slug: 'zcp-store',
+  },
+  {
+    title: 'CLI v1.0.1: lifecycle-route and volume fixes',
+    description:
+      'The current zcp CLI release uses the current instance cancellation and hostname routes, retrieves every VM snapshot page, and accepts a named storage plan with an explicit volume capacity.',
+    pubDate: '2026-10-11',
+    slug: 'cli-v1.0.1',
+  },
+  {
+    title: 'CLI v1.0.0: separate root storage and backup schedules',
+    description:
+      'New instances and Kubernetes clusters select compute and root storage separately. The CLI also adds VM backup schedules and complete DNS listings.',
+    pubDate: '2026-10-11',
+    slug: 'cli-v1.0.0',
+  },
+  {
+    title: 'Terraform / OpenTofu provider v1.0.0',
+    description:
+      'The provider adds named compute and root-storage selections, split Kubernetes plans, VM backup schedules, paginated DNS lookups, and named volume capacity.',
+    pubDate: '2026-10-11',
+    slug: 'terraform-v1.0.0',
+  },
+  {
     title: 'Compute and storage sold separately',
     description:
       'VM plans now cover CPU and memory only. Choose the root disk as a per-GB block storage volume when you create the server. Existing servers keep their plan and price.',
