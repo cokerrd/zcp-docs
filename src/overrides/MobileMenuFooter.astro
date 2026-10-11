@@ -74,17 +74,15 @@ const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
 <style>
   @layer starlight.core {
     .mobile-menu-footer {
-      /* Light and dark values for the same semantic colour. Everything below
-         reads these, so a theme swap is one block rather than one rule per
-         element. rgb(0 25 138) and rgb(107 142 245) are --sl-color-accent in
-         light and dark; they are spelled out here because CSS cannot apply
-         alpha to a hex custom property. */
-      --zs-menu-divider: rgba(0, 25, 138, 0.18);
-      --zs-menu-chip-bg: rgba(255, 255, 255, 0.88);
-      --zs-menu-chip-border: rgba(0, 25, 138, 0.18);
-      --zs-menu-social-bg: rgba(255, 255, 255, 0.78);
-      --zs-menu-social-border: rgba(0, 25, 138, 0.14);
-      --zs-menu-on-accent: #ffffff;
+      /* Semantic roles for this menu, read from the Instrument tokens, which
+         already switch between Paper and Carbon. Chips are secondary
+         controls: surface fill with a line-control border. */
+      --zs-menu-divider: var(--zi-line);
+      --zs-menu-chip-bg: var(--zi-surface);
+      --zs-menu-chip-border: var(--zi-line-control);
+      --zs-menu-social-bg: var(--zi-surface);
+      --zs-menu-social-border: var(--zi-line-control);
+      --zs-menu-on-accent: var(--zi-on-accent);
 
       margin-inline: calc(-1 * var(--sl-sidebar-pad-x));
       margin-top: auto;
@@ -92,14 +90,6 @@ const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
       border-top: 1px solid var(--zs-menu-divider);
       background-color: var(--zs-mobile-menu-surface, var(--sl-color-bg-sidebar));
       z-index: 1;
-    }
-
-    :global(:root[data-theme='dark']) .mobile-menu-footer {
-      --zs-menu-divider: rgba(107, 142, 245, 0.22);
-      --zs-menu-chip-bg: rgba(6, 10, 26, 0.86);
-      --zs-menu-chip-border: rgba(107, 142, 245, 0.26);
-      --zs-menu-social-bg: rgba(6, 10, 26, 0.86);
-      --zs-menu-social-border: rgba(107, 142, 245, 0.26);
     }
 
     /* The desktop header hides its Explore menu below 48rem, so these links are
@@ -117,7 +107,7 @@ const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
       align-items: center;
       background-color: var(--zs-menu-chip-bg);
       border: 1px solid var(--zs-menu-chip-border);
-      border-radius: 0.375rem;
+      border-radius: var(--zi-radius-md);
       color: var(--sl-color-text);
       display: flex;
       font-size: 0.8125rem;
@@ -126,13 +116,13 @@ const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
       padding-inline: 0.75rem;
       text-decoration: none;
       transition:
-        background-color 150ms ease,
-        border-color 150ms ease;
+        background-color 120ms ease,
+        border-color 120ms ease;
     }
 
     .mobile-explore-link:hover,
     .mobile-explore-link:focus-visible {
-      border-color: var(--sl-color-accent);
+      background-color: var(--zi-surface-raised);
       text-decoration: none;
     }
 
@@ -151,28 +141,29 @@ const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
 
     .mobile-auth-link {
       align-items: center;
-      border-radius: 0.375rem;
+      border-radius: var(--zi-radius-md);
       display: flex;
       font-size: 0.875rem;
-      font-weight: 700;
+      font-weight: 600;
       justify-content: center;
       min-height: 3rem;
       padding-inline: 1rem;
       text-decoration: none;
       transition:
-        background-color 150ms ease,
-        border-color 150ms ease,
-        color 150ms ease;
+        background-color 120ms ease,
+        border-color 120ms ease,
+        color 120ms ease;
     }
 
     .mobile-auth-login {
-      border: 1px solid var(--sl-color-gray-5);
+      background-color: var(--zi-surface);
+      border: 1px solid var(--zi-line-control);
       color: var(--sl-color-text);
     }
 
     .mobile-auth-login:hover,
     .mobile-auth-login:focus-visible {
-      background-color: var(--sl-color-gray-6);
+      background-color: var(--zi-surface-raised);
       color: var(--sl-color-text);
       text-decoration: none;
     }
@@ -254,9 +245,8 @@ const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
     .social-icons :global(a:focus-visible),
     .mobile-utility-controls :global(starlight-lang-select label:hover),
     .mobile-utility-controls :global(starlight-lang-select label:focus-within) {
-      background-color: var(--sl-color-accent);
-      border-color: var(--sl-color-accent);
-      color: var(--zs-menu-on-accent);
+      background-color: var(--zi-surface-raised);
+      color: var(--zi-ink);
     }
 
     .mobile-utility-controls :global(starlight-theme-toggle .theme-icon) {
@@ -275,8 +265,8 @@ const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
     }
 
     .mobile-utility-controls :global(option) {
-      background-color: var(--sl-color-accent);
-      color: var(--zs-menu-on-accent);
+      background-color: var(--zi-surface);
+      color: var(--zi-ink);
     }
   }
 
@@ -312,8 +302,7 @@ const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
   .mobile-menu-footer
     .mobile-utility-controls
     :global(starlight-theme-toggle .theme-toggle-btn:focus-visible) {
-    background-color: var(--sl-color-accent);
-    border-color: var(--sl-color-accent);
-    color: var(--zs-menu-on-accent);
+    background-color: var(--zi-surface-raised);
+    color: var(--zi-ink);
   }
 </style>

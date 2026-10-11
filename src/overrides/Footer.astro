@@ -3,7 +3,6 @@ import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/Footer.astro';
 import { PEERPUSH_BADGE_URL, PEERPUSH_LISTING_URL } from '../data/peerpush';
 import { websiteUrl } from '../data/site';
-import ConsentBanner from './ConsentBanner.astro';
 
 const localePrefix = Astro.locals.starlightRoute.locale === 'fr' ? '/fr' : '';
 const buildDate = new Date().toISOString().slice(0, 10);
@@ -114,14 +113,17 @@ const buildDate = new Date().toISOString().slice(0, 10);
   </div>
 </div>
 
-<ConsentBanner />
-
 <style>
+  /* Build stamp: telemetry label. */
   .site-footer__version {
-    margin-inline-start: 0.75rem;
-    font-size: 0.7rem;
-    color: var(--sl-color-gray-4);
+    margin-inline-start: var(--zi-space-3);
+    color: var(--zi-ink-faint);
+    font-family: var(--zi-font-mono);
+    font-size: 0.75rem;
     font-variant-numeric: tabular-nums;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .site-footer__badges {
@@ -141,11 +143,6 @@ const buildDate = new Date().toISOString().slice(0, 10);
 
   .site-footer__peerpush {
     display: inline-block;
-  }
-
-  .site-footer__peerpush:focus-visible {
-    outline: 2px solid var(--sl-color-accent);
-    outline-offset: 3px;
   }
 
   .site-footer__peerpush img {

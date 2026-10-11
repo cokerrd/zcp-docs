@@ -14,41 +14,33 @@
 </section>
 
 <style>
-  /* ── Hero layout ──────────────────────────────────────────── */
   .zs-hero {
-    padding-block: 0.75rem 0.5rem;
+    padding-block: var(--zi-space-3) var(--zi-space-2);
   }
 
+  /* display-1: the one landing title. */
   .zs-hero__title {
-    font-size: clamp(1.5rem, 2.5vw, 2.125rem);
-    font-weight: 700;
+    font-size: clamp(1.875rem, 4vw, 2.5rem);
+    font-weight: 600;
     line-height: 1.15;
-    letter-spacing: -0.025em;
-    color: var(--sl-color-text);
-    margin: 0 0 0.75rem;
+    letter-spacing: -0.02em;
+    color: var(--zi-ink);
+    margin: 0 0 var(--zi-space-3);
     border: none;
     padding: 0;
-  }
-
-  :root[data-theme='dark'] .zs-hero__title {
-    color: rgba(255, 255, 255, 0.95);
+    text-wrap: balance;
   }
 
   .zs-hero__tagline {
     font-size: 1rem;
-    line-height: 1.6;
-    color: var(--sl-color-gray-2);
+    line-height: 1.6875rem;
+    color: var(--zi-ink-muted);
     margin: 0;
+    max-inline-size: 72ch;
   }
 
   .zs-hero__tagline strong {
-    color: var(--sl-color-text);
+    color: var(--zi-ink);
     font-weight: 600;
   }
-
-  :root[data-theme='dark'] .zs-hero__tagline strong {
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Action buttons */
 </style>

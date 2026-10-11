@@ -16,12 +16,12 @@
         <li>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="13"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2.25"
+            stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
             aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg
@@ -31,12 +31,12 @@
         <li>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="13"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2.25"
+            stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
             aria-hidden="true"
@@ -49,12 +49,12 @@
         <li>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="13"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2.25"
+            stroke-width="1.5"
             stroke-linecap="round"
             stroke-linejoin="round"
             aria-hidden="true"
@@ -69,7 +69,7 @@
 
 <style>
   .zs-principle {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--zi-space-12);
   }
 
   @media (min-width: 60rem) {
@@ -78,108 +78,79 @@
     }
   }
 
-  /* ── Right quote panel ────────────────────────────────────── */
+  /* Plain panel: hairline on surface-raised, no glow and no tint. */
   .zs-hero__quote-inner {
-    position: relative;
-    padding: 1.75rem;
-    border-radius: 12px;
-    border: 1px solid var(--sl-color-gray-5);
-    background: var(--sl-color-bg-sidebar);
-    overflow: hidden;
-  }
-
-  /* Top-right glow accent */
-  .zs-hero__quote-inner::before {
-    content: '';
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-end: 0;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(ellipse at top right, rgba(0, 25, 138, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  :root[data-theme='dark'] .zs-hero__quote-inner::before {
-    background: radial-gradient(
-      ellipse at top right,
-      rgba(107, 142, 245, 0.13) 0%,
-      transparent 70%
-    );
+    padding: var(--zi-space-6);
+    border-radius: var(--zi-radius-lg);
+    border: 1px solid var(--zi-line);
+    background: var(--zi-surface-raised);
   }
 
   .zs-hero__quote-mark {
-    font-size: 4.5rem;
-    line-height: 0.75;
-    font-family: Georgia, 'Times New Roman', serif;
-    color: var(--sl-color-accent);
-    opacity: 0.2;
-    margin-bottom: 0.25rem;
+    font-family: var(--zi-font-mono);
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--zi-ink-faint);
+    margin-bottom: var(--zi-space-2);
     user-select: none;
   }
 
   .zs-hero__quote-inner blockquote {
-    font-size: 0.9rem;
-    line-height: 1.75;
-    color: var(--sl-color-text);
-    font-style: italic;
-    margin: 0 0 1.125rem;
+    font-size: 1rem;
+    line-height: 1.6875rem;
+    color: var(--zi-ink);
+    margin: 0 0 var(--zi-space-4);
     border: none;
     padding: 0;
     quotes: none;
-  }
-
-  :root[data-theme='dark'] .zs-hero__quote-inner blockquote {
-    color: rgba(255, 255, 255, 0.82);
+    max-inline-size: 72ch;
   }
 
   .zs-hero__quote-meta {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
-    margin-bottom: 1.25rem;
+    gap: var(--zi-space-2);
+    margin-bottom: var(--zi-space-4);
   }
 
   .zs-hero__quote-rule {
     display: inline-block;
     width: 1.25rem;
-    height: 1.5px;
-    background: var(--sl-color-accent);
-    border-radius: 1px;
+    height: 1px;
+    background: var(--zi-line-strong);
     flex-shrink: 0;
   }
 
   .zs-hero__quote-source {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-family: var(--zi-font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1rem;
     text-transform: uppercase;
-    color: var(--sl-color-accent);
+    color: var(--zi-ink-faint);
   }
 
   .zs-hero__pillars {
     list-style: none;
-    padding: 0;
+    padding: var(--zi-space-4) 0 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--sl-color-gray-6);
+    gap: var(--zi-space-2);
+    border-top: 1px solid var(--zi-line);
   }
 
   .zs-hero__pillars li {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--zi-space-2);
     font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--sl-color-gray-2);
+    color: var(--zi-ink-muted);
   }
 
   .zs-hero__pillars svg {
     flex-shrink: 0;
-    color: var(--sl-color-accent);
-    opacity: 0.75;
+    color: var(--zi-accent);
   }
 </style>

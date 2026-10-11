@@ -426,8 +426,8 @@ const docsLinks = docsNavLinks.map((link) => {
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
       transition:
-        color 150ms ease,
-        background-color 150ms ease;
+        color 120ms ease,
+        background-color 120ms ease;
       font-family: inherit;
       white-space: nowrap;
     }
@@ -452,13 +452,13 @@ const docsLinks = docsNavLinks.map((link) => {
     }
 
     .header-docs-nav a {
-      border-radius: 0.3rem;
+      border-radius: var(--zi-radius-md);
       color: var(--sl-color-text);
       font-size: var(--sl-text-sm);
       font-weight: 600;
       padding: 0.35rem 0.5rem;
       text-decoration: none;
-      transition: color 150ms ease;
+      transition: color 120ms ease;
       white-space: nowrap;
     }
 
@@ -473,9 +473,9 @@ const docsLinks = docsNavLinks.map((link) => {
 
     /* Explore menu. Mirrors the marketing site header: hover opens it, a padded
        wrapper bridges the gap so the pointer does not fall out on the way down,
-       and the panel fades and lifts rather than snapping on. Colours are spelled
-       out as rgba because CSS cannot apply alpha to a hex custom property; they
-       are --sl-color-accent light and dark. */
+       and the panel fades in over 120 ms rather than snapping on. Colours come
+       from the Instrument tokens; the panel is the one place with a shadow,
+       because it floats. */
     .explore-menu,
     .account-menu,
     .lang-menu {
@@ -492,7 +492,7 @@ const docsLinks = docsNavLinks.map((link) => {
       align-items: center;
       background: transparent;
       border: 0;
-      border-radius: 0.3rem;
+      border-radius: var(--zi-radius-md);
       color: var(--sl-color-text);
       cursor: pointer;
       display: flex;
@@ -501,7 +501,7 @@ const docsLinks = docsNavLinks.map((link) => {
       font-weight: 600;
       gap: 0.3rem;
       padding: 0.35rem 0.5rem;
-      transition: color 150ms ease;
+      transition: color 120ms ease;
       white-space: nowrap;
     }
 
@@ -515,8 +515,8 @@ const docsLinks = docsNavLinks.map((link) => {
       inline-size: 0.75rem;
       opacity: 0.5;
       transition:
-        opacity 150ms ease,
-        transform 200ms ease;
+        opacity 120ms ease,
+        transform 120ms ease;
     }
 
     .explore-menu:hover .explore-chevron,
@@ -532,11 +532,9 @@ const docsLinks = docsNavLinks.map((link) => {
       opacity: 0;
       padding-block-start: 0.5rem;
       position: absolute;
-      transform: translateY(-0.25rem);
       transition:
-        opacity 160ms ease,
-        transform 160ms ease,
-        visibility 0s linear 160ms;
+        opacity 120ms ease,
+        visibility 0s linear 120ms;
       visibility: hidden;
       z-index: 20;
     }
@@ -546,7 +544,6 @@ const docsLinks = docsNavLinks.map((link) => {
     .account-menu:hover .account-dropdown,
     .account-menu:focus-within .account-dropdown {
       opacity: 1;
-      transform: translateY(0);
       transition-delay: 0s;
       visibility: visible;
     }
@@ -555,21 +552,18 @@ const docsLinks = docsNavLinks.map((link) => {
     .explore-menu[data-dismissed] .explore-dropdown,
     .account-menu[data-dismissed] .account-dropdown {
       opacity: 0;
-      transform: translateY(-0.25rem);
       visibility: hidden;
     }
 
     .explore-panel,
     .account-panel {
-      background: var(--sl-color-bg-nav);
-      border: 1px solid rgba(0, 25, 138, 0.14);
-      border-radius: 0.5rem;
-      box-shadow:
-        0 10px 15px -3px rgba(0, 0, 0, 0.12),
-        0 4px 6px -4px rgba(0, 0, 0, 0.12);
+      background: var(--zi-surface);
+      border: 1px solid var(--zi-line);
+      border-radius: var(--zi-radius-lg);
+      box-shadow: var(--zi-shadow-pop);
       display: grid;
       gap: 0.125rem;
-      padding: 0.5rem;
+      padding: var(--zi-space-2);
     }
 
     .explore-panel {
@@ -580,22 +574,14 @@ const docsLinks = docsNavLinks.map((link) => {
       min-inline-size: 15rem;
     }
 
-    :global(:root[data-theme='dark']) .explore-panel,
-    :global(:root[data-theme='dark']) .account-panel {
-      border-color: rgba(218, 229, 250, 0.12);
-      box-shadow:
-        0 10px 15px -3px rgba(0, 0, 0, 0.45),
-        0 4px 6px -4px rgba(0, 0, 0, 0.45);
-    }
-
     .explore-panel a,
     .account-item {
-      border-radius: 0.375rem;
+      border-radius: var(--zi-radius-md);
       display: grid;
       gap: 0.1rem;
       padding: 0.5rem;
       text-decoration: none !important;
-      transition: background-color 150ms ease;
+      transition: background-color 120ms ease;
     }
 
     .account-item {
@@ -606,8 +592,7 @@ const docsLinks = docsNavLinks.map((link) => {
     .explore-panel a:focus-visible,
     .account-item:hover,
     .account-item:focus-visible {
-      background: var(--sl-color-gray-6);
-      outline: none;
+      background: var(--zi-surface-raised);
     }
 
     .explore-link-label,
@@ -615,7 +600,7 @@ const docsLinks = docsNavLinks.map((link) => {
       color: var(--sl-color-white);
       font-size: var(--sl-text-sm);
       font-weight: 500;
-      transition: color 150ms ease;
+      transition: color 120ms ease;
     }
 
     .explore-panel a:hover .explore-link-label,
@@ -645,9 +630,10 @@ const docsLinks = docsNavLinks.map((link) => {
     }
 
     .explore-panel__heading {
-      color: var(--sl-color-gray-3);
-      font-size: var(--sl-text-xs);
-      font-weight: 700;
+      color: var(--zi-ink-faint);
+      font-family: var(--zi-font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
       letter-spacing: 0.08em;
       margin: 0.15rem 0 0.3rem;
       padding-inline: 0.5rem;
@@ -661,28 +647,28 @@ const docsLinks = docsNavLinks.map((link) => {
       border: 0;
       cursor: pointer;
       font-family: inherit;
-      border-radius: 0.375rem;
-      color: #ffffff !important;
+      border-radius: var(--zi-radius-md);
+      color: var(--zi-on-accent) !important;
       display: flex;
       font-size: var(--sl-text-sm);
       font-weight: 600;
       gap: 0.4rem;
       padding: 0.45rem 0.85rem;
       text-decoration: none !important;
-      transition: background-color 150ms ease;
+      transition: background-color 120ms ease;
       white-space: nowrap;
     }
 
     .account-trigger:hover,
     .account-trigger:focus-visible {
-      background: var(--sl-color-accent-high);
+      background: var(--zi-accent-hover);
     }
 
     .account-chevron {
       block-size: 0.75rem;
       inline-size: 0.75rem;
       opacity: 0.75;
-      transition: transform 200ms ease;
+      transition: transform 120ms ease;
     }
 
     .account-menu:hover .account-chevron,
@@ -691,11 +677,7 @@ const docsLinks = docsNavLinks.map((link) => {
     }
 
     .account-item--primary {
-      background: var(--sl-color-accent-low);
-    }
-
-    :global(:root[data-theme='dark']) .account-item--primary {
-      background: rgba(107, 142, 245, 0.14);
+      background: var(--zi-accent-soft);
     }
 
     .account-item--primary .account-item__label {
@@ -714,11 +696,9 @@ const docsLinks = docsNavLinks.map((link) => {
       opacity: 0;
       padding-block-start: 0.5rem;
       position: absolute;
-      transform: translateY(-0.25rem);
       transition:
-        opacity 160ms ease,
-        transform 160ms ease,
-        visibility 0s linear 160ms;
+        opacity 120ms ease,
+        visibility 0s linear 120ms;
       visibility: hidden;
       z-index: 20;
     }
@@ -726,51 +706,39 @@ const docsLinks = docsNavLinks.map((link) => {
     .lang-menu:hover :global(.lang-dropdown),
     .lang-menu:focus-within :global(.lang-dropdown) {
       opacity: 1;
-      transform: translateY(0);
       transition-delay: 0s;
       visibility: visible;
     }
 
     .lang-menu[data-dismissed] :global(.lang-dropdown) {
       opacity: 0;
-      transform: translateY(-0.25rem);
       visibility: hidden;
     }
 
     .lang-menu :global(.lang-panel) {
-      background: var(--sl-color-bg-nav);
-      border: 1px solid rgba(0, 25, 138, 0.14);
-      border-radius: 0.5rem;
-      box-shadow:
-        0 10px 15px -3px rgba(0, 0, 0, 0.12),
-        0 4px 6px -4px rgba(0, 0, 0, 0.12);
+      background: var(--zi-surface);
+      border: 1px solid var(--zi-line);
+      border-radius: var(--zi-radius-lg);
+      box-shadow: var(--zi-shadow-pop);
       display: grid;
       gap: 0.125rem;
       min-inline-size: 9rem;
-      padding: 0.5rem;
-    }
-
-    :global(:root[data-theme='dark']) .lang-menu :global(.lang-panel) {
-      border-color: rgba(218, 229, 250, 0.12);
-      box-shadow:
-        0 10px 15px -3px rgba(0, 0, 0, 0.45),
-        0 4px 6px -4px rgba(0, 0, 0, 0.45);
+      padding: var(--zi-space-2);
     }
 
     .lang-menu :global(.lang-item) {
-      border-radius: 0.375rem;
+      border-radius: var(--zi-radius-md);
       color: var(--sl-color-white);
       font-size: var(--sl-text-sm);
       font-weight: 500;
       padding: 0.5rem 0.65rem;
       text-decoration: none;
-      transition: background-color 150ms ease;
+      transition: background-color 120ms ease;
     }
 
     .lang-menu :global(.lang-item:hover),
     .lang-menu :global(.lang-item:focus-visible) {
-      background: var(--sl-color-gray-6);
-      outline: none;
+      background: var(--zi-surface-raised);
     }
 
     .lang-menu :global(.lang-item[aria-current='true']) {
@@ -782,7 +750,7 @@ const docsLinks = docsNavLinks.map((link) => {
       align-items: center;
       background: transparent;
       border: 0;
-      border-radius: 0.3rem;
+      border-radius: var(--zi-radius-md);
       color: var(--sl-color-text);
       cursor: pointer;
       display: flex;
@@ -791,7 +759,7 @@ const docsLinks = docsNavLinks.map((link) => {
       font-weight: 600;
       gap: 0.3rem;
       padding: 0.35rem 0.5rem;
-      transition: color 150ms ease;
+      transition: color 120ms ease;
       white-space: nowrap;
     }
 
@@ -805,8 +773,8 @@ const docsLinks = docsNavLinks.map((link) => {
       inline-size: 0.75rem;
       opacity: 0.5;
       transition:
-        opacity 150ms ease,
-        transform 200ms ease;
+        opacity 120ms ease,
+        transform 120ms ease;
     }
 
     .lang-menu:hover :global(.lang-chevron),
