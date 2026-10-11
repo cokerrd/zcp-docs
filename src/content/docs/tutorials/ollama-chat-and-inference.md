@@ -37,7 +37,7 @@ You need:
 - A workstation with ssh, curl, and date.
 - Enough RAM and disk for every model you plan to keep.
 
-The reference catalog values were:
+The reference catalogue values were:
 
 ```text
 region: yul-1
@@ -49,7 +49,7 @@ storage category: pro-nvme
 Ollama template: zmi-ollama-0.31.2-ubuntu2404-1.0.0
 ```
 
-Read the catalog before creating a VM:
+Read the catalogue before creating a VM:
 
 ```bash
 zcp region list
@@ -60,13 +60,14 @@ zcp plan storage --region yul-1
 zcp template list --region yul-1 | grep -i ollama
 ```
 
-The ci2.4xl reference plan provided 16 vCPU, 64 GB RAM, and a 320 GB root disk. A 70B Q4 model uses
-about 42 GB, which leaves little headroom once the service, context, and operating system are
-running.
+The `ci2.4xl` reference plan provided 16 vCPU, 64 GB RAM, and a 320 GB root disk. That was a bundled
+plan. Plans are now compute-only. Use `ci2c.4xl` for the same CPU and memory, and choose the root
+disk size on the OS Disk Offering step. A 70B Q4 model uses about 42 GB, which leaves little
+headroom once the service, context, and operating system are running.
 
 ## Reference Cost in YUL-1
 
-The current catalog lists the reference resources in CAD:
+The current catalogue lists the reference resources in CAD:
 
 | Resource                    |    Hourly |      Monthly |
 | --------------------------- | --------: | -----------: |
@@ -76,8 +77,13 @@ The current catalog lists the reference resources in CAD:
 | Reference subtotal          | CA$0.8082 | About CA$582 |
 
 This is a YUL-1 estimate for one VM, one isolated network, and one public IPv4 address. It excludes
-taxes, optional block volumes, snapshots, backups, and discounts. The 320 GB root disk is included
-in the VM plan. Query the catalog before a paid run because prices and availability change:
+taxes, optional block volumes, snapshots, backups, and discounts. The 320 GB root disk was included
+in the bundled VM plan. With a compute-only plan, the root disk is a separate per-GB line, see
+[Instance Types](/public-cloud/compute/instance-types#root-disk).
+
+<!-- TODO: refresh the reference subtotal with the compute-only ci2c.4xl price plus a 320 GB root disk on `b2.g1` once the catalogueue is queried. -->
+
+Query the catalogue before a paid run because prices and availability change:
 
 ```bash
 zcp plan vm --region yul-1 --project default-9
@@ -100,7 +106,7 @@ zcp ssh-key import \
   --region yul-1
 ```
 
-Create the VM. Replace `<ollama-template>` with the template slug returned by the catalog command:
+Create the VM. Replace `<ollama-template>` with the template slug returned by the catalogue command:
 
 ```bash
 zcp instance create \

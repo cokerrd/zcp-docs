@@ -15,6 +15,13 @@ export const publicationDateAtUtcNoon = (date: string) => new Date(`${date}T12:0
 
 export const changelogFeedEntries: ChangelogFeedEntry[] = [
   {
+    title: 'Compute and storage sold separately',
+    description:
+      'VM plans now cover CPU and memory only. Choose the root disk as a per-GB block storage volume when you create the server. Existing servers keep their plan and price.',
+    pubDate: '2026-10-11',
+    slug: 'compute-storage-separate',
+  },
+  {
     title: 'CLI v0.0.30: custom VM plans and object storage keys',
     description:
       'The zcp CLI supports custom VM plans, load balancer rule listings, and S3-compatible object storage key rotation. New S3 credentials are visible for five minutes and direct S3 commands validate the saved access key for the selected store.',

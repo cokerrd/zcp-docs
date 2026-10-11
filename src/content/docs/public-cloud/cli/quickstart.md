@@ -67,6 +67,14 @@ zcp instance create \
   --network my-public-network
 ```
 
+:::note
+
+Plans are compute-only since October 11, 2026. The next CLI release adds `--blockstorage-plan` and
+`--root-disk-size` to `zcp instance create` so you can choose the root disk. They are not in a
+shipped release yet. See the [CLI reference](/public-cloud/cli/reference).
+
+:::
+
 ### Step 4: Manage it
 
 ```bash

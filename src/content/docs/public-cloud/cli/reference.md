@@ -55,6 +55,28 @@ billing/support/dashboard, and the IAM commands `sub-user`/`role`/`permission`) 
 | `zcp instance reboot <name>`  | Reboot an instance       |
 | `zcp instance console <name>` | Get console URL          |
 
+#### Coming in the next release: root disk sizing
+
+Plans are compute-only since October 11, 2026. The next CLI release adds flags to choose the root
+disk when you create an instance. These flags are not in a shipped release yet.
+
+```bash
+zcp instance create --name my-vm --project default-9 --region yul-1 \
+  --template ubuntu-2604-lts-1 --plan ca2cxs \
+  --blockstorage-plan b2g1 --root-disk-size 100 \
+  --network-plan pnet-yul --storage-category pro-nvme
+```
+
+- `--blockstorage-plan`: the root storage tier slug. List tiers with `zcp plan storage`.
+- `--root-disk-size`: the root disk size in GB for that tier.
+
+The CLI takes slugs, not display names. A plan slug is the plan name without the dot, so `ca2c.xs`
+becomes `ca2cxs` and `b2.g1` becomes `b2g1`. `--storage-category` takes the console's internal
+category value. The values map to tiers as follows: `pro-nvme` is `b2.g1`, `nvme` is `b1.g1`,
+`premium-ssd` is `b2.g2`, `premium-nvme` is `b2.l1`, `ssd-storage` is `b2.l2`, and `hdd-storage` is
+`b1.g3`. List plan slugs with `zcp plan vm`, `zcp plan storage` and `zcp plan network`, and category
+values with `zcp storage-category list --region yul-1`.
+
 ### Compute: Kubernetes
 
 | Command                         | Description                |
