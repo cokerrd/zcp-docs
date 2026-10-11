@@ -61,6 +61,28 @@ complete, commit-level history.
 
 Updates to the Public Cloud platform and managed services.
 
+### Compute and storage sold separately (October 11, 2026) {/* changelog-id: compute-storage-separate */}
+
+Every VM plan now covers CPU and memory only. Plan names carry a `c` before the size, for example
+`ca2c.m` (2 vCPU, 4 GB, YUL on `b2.g1`, $24.80 per month). You choose the root disk on the **OS Disk
+Offering** step as a per-GB block storage volume. The minimum is the template size. Grow it at any
+time. It never shrinks. Rates per GB per month:
+
+- `b1.g1` and `b2.g1`: $0.14
+- `b1.g3`: $0.03
+- `b2.g2`: $0.09
+- `b2.l1`: $0.10
+- `b2.l2`: $0.07
+
+The same root size on the default tier costs the same total as before. Review and Deploy now lists
+compute, network, public IP, and block storage root as separate lines.
+
+Existing servers keep their plan and their price. Resizing an existing server's plan does not change
+its root disk. Custom plans, where you pick your own CPU and RAM, are retired, so choose a fixed
+size. CLI v1.0.0, released the same day, sets the root disk with `--blockstorage-plan` and
+`--root-disk-size`. Root disk sizing for fixed plans in the Terraform provider is coming in a later
+release. See [Instance Types](/public-cloud/compute/instance-types).
+
 ### Up to 8 subnets per VPC (September 7, 2026) {/* changelog-id: vpc-subnet-limit */}
 
 Each VPC supports up to 8 subnets, up from 3. Existing VPCs get the new limit with no changes on

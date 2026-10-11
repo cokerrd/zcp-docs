@@ -67,6 +67,15 @@ zcp instance create \
   --network my-public-network
 ```
 
+:::note
+
+Plans are compute-only since October 11, 2026. CLI v1.0.0 and later require `--blockstorage-plan`
+(the root disk tier) and `--root-disk-size` (in GB) on `zcp instance create`. Add them to the
+command above, for example `--blockstorage-plan b1g1 --root-disk-size 50` in YOW. Earlier versions
+do not have `--root-disk-size`. See the [CLI reference](/public-cloud/cli/reference).
+
+:::
+
 ### Step 4: Manage it
 
 ```bash
