@@ -18,6 +18,13 @@ export const publicationDateAtUtcNoon = (date: string) => new Date(`${date}T12:0
 
 export const changelogFeedEntries: ChangelogFeedEntry[] = [
   {
+    title: 'ZCP Store',
+    description:
+      'Buy support plans, professional services, bare metal servers and licences from the Store tab in the console. Products are account level and bill on the same invoice as your instances.',
+    pubDate: '2026-10-11',
+    slug: 'zcp-store',
+  },
+  {
     title: 'CLI v1.0.1: lifecycle-route and volume fixes',
     description:
       'The current zcp CLI release uses the current instance cancellation and hostname routes, retrieves every VM snapshot page, and accepts a named storage plan with an explicit volume capacity.',

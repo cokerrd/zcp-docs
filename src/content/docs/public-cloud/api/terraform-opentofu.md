@@ -38,7 +38,8 @@ terraform {
 ```
 
 Set the token outside version control. The provider reads `ZCP_BEARER_TOKEN`, `ZCP_API_URL`, and
-`ZCP_PROJECT` from the environment.
+`ZCP_PROJECT` from the environment. `ZCP_API_URL` is optional and defaults to
+`https://api.zcp.zsoftly.ca/api`. Set it only when using a different API endpoint.
 
 ```bash
 export ZCP_BEARER_TOKEN="your-token"
