@@ -39,12 +39,12 @@ const latest = entries
 
 const cards = latest.map((entry) => {
   const slug = slugOf(entry.id);
-  const badge = tutorialIcons[slug] ?? defaultTutorialIcon;
   return {
     href: `/${entry.id}`,
     title: entry.data.sidebar?.label ?? entry.data.title,
     description: entry.data.description ?? '',
-    ...badge,
+    publishedOn: tutorialPublishedOn[slug],
+    icon: tutorialIcons[slug] ?? defaultTutorialIcon,
   };
 });
 ---
@@ -52,12 +52,14 @@ const cards = latest.map((entry) => {
 <div class="devtools-grid">
   {
     cards.map((card) => (
-      <a href={card.href} class="devtool-card anim-5">
-        <div
-          class="service-icon"
-          style={`--icon-bg: ${card.color}; --icon-bg-dim: color-mix(in srgb, ${card.color} 15%, transparent);`}
-        >
-          <ShapeIcon shapes={card.icon} size={18} />
+      <a href={card.href} class="devtool-card">
+        {card.publishedOn && (
+          <time class="link-card__eyebrow" datetime={card.publishedOn}>
+            {card.publishedOn}
+          </time>
+        )}
+        <div class="service-icon">
+          <ShapeIcon shapes={card.icon} />
         </div>
         <div>
           <p class="service-name">{card.title}</p>

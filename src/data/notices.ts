@@ -44,7 +44,7 @@ export const siteNotices: SiteNotice[] = [
     textKey: 'zs.notice.q3Billing.text',
     linkKey: 'zs.notice.q3Billing.link',
     path: 'changelog/q3-2026-platform-update/',
-    active: true,
+    active: false,
     startsAt: '2026-10-06T00:00:00Z',
     endsAt: '2026-11-05T00:00:00Z',
   },

@@ -219,7 +219,7 @@ export default defineConfig({
           href: 'https://github.com/zsoftly/zcp-docs',
         },
       ],
-      customCss: ['./src/styles/custom.css'],
+      customCss: ['./src/styles/tokens.css', './src/styles/custom.css'],
       components: {
         Head: './src/overrides/Head.astro',
         Header: './src/overrides/Header.astro',
