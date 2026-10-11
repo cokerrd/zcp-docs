@@ -317,6 +317,7 @@ export default defineConfig({
           items: [
             { label: 'Authentication', slug: 'public-cloud/api/authentication' },
             { label: 'Quickstart', slug: 'public-cloud/api/quickstart' },
+            { label: 'Terraform & OpenTofu', slug: 'public-cloud/api/terraform-opentofu' },
             { label: 'Reference', slug: 'public-cloud/api/reference' },
           ],
         },

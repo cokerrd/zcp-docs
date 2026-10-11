@@ -29,7 +29,7 @@ import them. CLI end users are not affected. Update import paths:
 ### Linux and macOS
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/zsoftly/zcp-cli/main/scripts/install.sh | bash
+curl -fsSL https://github.com/zsoftly/zcp-cli/releases/latest/download/install.sh | bash
 ```
 
 After installation, verify:
@@ -41,8 +41,11 @@ zcp version
 ### Windows (PowerShell)
 
 ```powershell
-irm https://raw.githubusercontent.com/zsoftly/zcp-cli/main/scripts/install.ps1 | iex
+irm https://github.com/zsoftly/zcp-cli/releases/latest/download/install.ps1 | iex
 ```
+
+The current release is [v1.0.1](https://github.com/zsoftly/zcp-cli/releases/tag/v1.0.1). The release
+installer upgrades an existing installation in place.
 
 ### Manual download
 

@@ -80,8 +80,8 @@ compute, network, public IP, and block storage root as separate lines.
 Existing servers keep their plan and their price. Resizing an existing server's plan does not change
 its root disk. Custom plans, where you pick your own CPU and RAM, are retired, so choose a fixed
 size. CLI v1.0.0, released the same day, sets the root disk with `--blockstorage-plan` and
-`--root-disk-size`. Root disk sizing for fixed plans in the Terraform provider is coming in a later
-release. See [Instance Types](/public-cloud/compute/instance-types).
+`--root-disk-size`. The Terraform and OpenTofu provider v1.0.0 supports the same named compute and
+root storage selections. See [Instance Types](/public-cloud/compute/instance-types).
 
 ### Up to 8 subnets per VPC (September 7, 2026) {/* changelog-id: vpc-subnet-limit */}
 
@@ -148,6 +148,33 @@ One-click application images for compute instances.
 
 The official command-line tool for the platform. The entries below mirror the CLI's
 [`CHANGELOG.md`](https://github.com/zsoftly/zcp-cli/blob/main/CHANGELOG.md) on GitHub.
+
+### v1.0.1: October 11, 2026 {/* changelog-id: cli-v1.0.1 */}
+
+**Current CLI release.** See the
+[v1.0.1 release](https://github.com/zsoftly/zcp-cli/releases/tag/v1.0.1) on GitHub.
+
+- **Instance cancellation and hostname changes use the current API routes.** Changing a hostname
+  restarts the instance.
+- **VM snapshot lists retrieve all reported pages.** A later pagination failure returns an error
+  instead of a partial list.
+- **Named volume plans accept an explicit capacity.** Use `--plan` with `--size` in
+  `zcp volume create`. See the [CLI reference](/public-cloud/cli/reference).
+
+### v1.0.0: October 11, 2026 {/* changelog-id: cli-v1.0.0 */}
+
+**Separate compute and root-storage selections, VM backup schedules, and complete DNS lists.** See
+the [v1.0.0 release](https://github.com/zsoftly/zcp-cli/releases/tag/v1.0.0) on GitHub.
+
+- **New instances require named compute and root-storage plans.** Pass `--plan`,
+  `--blockstorage-plan`, and `--root-disk-size`. Custom CPU, memory, and disk inputs are retired.
+- **New Kubernetes clusters use separate control-plane, worker, and root-storage plans.** The root
+  disk size applies to every node. Automatic scale-out remains unverified.
+- **VM backup schedules support interval, time zone, retention, pause, resume, and run-now
+  controls.** List schedules after an `everyOtherDay` error because the platform can persist that
+  policy before returning the error.
+- **DNS lists retrieve every reported page.** A later pagination failure returns an error instead of
+  a partial list.
 
 ### v0.0.31: October 9, 2026 {/* changelog-id: cli-v0.0.31 */}
 
@@ -496,6 +523,25 @@ Manage ZCP infrastructure as code with the official provider, published as `zsof
 [OpenTofu registry](https://search.opentofu.org/provider/zsoftly/zcp) and the
 [Terraform Registry](https://registry.terraform.io/providers/zsoftly/zcp). Source code lives at
 [github.com/zsoftly/terraform-provider-zcp](https://github.com/zsoftly/terraform-provider-zcp).
+
+### v1.0.0: October 11, 2026 {/* changelog-id: terraform-v1.0.0 */}
+
+**Current provider release.** See the
+[v1.0.0 release](https://github.com/zsoftly/terraform-provider-zcp/releases/tag/v1.0.0) and the
+[upgrade guide](/public-cloud/api/terraform-opentofu/).
+
+- **New instances require `plan`, `blockstorage_plan`, and `root_disk_size`.** The provider rejects
+  new custom CPU, memory, and disk configurations. Existing custom-plan state remains readable and
+  destroyable.
+- **New Kubernetes clusters use separate fixed plans for control-plane nodes, workers, and root
+  storage.** Changing to that shape replaces a cluster. The provider records requested autoscaling
+  bounds but does not confirm immediate scale-out.
+- **`zcp_vm_backup_schedule` manages recurring policies.** It supports interval, time zone,
+  retention, paused state, import, and policy scope. The provider rejects `everyOtherDay` before the
+  platform can persist it and return an error.
+- **DNS lookups paginate by slug, named volumes accept a plan and capacity, and instance name
+  updates use hostname changes.** A hostname update can restart a running instance or start a
+  stopped instance.
 
 ### v0.3.0: October 9, 2026 {/* changelog-id: terraform-v0.3.0 */}
 
