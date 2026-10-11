@@ -91,9 +91,9 @@ These are Starlight-specific and easy to get wrong:
 
 ### Code blocks
 
-- Code blocks render as flat boxes (no frame chrome) via `defaultProps.frame: 'none'` in
-  `ec.config.mjs`. A small plugin in that file adds a language label row. The flat box is the site’s
-  visual standard. Keep frames disabled unless the design calls for terminal or editor chrome.
+- Code blocks render as plain boxes with a copy button and no frame chrome or language label, via
+  `defaultProps.frame: 'none'` in `ec.config.mjs`. Keep Expressive Code's external stylesheet, which
+  is the default. The inline option loads no styles under Astro 7.
 - Multi-language examples (API/SDK) go in `<Tabs>` with `syncKey` so the language choice syncs
   across sections. CLI/shell/portal-UI examples stay single-language.
 - Use `.ca` for fictional example domains. Preserve real vendor, service, customer, and incident

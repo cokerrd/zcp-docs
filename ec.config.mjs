@@ -4,14 +4,12 @@ import { defineEcConfig, ExpressiveCodeTheme } from '@astrojs/starlight/expressi
 // Starlight's Expressive Code integration discovers this project-root config.
 // No explicit Expressive Code key is needed in astro.config.mjs.
 //
-// emitExternalStylesheet: false inlines EC styles as a <style> tag per page
-// instead of emitting a shared /_astro/ec.*.css asset.
+// Expressive Code emits its styles as a shared /_astro/ec.*.css asset. This is the default. The
+// inline option (emitExternalStylesheet: false) renders an empty <style set:html="..."> tag under
+// Astro 7, so no code block styles load.
 //
-// defaultProps.frame: 'none' renders every code block as a flat box with no
-// frame chrome (no terminal dots or titlebar, no editor tab). The ZCP
-// Instrument CodeBlock adds its own label row instead. The plugin below sets
-// data-language on the block. src/styles/custom.css draws it as an uppercase
-// mono label above the code.
+// defaultProps.frame: 'none' renders every code block as a plain box with no
+// frame chrome and no language label, so each block shows only the code and copies unchanged.
 //
 // Syntax colour follows the ZCP Instrument CodeBlock rule: keywords in accent,
 // strings in ink-muted, comments in ink-faint, everything else in ink. EC
@@ -88,34 +86,13 @@ function instrumentTheme(name, type, t) {
 const paper = instrumentTheme('zcp-instrument-paper', 'light', paperTokens);
 const carbon = instrumentTheme('zcp-instrument-carbon', 'dark', carbonTokens);
 
-// Languages that are plain text get no label row.
-const UNLABELLED = new Set(['', 'txt', 'text', 'plaintext', 'plain', 'ansi']);
-
-/** Exposes the block's language as data-language for the CSS label row. */
-const languageLabel = {
-  name: 'zcp-instrument-language-label',
-  hooks: {
-    postprocessRenderedBlock: ({ codeBlock, renderData }) => {
-      const language = codeBlock.language ?? '';
-      if (UNLABELLED.has(language)) return;
-      const figure =
-        renderData.blockAst.tagName === 'figure'
-          ? renderData.blockAst
-          : renderData.blockAst.children?.find((node) => node.tagName === 'figure');
-      if (figure) figure.properties = { ...figure.properties, dataLanguage: language };
-    },
-  },
-};
-
 export default defineEcConfig({
-  emitExternalStylesheet: false,
   themes: [carbon, paper],
   // The themes above are the site's own, so Starlight's UI colour overrides
   // (built for its bundled themes) stay off. The frame colours come from the
   // tokens through styleOverrides instead.
   useStarlightUiThemeColors: false,
   minSyntaxHighlightingColorContrast: 4.5,
-  plugins: [languageLabel],
   defaultProps: {
     frame: 'none',
   },

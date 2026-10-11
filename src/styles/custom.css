@@ -65,8 +65,9 @@
   /* Top bar heights. --sl-announcement-height is their total, and every layout
      offset below is written against that total, so either bar can be present or
      dismissed without the header or content overlapping. PageFrame sets
-     --zs-notice-height to a real height only while a notice is showing. */
-  --zs-promo-height: 2.5rem;
+     --zs-promo-height and --zs-notice-height to a real height only while that
+     bar is showing. */
+  --zs-promo-height: 0rem;
   --zs-notice-height: 0rem;
   --sl-announcement-height: calc(var(--zs-promo-height) + var(--zs-notice-height));
   --sl-nav-height: calc(3.5rem + var(--sl-announcement-height));
@@ -387,8 +388,7 @@ site-search dialog {
 
 /* ── CodeBlock (Expressive Code) ────────────────────────────── */
 /* ec.config.mjs sets the restrained syntax themes and the surface-sunken
-   ground. Here the block gets its hairline frame and the language label row,
-   which a plugin in ec.config.mjs exposes as data-language on the figure. */
+   ground. Here the block gets its hairline frame. */
 .expressive-code figure.frame {
   background-color: var(--zi-surface-sunken);
   border: 1px solid var(--zi-line);
@@ -399,25 +399,6 @@ site-search dialog {
 .expressive-code figure.frame pre {
   border: 0 !important;
   border-radius: 0 !important;
-}
-
-.expressive-code figure.frame[data-language]::before {
-  border-bottom: 1px solid var(--zi-line);
-  color: var(--zi-ink-faint);
-  content: attr(data-language);
-  display: block;
-  font-family: var(--zi-font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  line-height: 1rem;
-  padding: var(--zi-space-2) var(--zi-space-3);
-  text-transform: uppercase;
-}
-
-/* With the label row present, the copy button sits in that row. */
-.expressive-code figure.frame[data-language] .copy {
-  inset-block-start: 0.125rem;
 }
 
 .expressive-code .copy button {

@@ -1,11 +1,13 @@
 ---
-// PageFrame override: injects the site-wide promotional announcement bar
-// above Starlight's fixed nav header.
+// PageFrame override: adds the site-wide promo bar (while src/data/promo.ts has it active)
+// and the notice bar above Starlight's fixed nav header, plus the consent banner and Ask Docs.
 import Default from '@astrojs/starlight/components/PageFrame.astro';
 import type { Props } from '@astrojs/starlight/props';
 import { CLOUD_REGISTER_URL, localePathPrefix } from '../data/site';
 import { getActiveNotice } from '../data/notices';
+import { promoBar } from '../data/promo';
 import ConsentBanner from './ConsentBanner.astro';
+import AskDocs from './AskDocs.astro';
 
 const notice = getActiveNotice();
 const localePrefix = localePathPrefix(Astro.locals.starlightRoute.locale);
@@ -36,46 +38,64 @@ const noticeHref = notice?.path ? `${localePrefix}/${notice.path}` : undefined;
   }
 </script>
 
+{/* Reserve layout space for the promo bar only while it is active. */}
+{promoBar.active && <style is:inline set:html=":root { --zs-promo-height: 2.5rem; }" />}
+
 {/* Reserve layout space for the notice bar only while one is showing. */}
 {notice && <style is:inline set:html=":root { --zs-notice-height: 2.5rem; }" />}
 
-<div id="promo-bar" class="promo-bar" role="region" aria-label={Astro.locals.t('zs.promo.label')}>
-  <div class="promo-inner">
-    <span class="promo-live" aria-label={Astro.locals.t('zs.promo.liveLabel')}>
-      <span class="live-dot" aria-hidden="true"></span>
-      {Astro.locals.t('zs.promo.live')}
-    </span>
-    <span class="promo-sep" aria-hidden="true">·</span>
-    <span class="promo-text">{Astro.locals.t('zs.promo.credit')}</span>
-    <span class="promo-sep" aria-hidden="true">·</span>
-    <span class="promo-text">{Astro.locals.t('zs.promo.ends')}</span>
-  </div>
-  <span class="promo-sep promo-sep--cta" aria-hidden="true">·</span>
-  <a href={CLOUD_REGISTER_URL} class="promo-cta" target="_blank" rel="noopener noreferrer">
-    {Astro.locals.t('zs.promo.cta')}
-  </a>
-  <button
-    id="promo-dismiss"
-    class="promo-dismiss"
-    type="button"
-    aria-label={Astro.locals.t('zs.promo.dismiss')}
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="14"
-      height="14"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2.5"
-      stroke-linecap="round"
-      aria-hidden="true"
+{
+  promoBar.active && (
+    <div
+      id="promo-bar"
+      class="promo-bar"
+      role="region"
+      aria-label={Astro.locals.t('zs.promo.label')}
     >
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
-  </button>
-</div>
+      <div class="promo-inner">
+        <span class="promo-live" aria-label={Astro.locals.t('zs.promo.liveLabel')}>
+          <span class="live-dot" aria-hidden="true" />
+          {Astro.locals.t('zs.promo.live')}
+        </span>
+        <span class="promo-sep" aria-hidden="true">
+          ·
+        </span>
+        <span class="promo-text">{Astro.locals.t('zs.promo.credit')}</span>
+        <span class="promo-sep" aria-hidden="true">
+          ·
+        </span>
+        <span class="promo-text">{Astro.locals.t('zs.promo.ends')}</span>
+      </div>
+      <span class="promo-sep promo-sep--cta" aria-hidden="true">
+        ·
+      </span>
+      <a href={CLOUD_REGISTER_URL} class="promo-cta" target="_blank" rel="noopener noreferrer">
+        {Astro.locals.t('zs.promo.cta')}
+      </a>
+      <button
+        id="promo-dismiss"
+        class="promo-dismiss"
+        type="button"
+        aria-label={Astro.locals.t('zs.promo.dismiss')}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+  )
+}
 
 {
   notice && (
@@ -136,6 +156,7 @@ const noticeHref = notice?.path ? `${localePrefix}/${notice.path}` : undefined;
      sidebar or header, whatever its z-index. */
 }
 <ConsentBanner />
+<AskDocs />
 
 <div
   id="sidebar-resizer"

@@ -1,6 +1,7 @@
 ---
 import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/TableOfContents.astro';
+import { assistantUrl, pagePrompt } from '../lib/ai-assistants';
 
 const { toc, entry, lastUpdated } = Astro.locals.starlightRoute;
 const hasToc = toc && toc.items.length > 0;
@@ -28,16 +29,14 @@ const feedbackUrl = `${DOCS_REPO}/issues/new?labels=feedback&title=Feedback+on+d
 const mdPath = `${Astro.url.pathname.replace(/\/$/, '')}.md`;
 const mdUrl = new URL(mdPath, Astro.site ?? Astro.url.origin).href;
 
-// "Ask AI about this page" — open the current page in an AI assistant, prompted
-// to read its clean Markdown URL (assistants ingest it more reliably than HTML).
-// `Astro.site` is the canonical host, so links point at the published page even
-// when previewing locally. Query params match each assistant's prefill contract:
-// ChatGPT `?prompt=`, Claude `?q=`, Cursor `cursor.com/link/prompt?text=`.
-const aiPrompt = `Read this documentation page:\n\n${mdUrl}`;
-const encodedPrompt = encodeURIComponent(aiPrompt);
-const chatgptUrl = `https://chatgpt.com/?prompt=${encodedPrompt}`;
-const claudeUrl = `https://claude.ai/new?q=${encodedPrompt}`;
-const cursorUrl = `https://cursor.com/link/prompt?text=${encodedPrompt}`;
+// "Ask AI about this page": open the current page in an AI assistant, prompted to read its
+// clean Markdown URL (assistants ingest it more reliably than HTML). `Astro.site` is the
+// canonical host, so links point at the published page even when previewing locally. Links and
+// prompts come from src/lib/ai-assistants.ts, shared with the Ask Docs dialog.
+const aiPrompt = pagePrompt(mdUrl);
+const chatgptUrl = assistantUrl('chatgpt', aiPrompt);
+const claudeUrl = assistantUrl('claude', aiPrompt);
+const cursorUrl = assistantUrl('cursor', aiPrompt);
 ---
 
 <div class="zs-toc-panel">
