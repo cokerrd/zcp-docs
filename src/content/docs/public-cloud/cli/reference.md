@@ -55,10 +55,12 @@ billing/support/dashboard, and the IAM commands `sub-user`/`role`/`permission`) 
 | `zcp instance reboot <name>`  | Reboot an instance       |
 | `zcp instance console <name>` | Get console URL          |
 
-#### Coming in the next release: root disk sizing
+#### Root disk sizing
 
-Plans are compute-only since October 11, 2026. The next CLI release adds flags to choose the root
-disk when you create an instance. These flags are not in a shipped release yet.
+Plans are compute-only since October 11, 2026, so you choose the root disk separately when you
+create an instance. `--blockstorage-plan` and `--network-plan` are available in earlier releases.
+`--root-disk-size` was added in v1.0.0, released on October 11, 2026, and v1.0.0 makes both
+`--blockstorage-plan` and `--root-disk-size` required. `--storage-category` is also required.
 
 ```bash
 zcp instance create --name my-vm --project default-9 --region yul-1 \

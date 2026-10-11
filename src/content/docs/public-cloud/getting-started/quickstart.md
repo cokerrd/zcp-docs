@@ -65,8 +65,8 @@ and non-sensitive resource details.
    - **Server Name**: give your VM a name
    - **Server Hostname**: review the prefilled value and change it if your naming standard requires
      it
-4. On the **OS Disk Offering** step, choose a root disk size. Plans cover CPU and memory only, and
-   the root disk is billed per GB. The minimum is the template size.
+4. On the **OS Disk Offering** step, choose the tier and the size of the root disk. Plans cover CPU
+   and memory only, and the root disk is billed per GB. The minimum is the template size.
 5. Choose a **Billing Cycle** (Hourly for testing)
 6. Click **Review & Deploy**
 

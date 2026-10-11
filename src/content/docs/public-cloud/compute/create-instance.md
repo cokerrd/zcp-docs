@@ -57,16 +57,12 @@ Browse the full catalogs: [OS Images](https://zcp.zsoftly.ca/marketplace/os-imag
 
 ![Choosing an operating system image](../../../../assets/compute/create-instance-choose-an-image.webp)
 
-## Choose a Storage Type
+## Choose a Root Disk
 
-Choose the storage type for your instance based on your performance needs (for example, `b2.g1` or
-`b2.g2`).
-
-## Choose a Root Disk Size
-
-On the **OS Disk Offering** step, pick the tier and the size of the root disk. Plans cover CPU and
-memory only, so the root disk is billed separately per GB. The minimum is the template size. Grow
-the disk later. You cannot shrink it. See
+On the **OS Disk Offering** step, first pick the tier that fits your workload, for example `b2.g1`
+(shared replicated NVMe) for general use or `b2.g2` (shared replicated SSD) for a budget disk. Then
+enter the size. Plans cover CPU and memory only, so the root disk is billed separately per GB. The
+minimum is the template size. Grow the disk later. You cannot shrink it. See
 [Instance Types](/public-cloud/compute/instance-types#root-disk) for the per-GB rates.
 
 ## Choose a Plan
@@ -78,7 +74,8 @@ the disk later. You cannot shrink it. See
 - **Memory Optimized (RO)**: Tailored for applications requiring high memory capacity, such as
   in-memory databases, big data processing, and real-time caching systems.
 
-Plans cover CPU and memory only. Custom plans are retired, so choose a fixed size. See
+Plans cover CPU and memory only. You choose and pay for the root disk separately on the **OS Disk
+Offering** step. Custom plans are retired, so choose a fixed size. See
 [Instance Types](/public-cloud/compute/instance-types) for families and storage tiers, and the
 [pricing page](https://zcp.zsoftly.ca/pricing) for per-size specs and pricing.
 

@@ -81,10 +81,12 @@ already created from a custom plan keep running on it.
 
 ## Storage tiers
 
-The storage tier is fixed per series and varies by region (see
-[Regions](/public-cloud/getting-started/regions)):
+Each series has a default storage tier, shown below, and the default varies by region (see
+[Regions](/public-cloud/getting-started/regions)). The tier is the one the series is intended for,
+not the only option. On the **OS Disk Offering** step you can choose any tier the console lists as
+orderable for your region.
 
-| Tier                             | Regions | Series                                    |
+| Default tier                     | Regions | Series                                    |
 | -------------------------------- | ------- | ----------------------------------------- |
 | `b1.g1` (shared replicated NVMe) | YOW     | `ci1c`, `ca1c`, `cim1c`, `cam1c`, `cac1c` |
 | `b2.g1` (shared replicated NVMe) | YUL     | `ca2c`, `cam2c`, `cac2c`                  |

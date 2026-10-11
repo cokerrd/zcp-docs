@@ -79,9 +79,9 @@ compute, network, public IP, and block storage root as separate lines.
 
 Existing servers keep their plan and their price. Resizing an existing server's plan does not change
 its root disk. Custom plans, where you pick your own CPU and RAM, are retired, so choose a fixed
-size. The CLI flags `--blockstorage-plan` and `--root-disk-size` and root disk sizing in the
-Terraform provider are coming in their next releases. See
-[Instance Types](/public-cloud/compute/instance-types).
+size. CLI v1.0.0, released the same day, sets the root disk with `--blockstorage-plan` and
+`--root-disk-size`. Root disk sizing for fixed plans in the Terraform provider is coming in a later
+release. See [Instance Types](/public-cloud/compute/instance-types).
 
 ### Up to 8 subnets per VPC (September 7, 2026) {/* changelog-id: vpc-subnet-limit */}
 

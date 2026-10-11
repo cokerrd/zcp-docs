@@ -42,8 +42,9 @@ The reference catalogue values were:
 ```text
 region: yul-1
 project: default-9
-VM plan display name: ci2.4xl
-VM plan CLI slug: ci24xl
+VM plan display name: ci2c.4xl
+VM plan CLI slug: ci2c4xl
+root disk tier: b2.g1 (CLI slug b2g1), 320 GB
 network plan: pnet-yul
 storage category: pro-nvme
 Ollama template: zmi-ollama-0.31.2-ubuntu2404-1.0.0
@@ -60,28 +61,32 @@ zcp plan storage --region yul-1
 zcp template list --region yul-1 | grep -i ollama
 ```
 
-The `ci2.4xl` reference plan provided 16 vCPU, 64 GB RAM, and a 320 GB root disk. That was a bundled
-plan. Plans are now compute-only. Use `ci2c.4xl` for the same CPU and memory, and choose the root
-disk size on the OS Disk Offering step. A 70B Q4 model uses about 42 GB, which leaves little
-headroom once the service, context, and operating system are running.
+The reference run used the earlier bundled `ci2.4xl` plan, which provided 16 vCPU, 64 GB RAM, and a
+320 GB root disk. Plans are now compute-only. Use `ci2c.4xl` (CLI slug `ci2c4xl`) for the same CPU
+and memory, and choose a root disk of at least 320 GB on `b2.g1` at the OS Disk Offering step. A 70B
+Q4 model uses about 42 GB, which leaves little headroom once the service, context, and operating
+system are running.
 
 ## Reference Cost in YUL-1
 
-The current catalogue lists the reference resources in CAD:
+The catalogue, checked on 2026-10-11, lists the reference resources in CAD. The root disk is 320 GB
+on `b2.g1` (shared replicated NVMe) at CA$0.14 per GB per month, which is CA$44.80 per month or
+about CA$0.0622 per hour.
 
 | Resource                    |    Hourly |      Monthly |
 | --------------------------- | --------: | -----------: |
-| `ci2.4xl` VM                |   CA$0.80 |       CA$576 |
+| `ci2c.4xl` VM (compute)     |  CA$0.738 |    CA$531.20 |
+| 320 GB root disk, `b2.g1`   |  CA$0.062 |     CA$44.80 |
+| VM and root disk            |   CA$0.80 |       CA$576 |
 | `pnet-yul` isolated network | CA$0.0041 |         CA$3 |
 | One YUL IPv4 address        | CA$0.0041 |         CA$3 |
 | Reference subtotal          | CA$0.8082 | About CA$582 |
 
 This is a YUL-1 estimate for one VM, one isolated network, and one public IPv4 address. It excludes
-taxes, optional block volumes, snapshots, backups, and discounts. The 320 GB root disk was included
-in the bundled VM plan. With a compute-only plan, the root disk is a separate per-GB line, see
-[Instance Types](/public-cloud/compute/instance-types#root-disk).
-
-<!-- TODO: refresh the reference subtotal with the compute-only ci2c.4xl price plus a 320 GB root disk on `b2.g1` once the catalogueue is queried. -->
+taxes, optional block volumes, snapshots, backups, and discounts. With a compute-only plan, the root
+disk is a separate per-GB line, see
+[Instance Types](/public-cloud/compute/instance-types#root-disk). The total matches the earlier
+bundled price.
 
 Query the catalogue before a paid run because prices and availability change:
 
@@ -115,7 +120,9 @@ zcp instance create \
   --project default-9 \
   --region yul-1 \
   --template <ollama-template> \
-  --plan ci24xl \
+  --plan ci2c4xl \
+  --blockstorage-plan b2g1 \
+  --root-disk-size 320 \
   --billing-cycle hourly \
   --network-plan pnet-yul \
   --storage-category pro-nvme \
