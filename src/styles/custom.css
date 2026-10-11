@@ -602,12 +602,6 @@ site-search dialog {
     margin-top: 0.5rem;
     padding-top: 0.5rem;
   }
-
-  .sidebar .mobile-menu-footer .mobile-auth-link {
-    display: flex;
-    min-height: 3rem;
-    padding-inline: 1rem;
-  }
 }
 
 /* ============================================================
@@ -1250,46 +1244,4 @@ site-search dialog {
 
 :root[data-theme='dark'] .postpaid-signup-screenshot__dark {
   display: block;
-}
-
-/* ============================================================
-   Site footer
-   ============================================================ */
-.site-footer {
-  margin-top: var(--zi-space-12);
-  padding: var(--zi-space-6) 0 var(--zi-space-2);
-  border-top: 1px solid var(--zi-line);
-}
-
-.site-footer__inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--zi-space-4);
-}
-
-.site-footer__nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--zi-space-1) var(--zi-space-6);
-}
-
-.site-footer__nav a {
-  font-size: 0.8125rem;
-  color: var(--zi-ink-muted);
-  text-decoration: none;
-  transition: color var(--zi-transition);
-}
-
-.site-footer__nav a:hover {
-  color: var(--zi-accent);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.site-footer__copy {
-  font-size: 0.8125rem;
-  color: var(--zi-ink-faint);
-  margin: 0;
 }

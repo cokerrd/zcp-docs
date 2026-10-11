@@ -14,6 +14,7 @@ import {
   homeTools,
 } from '../data/home';
 import { tutorialPublishedOn } from '../data/tutorials';
+import ShapeIcon from './ShapeIcon.astro';
 import { latestChangelogEntries, publicationDateAtUtcMidnight } from '../data/changelog-feed';
 
 interface Props {
@@ -88,15 +89,9 @@ const releases = latestChangelogEntries(HOME_RELEASE_COUNT, lang).map((entry) =>
       {
         homeGetStarted.map((item) => (
           <a class="zs-home__card" href={href(item.path)}>
-            <svg
-              class="zs-home__icon"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path d={item.icon} />
-            </svg>
+            <span class="zs-home__icon" aria-hidden="true">
+              {item.icon && <ShapeIcon shapes={item.icon} size={22} />}
+            </span>
             <span class="zs-home__card-title">{item.title[lang]}</span>
             <span class="zs-home__desc">{item.desc[lang]}</span>
           </a>
@@ -135,15 +130,9 @@ const releases = latestChangelogEntries(HOME_RELEASE_COUNT, lang).map((entry) =>
       {
         homeProducts.map((item) => (
           <a class="zs-home__product" href={href(item.path)}>
-            <svg
-              class="zs-home__icon"
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path d={item.icon} />
-            </svg>
+            <span class="zs-home__icon" aria-hidden="true">
+              {item.icon && <ShapeIcon shapes={item.icon} size={22} />}
+            </span>
             <span class="zs-home__card-title">{item.title[lang]}</span>
             <span class="zs-home__desc">{item.desc[lang]}</span>
           </a>
@@ -344,12 +333,17 @@ const releases = latestChangelogEntries(HOME_RELEASE_COUNT, lang).map((entry) =>
   }
 
   .zs-home__icon {
+    display: grid;
+    place-items: center;
+    inline-size: 36px;
+    block-size: 36px;
+    border-radius: var(--zi-radius-md);
     color: var(--zi-accent);
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    transition: background-color 120ms;
+  }
+  /* The one highlight: a soft accent square behind the icon. No other hue is used. */
+  :is(.zs-home__card, .zs-home__product):is(:hover, :focus-visible) .zs-home__icon {
+    background: var(--zi-accent-soft);
   }
 
   .zs-home__products {
@@ -362,7 +356,8 @@ const releases = latestChangelogEntries(HOME_RELEASE_COUNT, lang).map((entry) =>
   }
   .zs-home__product {
     display: grid;
-    grid-template-columns: 22px 1fr;
+    grid-template-columns: 36px 1fr;
+    align-items: center;
     gap: var(--zi-space-1) var(--zi-space-3);
     padding: var(--zi-space-4);
     border-inline-end: 1px solid var(--zi-line);
